@@ -54,9 +54,20 @@ lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
 
 let mapleader = " "
 
+nnoremap <leader>pv :Ex<CR>
+
 " Use <Tab> and <S-Tab> to navigate the completion list
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+nnoremap <leader>y "+y
+vnoremap <leader>y "+y
+nnoremap <leader>Y gg"+yG
+
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+inoremap <C-c> <esc>
 
 " Undotree
 nnoremap <F5> :UndotreeToggle<CR>
@@ -72,6 +83,11 @@ if has("persistent_undo")
     let &undodir=target_path
     set undofile
 endif
+
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 40})
+augroup END
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
