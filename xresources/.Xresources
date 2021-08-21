@@ -1,0 +1,56 @@
+xterm*termName: xterm-256color
+
+! Use a nice truetype font and size by default
+xterm*faceName: Dejavu Sans Mono
+xterm*faceSize: 12
+
+! Every shell is a login shell by default (for inclusion of all necessary environment variables)
+xterm*loginshell: true
+
+! use all keybindings as in other terminals
+xterm*metaSendsEscape: true
+
+! Scrollback..
+xterm*savelines: 16384
+
+! double-click to select whole URLs
+xterm*charClass: 33:48,36-47:48,58-59:48,61:48m63-64:48,95:48,126:48
+
+! right hand side scrollbar
+xterm*rightScrollBar: true
+xterm*ScrollBar: true
+
+! stop output to terminal from jumping down to bottom of scrol again
+xterm*scrollTtyOutput: false
+
+! clipboard
+xterm*selectToClipboard: true
+
+! hard contrast: *background: #1d2021
+xterm*background: #282828
+! soft contrast: *background: #323032f
+xterm*foreground: #ebdbb2
+! Black + DarkGrey
+xterm*color0: #282828
+xterm*color8: #928374
+! DarkRed + Red
+xterm*color1: #cc241d
+xterm*color9: #fb4934
+! DarkGreen + Green
+xterm*color2: #98971a
+xterm*color10: #b8bb26
+! DarkYellow + Yellow
+xterm*color3: #d79921
+xterm*color11: #fabd2f
+! DarkBlue + Blue
+xterm*color4: #458588
+xterm*color12: #83a598
+! DarkMagneta + Magneta
+xterm*color5: #b16286
+xterm*color13: #d3869b
+! DarkCyan + Cyan
+xterm*color6: #689d6a
+xterm*color14: #8ec07c
+! LightGrey + White
+xterm*color7: #a89984
+xterm*color15: #ebdbb2
