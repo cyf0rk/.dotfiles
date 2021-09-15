@@ -37,6 +37,9 @@ Plug 'sbdchd/neoformat'
 " auto closing ( [ {
 Plug 'jiangmiao/auto-pairs'
 
+" comments
+Plug 'tpope/vim-commentary'
+
 " Conqueror of completion
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -51,6 +54,7 @@ Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true } }
+let g:neoformat_run_all_formatters = 1
 
 let mapleader = " "
 
@@ -60,17 +64,45 @@ nnoremap <leader>pv :Ex<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+inoremap <C-c> <esc>
+" copy-paste-delete
+nnoremap Y y$
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
-
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
-inoremap <C-c> <esc>
+" Keeping it centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" Undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap [ [<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+inoremap : :<c-g>u
+
+" Jumplist mutations
+nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'
+nnoremap <expr> j (v:count > 5 ? "m'" . v:count : "") . 'j'
+
+" Moving text
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+nnoremap <leader>j :m .+1<CR>==
+nnoremap <leader>k :m .-2<CR>==
+
+nnoremap <leader>nf :Neoformat<CR>
 
 " Undotree
 nnoremap <F5> :UndotreeToggle<CR>
+
 if has("persistent_undo")
     let target_path = expand('~/.dotfiles/nvim/.config/nvim/undodir')
 
