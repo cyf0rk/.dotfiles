@@ -15,10 +15,10 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
-" My colors
+" My pencils
 Plug 'gruvbox-community/gruvbox'
 
-" vimitor history
+" Vimitor history
 Plug 'mbbill/undotree'
 
 " lsp
@@ -31,13 +31,13 @@ Plug 'simrat39/symbols-outline.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
-" prettier
+" Prettier
 Plug 'sbdchd/neoformat'
 
-" auto closing ( [ {
+" Auto closing ( [ {
 Plug 'jiangmiao/auto-pairs'
 
-" comments
+" Comments
 Plug 'tpope/vim-commentary'
 
 " Conqueror of completion
@@ -58,14 +58,14 @@ let g:neoformat_run_all_formatters = 1
 
 let mapleader = " "
 
-nnoremap <leader>pv :Ex<CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize30<CR>
 
 " Use <Tab> and <S-Tab> to navigate the completion list
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 inoremap <C-c> <esc>
-" copy-paste-delete
+" Copy-paste-delete
 nnoremap Y y$
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
@@ -98,10 +98,18 @@ inoremap <C-k> <esc>:m .-2<CR>==
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
 
+" Saving
+nnoremap <C-s> :w<CR>
+
+" Window resize
+nnoremap <leader>+ :vertical resize +5<CR>
+nnoremap <leader>- :vertical resize -5<CR>
+
+" Formatting
 nnoremap <leader>nf :Neoformat<CR>
 
 " Undotree
-nnoremap <F5> :UndotreeToggle<CR>
+nnoremap <leader>u :UndotreeShow<CR>
 
 if has("persistent_undo")
     let target_path = expand('~/.dotfiles/nvim/.config/nvim/undodir')
