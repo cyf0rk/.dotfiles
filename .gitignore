@@ -1,4 +1,2 @@
-/undodir
-/plugged
-gruvbox-dark.xresources
-gruvbox-light.xresources
+undodir/
+plugged/
