@@ -144,21 +144,24 @@ bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Assign apps to certain workspaces
-assign [class="Brave-browser"] $ws2
+assign [class="Brave-browser"] $ws1
+assign [class="Firefox"] $ws2
 assign [class="Alacritty"] $ws3
 assign [class="figma-linux"] $ws4
-assign [class="Firefox"] $ws5
+assign [class="Code"] $ws4
 assign [class="Google-chrome"] $ws5
 assign [class="Gimp"] $ws6
+assign [class="Local"] $ws7
 assign [class="discord"] $ws8
 assign [class="Thunderbird"] $ws9
 assign [class="Spotify"] $ws10
 
 # Keybindings for opening apps
-bindsym Mod4+2 exec brave-browser
+bindsym Mod4+1 exec brave-browser
+bindsym Mod4+2 exec firefox
 bindsym Mod4+4 exec figma-linux
-bindsym Mod4+f exec firefox
-bindsym Mod4+c exec google-chrome
+bindsym Mod4+c exec code
+bindsym Mod4+5 exec google-chrome
 bindsym Mod4+6 exec gimp
 bindsym Mod4+8 exec discord
 bindsym Mod4+9 exec thunderbird
@@ -271,3 +274,10 @@ bindsym Mod4+l exec i3lock --color "$bg"
 bindsym Mod4+Control+l exec i3lock --color "$bg" && systemctl suspend
 # load wallpaper
 exec_always feh --bg-scale ~/Pictures/wp.jpg
+# rofi
+bindsym Mod4+d exec rofi -show run
+
+# --------------------
+# Take screenshot ----
+# --------------------
+bindsym Mod4+Shift+z exec gnome-screenshot -i
