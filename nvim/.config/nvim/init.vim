@@ -12,7 +12,6 @@ call plug#begin(stdpath('config') . '/plugged')
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 " My pencils
@@ -27,6 +26,9 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'simrat39/symbols-outline.nvim'
 
+" Shopify
+Plug 'tpope/vim-liquid'
+
 " Neovim Tree-sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
@@ -39,17 +41,6 @@ Plug 'jiangmiao/auto-pairs'
 
 " Comments
 Plug 'tpope/vim-commentary'
-
-" Conqueror of completion
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-"   list of CoC extensions needed
-"let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']
-
-" plugins for highlighting and indenting to jsx and tsx files
-"Plug 'yuezk/vim-js'
-"Plug 'HerringtonDarkholme/yats.vim'
-"Plug 'maxmellon/vim-jsx-pretty'
 
 call plug#end()
 
