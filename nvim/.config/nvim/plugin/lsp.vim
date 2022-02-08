@@ -1,4 +1,4 @@
-set completeopt=menuone,noselect
+set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 
 nnoremap <leader>vd :lua vim.lsp.buf.definition()<CR>
@@ -10,8 +10,6 @@ nnoremap <leader>vh :lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>vca :lua vim.lsp.buf.code_action()<CR>
 nnoremap <leader>vsd :lua vim.lsp.diagnostic.show_line_diagnostics(); vim.lsp.util.show_line_diagnostics()<CR>
 nnoremap <leader>vn :lua vim.lsp.diagnostic.goto_next()<CR>
-
-lua require'lspconfig'.tsserver.setup{ on_attach=on_attach }
 
 let g:compe = {}
 let g:compe.enabled = v:true
@@ -34,5 +32,5 @@ let g:compe.source.calc = v:true
 let g:compe.source.nvim_lsp = v:true
 let g:compe.source.nvim_lua = v:true
 let g:compe.source.vsnip = v:true
-
-inoremap <silent><expr> <CR>   compe#confirm('<CR>')
+let g:compe.source.ultisnips = v:true
+let g:compe.source.luasnip = v:true

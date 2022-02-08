@@ -2,4 +2,4 @@ nnoremap <leader>ps :lua require('telescope.builtin').grep_string({ search = vim
 nnoremap <leader>pf :lua require('telescope.builtin').find_files()<CR>
 nnoremap <leader>fg :lua require('telescope.builtin').live_grep()<CR>
 
-"nnoremap <leader>vrc :lua require('theprimeagen.telescope').search_dotfiles()<CR>
+nnoremap <leader>vrc :lua require('lua_plugins.telescope').search_dotfiles()<CR>
