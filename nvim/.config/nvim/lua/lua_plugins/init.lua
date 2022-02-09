@@ -1,5 +1,6 @@
 require('lua_plugins.lsp')
 require('lua_plugins.telescope')
+require('lua_plugins.treesitter')
 
 P = function(v)
   print(vim.inspect(v))

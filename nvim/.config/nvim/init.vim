@@ -41,6 +41,7 @@ Plug 'tpope/vim-liquid'
 " Neovim Tree-sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
+Plug 'ChristianChiarulli/nvim-ts-rainbow'
 
 " Prettier
 Plug 'sbdchd/neoformat'

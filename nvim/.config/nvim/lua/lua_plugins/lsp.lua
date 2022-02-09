@@ -68,6 +68,8 @@ require("lspconfig").tsserver.setup(config())
 
 require("lspconfig").cssls.setup(config())
 
+-- require("lspconfig").theme-check-language-server.setup(config())
+
 local opts = {
 	highlight_hovered_item = true,
 	show_guides = true,
