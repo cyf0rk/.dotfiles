@@ -11,9 +11,9 @@ local source_mapping = {
 	path = "[Path]",
 }
 local lspkind = require("lspkind")
--- require('lspkind').init({
---     with_text = true,
--- })
+require('lspkind').init({
+  mode = 'symbol_text',
+})
 
 cmp.setup({
 	snippet = {
@@ -43,6 +43,7 @@ cmp.setup({
     },
 
 	sources = {
+    { name = "cmp_tabnine" },
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
@@ -51,16 +52,26 @@ cmp.setup({
 
 local tabnine = require('cmp_tabnine.config')
 tabnine:setup({
-    max_lines = 1000,
-    max_num_results = 20,
-    sort = true,
-	run_on_every_keystroke = true,
-	snippet_placeholder = '..',
+  max_lines = 1000,
+  max_num_results = 20,
+  sort = true,
+  run_on_every_keystroke = true,
+  snippet_placeholder = '..',
 })
 
 local function config(_config)
 	return vim.tbl_deep_extend("force", {
 		capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    on_attach = function()
+      Nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+      Nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+      Nnoremap("<leader>vd", "<cmd>lua vim.diagnostic.open_float()<CR>")
+			Nnoremap("[d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
+			Nnoremap("]d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
+      Nnoremap("<leader>vca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+			Nnoremap("<leader>vrr", "<cmd>lua vim.lsp.buf.references()<CR>")
+			Nnoremap("<leader>vrn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+    end,
 	}, _config or {})
 end
 
@@ -68,7 +79,11 @@ require("lspconfig").tsserver.setup(config())
 
 require("lspconfig").cssls.setup(config())
 
--- require("lspconfig").theme-check-language-server.setup(config())
+require("lspconfig").html.setup(config())
+
+require("lspconfig").emmet_ls.setup(config())
+
+require("lspconfig").theme_check.setup(config())
 
 local opts = {
 	highlight_hovered_item = true,

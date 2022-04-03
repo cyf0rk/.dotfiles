@@ -24,19 +24,16 @@ Plug 'mbbill/undotree'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 Plug 'onsails/lspkind-nvim'
-
-Plug 'glepnir/lspsaga.nvim'
+" Plug 'glepnir/lspsaga.nvim'
 Plug 'simrat39/symbols-outline.nvim'
 
 " Snippets
 Plug 'L3MON4D3/LuaSnip'
 Plug 'rafamadriz/friendly-snippets'
-
-" Shopify
-Plug 'tpope/vim-liquid'
 
 " Neovim Tree-sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -51,6 +48,10 @@ Plug 'jiangmiao/auto-pairs'
 
 " Comments
 Plug 'tpope/vim-commentary'
+
+" Web dev
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-liquid'
 
 call plug#end()
 
