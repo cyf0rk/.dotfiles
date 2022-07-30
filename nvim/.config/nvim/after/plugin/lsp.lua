@@ -84,14 +84,7 @@ require("lspconfig").html.setup(config())
 
 require("lspconfig").emmet_ls.setup(config())
 
-require("lspconfig").theme_check.setup(config())
-
-local opts = {
-	highlight_hovered_item = true,
-	show_guides = true,
-}
-
-require("symbols-outline").setup(opts)
+require("lspconfig").pyright.setup(config())
 
 local snippets_paths = function()
 	local plugins = { "friendly-snippets" }

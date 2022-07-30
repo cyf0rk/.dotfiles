@@ -1,5 +1,4 @@
 vim.opt.guicursor = ''
---vim.opt.guifont = 'Fira\ Code:h11'
 vim.opt.exrc = true
 vim.opt.hidden = true
 vim.opt.errorbells = false

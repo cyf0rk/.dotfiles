@@ -1,5 +1,6 @@
 require('cyfork.packer')
 require('cyfork.set')
+require('cyfork.lualine')
 require('cyfork.debugger')
 
 local augroup = vim.api.nvim_create_augroup

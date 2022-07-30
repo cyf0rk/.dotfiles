@@ -5,6 +5,8 @@ local daptext = require("nvim-dap-virtual-text")
 local remap = require("cyfork.keymap")
 local nnoremap = remap.nnoremap
 
+require("nvim-dap-virtual-text").setup()
+
 daptext.setup()
 dapui.setup({
     layouts = {
@@ -37,14 +39,17 @@ dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
 
-nnoremap("<Home>", function()
+require("cyfork.debugger.python");
+require("cyfork.debugger.php");
+
+nnoremap("<S-Right>", function()
     dapui.toggle(1)
 end)
-nnoremap("<End>", function()
+nnoremap("<S-Left>", function()
     dapui.toggle(2)
 end)
 
-nnoremap("<leader><leader>", function()
+nnoremap("<leader>cs", function()
     dap.close()
 end)
 

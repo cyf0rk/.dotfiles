@@ -14,7 +14,25 @@ nnoremap("<leader>ps", function()
     require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})
 end)
 
-nnoremap("<leader>pv", "0 :wincmd v<bar> :Ex <bar> :vertical resize30<CR>")
+nnoremap("<leader>pv", ":Ex<CR>")
+
+-- Tab page control
+nnoremap("<A-1>", "1gt")
+nnoremap("<A-2>", "2gt")
+nnoremap("<A-3>", "3gt")
+nnoremap("<A-4>", "4gt")
+nnoremap("<A-5>", "5gt")
+nnoremap("<A-6>", "6gt")
+nnoremap("<A-7>", "7gt")
+nnoremap("<A-8>", "8gt")
+nnoremap("<A-9>", "9gt")
+nnoremap("<A-0>", "0gt")
+
+nnoremap("<A-Left>", ":-tabmove<CR>")
+nnoremap("<A-Right>", ":+tabmove<CR>")
+
+-- todo: fix opening files only in current directory
+nnoremap("<C-t>", "<C-w>gf")
 
 -- Moving text
 vnoremap("J", ":m '>+1<CR>gv=gv")
@@ -53,11 +71,14 @@ inoremap(":", ":<c-g>u")
 nnoremap("<leader>+", ":vertical resize +5<CR>")
 nnoremap("<leader>-", ":vertical resize -5<CR>")
 
--- " Formatting
+-- Formatting
 nnoremap("<leader>nf", ":Neoformat<CR>")
 
--- " Undotree
+-- Undotree
 nnoremap("<leader>u", ":UndotreeShow<CR>")
+
+-- Source config
+nnoremap("<leader>?", ":source ~/.config/nvim/init.lua<CR>")
 
 -- " Jumplist mutations
 -- nnoremap <expr> k (v:count > 5 ? "m'" . v:count : "") . 'k'

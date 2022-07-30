@@ -17,8 +17,7 @@ return require('packer').startup(function()
 	use({'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp'})
 	use('onsails/lspkind-nvim')
 	use('nvim-lua/lsp_extensions.nvim')
-	use('glepnir/lspsaga.nvim')
-	use('simrat39/symbols-outline.nvim')
+	-- use('glepnir/lspsaga.nvim')
 	use('L3MON4D3/LuaSnip')
 	use('saadparwaiz1/cmp_luasnip')
 
@@ -37,14 +36,15 @@ return require('packer').startup(function()
 
 	-- defak
 	use('mfussenegger/nvim-dap')
-	use('rcarriga/nvim-dap-ui')
+	use('mfussenegger/nvim-dap-python')
+    use('rcarriga/nvim-dap-ui')
 	use('theHamsta/nvim-dap-virtual-text')
 
 	-- comments
 	use('tpope/vim-commentary')
 
     -- nice nvim status line
-    use('itchyny/lightline.vim')
+    use('nvim-lualine/lualine.nvim')
 
     -- spider web stuff
     use('mattn/emmet-vim')
