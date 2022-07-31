@@ -10,9 +10,6 @@ nnoremap("<C-s>", ":w<CR>")
 
 inoremap("<C-c>", "<Esc>")
 nnoremap("<C-p>", ":Telescope")
-nnoremap("<leader>ps", function()
-    require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})
-end)
 
 nnoremap("<leader>pv", ":Ex<CR>")
 

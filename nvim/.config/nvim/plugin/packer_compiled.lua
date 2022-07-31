@@ -99,6 +99,11 @@ _G.packer_plugins = {
     path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/emmet-vim",
     url = "https://github.com/mattn/emmet-vim"
   },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    url = "https://github.com/rafamadriz/friendly-snippets"
+  },
   gruvbox = {
     loaded = true,
     path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/gruvbox",
