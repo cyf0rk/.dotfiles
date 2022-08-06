@@ -1,52 +1,51 @@
 return require('packer').startup(function()
-	use('wbthomason/packer.nvim')
-	use('sbdchd/neoformat')
+    use('wbthomason/packer.nvim')
+    use('mhartington/formatter.nvim')
 
-	--use('TimUntersberger/neogit')
+    --use('TimUntersberger/neogit')
 
-	-- telić
-	use('nvim-lua/plenary.nvim')
-	use('nvim-lua/popup.nvim')
-	use('nvim-telescope/telescope.nvim')
+    -- telić
+    use('nvim-lua/plenary.nvim')
+    use('nvim-lua/popup.nvim')
+    use('nvim-telescope/telescope.nvim')
 
-	-- lsd
-	use('neovim/nvim-lspconfig')
-	use('hrsh7th/cmp-nvim-lsp')
-	use('hrsh7th/cmp-buffer')
-	use('hrsh7th/nvim-cmp')
-	use({'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp'})
-	use('onsails/lspkind-nvim')
-	use('nvim-lua/lsp_extensions.nvim')
-	-- use('glepnir/lspsaga.nvim')
-	use('L3MON4D3/LuaSnip')
-	use('saadparwaiz1/cmp_luasnip')
-	use('rafamadriz/friendly-snippets')
+    -- lsd
+    use('neovim/nvim-lspconfig')
+    use('hrsh7th/cmp-nvim-lsp')
+    use('hrsh7th/cmp-buffer')
+    use('hrsh7th/nvim-cmp')
+    use({'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp'})
+    use('onsails/lspkind-nvim')
+    use('nvim-lua/lsp_extensions.nvim')
+    -- use('glepnir/lspsaga.nvim')
+    use('L3MON4D3/LuaSnip')
+    use('saadparwaiz1/cmp_luasnip')
+    use('rafamadriz/friendly-snippets')
 
-	-- undotee
-	use('mbbill/undotree')
+    -- undotee
+    use('mbbill/undotree')
 
-	-- quality pencils
-	use('gruvbox-community/gruvbox')
-	use('folke/tokyonight.nvim')
+    -- quality pencils
+    use('gruvbox-community/gruvbox')
+    use('folke/tokyonight.nvim')
 
-	use('nvim-treesitter/nvim-treesitter', {
-	run = ':TSUpdate'
-	})
-	use('nvim-treesitter/playground')
-	use('romgrk/nvim-treesitter-context')
+    use('nvim-treesitter/nvim-treesitter', {
+    run = ':TSUpdate'
+    })
+    use('nvim-treesitter/playground')
+    use('romgrk/nvim-treesitter-context')
 
-	-- defak
-	use('mfussenegger/nvim-dap')
-	use('mfussenegger/nvim-dap-python')
+    use('lukas-reineke/indent-blankline.nvim')
+
+    -- defak
+    use('mfussenegger/nvim-dap')
+    use('mfussenegger/nvim-dap-python')
     use('rcarriga/nvim-dap-ui')
-	use('theHamsta/nvim-dap-virtual-text')
+    use('theHamsta/nvim-dap-virtual-text')
 
-	-- comments
-	use('tpope/vim-commentary')
+    -- comments
+    use('numToStr/Comment.nvim')
 
     -- nice nvim status line
     use('nvim-lualine/lualine.nvim')
-
-    -- spider web stuff
-    use('mattn/emmet-vim')
 end)

@@ -6,9 +6,10 @@ local ls = require "luasnip"
 -- This will expand the current item or jump to the next item within the snippet.
 vim.keymap.set({"i", "s"}, "<C-k>", function()
     if ls.expand_or_jumpable() then
+        print("c-k")
         ls.expand_or_jump()
     end
-end)
+end, { silent = true })
 
 -- This always moves to the previous item within the snippet
 vim.keymap.set({"i", "s"}, "<C-j>", function()

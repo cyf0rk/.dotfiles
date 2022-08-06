@@ -28,12 +28,13 @@ nnoremap("<A-0>", "0gt")
 nnoremap("<A-Left>", ":-tabmove<CR>")
 nnoremap("<A-Right>", ":+tabmove<CR>")
 
--- todo: fix opening files only in current directory
-nnoremap("<C-t>", "<C-w>gf")
+nnoremap("<C-t>", ":tabnew<CR>")
 
 -- Moving text
 vnoremap("J", ":m '>+1<CR>gv=gv")
 vnoremap("K", ":m '<-2<CR>gv=gv")
+vnoremap("<", "<gv")
+vnoremap(">", ">gv")
 
 -- Keeping it centered
 nnoremap("n", "nzzzv")
@@ -69,7 +70,8 @@ nnoremap("<leader>+", ":vertical resize +5<CR>")
 nnoremap("<leader>-", ":vertical resize -5<CR>")
 
 -- Formatting
-nnoremap("<leader>nf", ":Neoformat<CR>")
+nnoremap("<leader>f", ":Format<CR>")
+nnoremap("<leader>F", ":FormatWrite<CR>")
 
 -- Undotree
 nnoremap("<leader>u", ":UndotreeShow<CR>")

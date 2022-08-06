@@ -1,6 +1,3 @@
-if vim.g.snippets == "luasnip" then
-    return
-end
 local ls = require "luasnip"
 local types = require "luasnip.util.types"
 
@@ -19,4 +16,13 @@ ls.config.set_config {
     },
 }
 
-ls.config.setup({ store_selection_keys = "<A-p>" })
+-- Extend with vs-code style snippets (https://github.com/rafamadriz/friendly-snippets)
+ls.filetype_extend("html", {})
+ls.filetype_extend("shell", {})
+ls.filetype_extend("gitcommit", {})
+ls.filetype_extend("markdown", {})
+ls.filetype_extend("css", {})
+ls.filetype_extend("python", {})
+ls.filetype_extend("javascript", {})
+ls.filetype_extend("typescript", {})
+require("luasnip.loaders.from_vscode").lazy_load()

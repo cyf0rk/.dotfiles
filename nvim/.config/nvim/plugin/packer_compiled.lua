@@ -69,6 +69,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["Comment.nvim"] = {
+    loaded = true,
+    path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    url = "https://github.com/numToStr/Comment.nvim"
+  },
   LuaSnip = {
     loaded = true,
     path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/LuaSnip",
@@ -94,10 +99,10 @@ _G.packer_plugins = {
     path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
-  ["emmet-vim"] = {
+  ["formatter.nvim"] = {
     loaded = true,
-    path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/emmet-vim",
-    url = "https://github.com/mattn/emmet-vim"
+    path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/formatter.nvim",
+    url = "https://github.com/mhartington/formatter.nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -108,6 +113,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/gruvbox-community/gruvbox"
+  },
+  ["indent-blankline.nvim"] = {
+    loaded = true,
+    path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
+    url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
   ["lsp_extensions.nvim"] = {
     loaded = true,
@@ -123,11 +133,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  neoformat = {
-    loaded = true,
-    path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/neoformat",
-    url = "https://github.com/sbdchd/neoformat"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -203,11 +208,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
-  },
-  ["vim-commentary"] = {
-    loaded = true,
-    path = "/home/cyfork/.local/share/nvim/site/pack/packer/start/vim-commentary",
-    url = "https://github.com/tpope/vim-commentary"
   }
 }
 

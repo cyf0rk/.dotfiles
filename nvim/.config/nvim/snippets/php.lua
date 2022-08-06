@@ -13,8 +13,8 @@ local rep = require("luasnip.extras").rep
 
 local snippets, autosnippets = {}, {}
 
-local group = vim.api.nvim_create_augroup("Lua Snippets", {clear = true})
-local file_pattern = "*.lua"
+local group = vim.api.nvim_create_augroup("PHP Snippets", {clear = true})
+local file_pattern = "*.php"
 
-local req = s("req", fmt("local {} = require('{}')", {i(1), rep(1)}))
-table.insert(snippets, req)
+local php_snip = s("php_snip", {t"Hi this is snip"})
+table.insert(snippets, php_snip)
