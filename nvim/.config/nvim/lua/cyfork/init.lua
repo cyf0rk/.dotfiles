@@ -1,15 +1,19 @@
-require('cyfork.packer')
-require('cyfork.set')
-require('cyfork.lualine')
-require('cyfork.debugger')
-require('cyfork.format')
-require('Comment').setup()
+require'cyfork.packer'
+require'cyfork.set'
+require'cyfork.debugger'
+require'cyfork.format'
+require'cyfork.cmp'
+require'Comment'.setup()
 
 local augroup = vim.api.nvim_create_augroup
 cyforkGroup = augroup('cyfork', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
+
+function R(name)
+    require'plenary.reload'.reload_module(name)
+end
 
 autocmd('TextYankPost', {
     group = yank_group,
@@ -22,15 +26,15 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({"BufEnter", "BufWinEnter", "TabEnter"}, {
+autocmd({'BufEnter', 'BufWinEnter', 'TabEnter'}, {
     group = cyforkGroup,
     pattern = "*.rs",
     callback = function()
-        require("lsp_extensions").inlay_hints{}
+        require'lsp_extensions'.inlay_hints{}
     end
 })
 
-autocmd({"BufWritePre"}, {
+autocmd({'BufWritePre'}, {
     group = cyforkGroup,
     pattern = "*",
     command = "%s/\\s\\+$//e",
@@ -39,24 +43,3 @@ autocmd({"BufWritePre"}, {
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
-
-function CreateNoremap(type, opts)
-    return function(lhs, rhs, bufnr)
-        bufnr = bufnr or 0
-        vim.api.nvim_buf_set_keymap(bufnr, type, lhs, rhs, opts)
-    end
-end
-
-P = function(v)
-  print(vim.inspect(v))
-  return v
-end
-
-if pcall(require, 'plenary') then
-  RELOAD = require('plenary.reload').reload_module
-
-  R = function(name)
-    RELOAD(name)
-    return require(name)
-  end
-end

@@ -1,6 +1,5 @@
--- Setup nvim-cmp.
-local cmp = require("cmp")
-local luasnip = require("luasnip")
+local cmp = require'cmp'
+local luasnip = require'luasnip'
 local source_mapping = {
     buffer = "[Buffer]",
     nvim_lsp = "[LSP]",
@@ -9,12 +8,11 @@ local source_mapping = {
     luasnip = "[Snip]",
     path = "[Path]",
 }
-local lspkind = require("lspkind")
-require('lspkind').init({
+local lspkind = require'lspkind'
+
+lspkind.init({
     mode = 'symbol_text',
 })
-
-require("luasnip.loaders.from_vscode").lazy_load()
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
@@ -44,7 +42,6 @@ local kind_icons = {
   Operator = "",
   TypeParameter = "",
 }
--- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup {
     snippet = {
@@ -61,12 +58,17 @@ cmp.setup {
     }),
 
     formatting = {
-        fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            vim_item.menu = source_mapping[entry.source.name]
-            return vim_item
-        end
+        fields = { 'kind', 'abbr', 'menu' },
+        format = lspkind.cmp_format({
+            mode = 'symbol',
+            maxwidth = 50,
+
+            before = function(entry, vim_item)
+                vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+                vim_item.menu = source_mapping[entry.source.name]
+                return vim_item
+            end
+        })
     },
 
     sources = {
@@ -96,7 +98,7 @@ cmp.setup {
 local tabnine = require('cmp_tabnine.config')
 tabnine:setup({
     max_lines = 1000,
-    max_num_results = 20,
+    max_num_results = 10,
     sort = true,
     run_on_every_keystroke = true,
     snippet_placeholder = '..',

@@ -1,13 +1,13 @@
 vim.opt.list = true
-vim.opt.listchars:append "space:⋅"
-vim.opt.listchars:append "eol:↴"
+vim.opt.listchars:append 'space:⋅'
+vim.opt.listchars:append 'eol:↴'
 vim.opt.termguicolors = true
 vim.cmd [[highlight IndentBlanklineSpaceChar guifg=#2e2e2e gui=nocombine]]
 vim.cmd [[highlight IndentBlanklineSpaceCharBlankline guifg=#2e2e2e gui=nocombine]]
 
-require("indent_blankline").setup {
+require'indent_blankline'.setup {
     viewport_buffer = 100,
-    char = "",
+    char = '',
     show_trailing_blankline_indent = false,
     filetype_exclude = {
         "vimwiki",

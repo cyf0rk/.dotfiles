@@ -1,1 +1,1 @@
-require("cyfork")
+require'cyfork'

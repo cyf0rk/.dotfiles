@@ -1,4 +1,4 @@
-local ok, dap = pcall(require, "dap")
+local ok, dap = pcall(require, 'dap')
 if not ok then return end
 
 dap.adapters.php = {
@@ -9,18 +9,18 @@ dap.adapters.php = {
 
 dap.configurations.php = {
     {
-        name = "run current script",
-        type = "php",
-        request = "launch",
+        name = 'run current script',
+        type = 'php',
+        request = 'launch',
         port = 9003,
-        cwd = "${fileDirname}",
-        program = "${file}",
-        runtimeExecutable = "php"
+        cwd = '${fileDirname}',
+        program = '${file}',
+        runtimeExecutable = 'php'
     },
     {
         name = 'Listen for Xdebug',
-        type = "php",
-        request = "launch",
+        type = 'php',
+        request = 'launch',
         port = 9003,
     }
 }

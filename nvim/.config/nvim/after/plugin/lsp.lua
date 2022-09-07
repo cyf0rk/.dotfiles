@@ -1,11 +1,11 @@
-local Remap = require("cyfork.keymap")
+local Remap = require'cyfork.keymap'
 local nnoremap = Remap.nnoremap
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local function config(_config)
-    return vim.tbl_deep_extend("force", {
-        capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    return vim.tbl_deep_extend('force', {
+        capabilities = require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities()),
         on_attach = function()
             nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
             nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<CR>")
@@ -19,12 +19,12 @@ local function config(_config)
     }, _config or {})
 end
 
-require("lspconfig").intelephense.setup(config())
+require'lspconfig'.intelephense.setup(config())
 
-require("lspconfig").cssls.setup(config())
+require'lspconfig'.cssls.setup(config())
 
-require("lspconfig").html.setup(config())
+require'lspconfig'.html.setup(config())
 
-require("lspconfig").tsserver.setup(config())
+require'lspconfig'.tsserver.setup(config())
 
-require("lspconfig").pyright.setup(config())
+require'lspconfig'.pyright.setup(config())

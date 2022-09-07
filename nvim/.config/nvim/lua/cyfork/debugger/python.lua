@@ -1,3 +1,3 @@
-local dappython = require("dap-python")
+local dappython = require'dap-python'
 
 dappython.setup("/usr/bin/python")

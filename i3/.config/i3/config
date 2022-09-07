@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -24,18 +24,11 @@ font pango:Fira Code Nerd Font 10
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -n --color=$bg --ignore-empty-password --show-failed-attempts
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -52,10 +45,10 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -64,10 +57,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -75,8 +68,11 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# move workspace to other screen
+bindsym $mod+p move workspace to output left
+
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -143,30 +139,24 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Assign apps to certain workspaces
 assign [class="Brave-browser"] $ws1
-assign [class="firefox"] $ws2
 assign [class="Alacritty"] $ws3
-assign [class="figma-linux"] $ws4
-assign [class="Google-chrome"] $ws5
 assign [class="Gimp"] $ws6
 assign [class="discord"] $ws8
 assign [class="Thunderbird"] $ws9
 assign [class="Spotify"] $ws10
 
 # Keybindings for opening apps
-bindsym Mod4+1 exec brave
-bindsym Mod4+2 exec firefox
-bindsym Mod4+4 exec figma-linux
-bindsym Mod4+5 exec google-chrome-stable
-bindsym Mod4+6 exec gimp
-bindsym Mod4+8 exec discord
-bindsym Mod4+9 exec thunderbird
-bindsym Mod4+0 exec spotify
-bindsym Mod4+e exec nautilus
+bindsym $mod+Mod1+1 exec brave-browser
+bindsym $mod+Mod1+6 exec gimp
+bindsym $mod+Mod1+8 exec discord
+bindsym $mod+Mod1+9 exec thunderbird
+bindsym $mod+Mod1+0 exec spotify
+bindsym $mod+Mod1+e exec nautilus
 
 # --------------------
 # Load apps on start--
 # --------------------
-exec alacritty
+exec i3-sensible-terminal
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -183,10 +173,10 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
@@ -205,15 +195,15 @@ bindsym $mod+r mode "resize"
 ################################
 #### Gruvbox Material Light ####
 ################################
-set $bg       #fbf1c7
-set $fg       #654735
-set $red      #c14a4a
-set $orange   #c35e0a
-set $green    #6c782e
-set $blue     #45707a
-set $purple   #945e80
-set $aqua     #4c7a5d
-set $darkgray #fbf1c7
+# set $bg       #fbf1c7
+# set $fg       #654735
+# set $red      #c14a4a
+# set $orange   #c35e0a
+# set $green    #6c782e
+# set $blue     #45707a
+# set $purple   #945e80
+# set $aqua     #4c7a5d
+# set $darkgray #fbf1c7
 
 ###############################
 #### Gruvbox Material Dark ####
@@ -245,7 +235,8 @@ hide_edge_borders both
 #### BAR ####
 #############
 bar {
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+    status_command i3status
+    tray_output primary
     colors {
             # bar background color
             background $bg
@@ -265,17 +256,35 @@ bar {
 # --------------------
 # System commands ----
 # --------------------
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# adjust brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10 # decrease screen brightness
+
 # passmenu
-bindsym Mod4+Shift+d exec passmenu
+bindsym $mod+Shift+d exec passmenu
+
 # lock/suspend
-bindsym Mod4+l exec i3lock --color "$bg"
-bindsym Mod4+Control+l exec i3lock --color "$bg" && systemctl suspend
+bindsym $mod+Control+period exec systemctl suspend
+
 # load wallpaper
 exec_always nitrogen --restore
+
 # rofi
 bindsym $mod+d exec rofi -show run
 
-# --------------------
-# Take screenshot ----
-# --------------------
-bindsym Mod4+Shift+s exec flameshot gui
+# take screenshot
+bindsym $mod+Shift+s exec flameshot gui
+
+# Enable/disable caps mode
+mode "CAPS" {
+        bindsym Caps_Lock mode "default"
+}
+bindsym Caps_Lock mode "CAPS"

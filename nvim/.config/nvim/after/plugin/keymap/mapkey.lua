@@ -1,4 +1,4 @@
-local Remap = require("cyfork.keymap")
+local Remap = require'cyfork.keymap'
 local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap

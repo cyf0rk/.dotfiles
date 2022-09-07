@@ -1,9 +1,9 @@
 local vim = vim
-local formatter = require("formatter")
+local formatter = require'formatter'
 local prettierConfig = function()
     return {
-        exe = "prettier",
-        args = {"--stdin-filepath", vim.fn.shellescape(vim.api.nvim_buf_get_name(0)), "--single-quote"},
+        exe = 'prettier',
+        args = {'--stdin-filepath', vim.fn.shellescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
         stdin = true
     }
 end
@@ -12,8 +12,8 @@ local formatterConfig = {
     lua = {
         function()
             return {
-                exe = "stylua",
-                args = {  "-" },
+                exe = 'stylua',
+                args = {  '-' },
                 stdin = true,
             }
         end,
@@ -22,8 +22,8 @@ local formatterConfig = {
         function()
             return {
                 -- Black
-                exe = "black",
-                args = {"-"},
+                exe = 'black',
+                args = {'-'},
                 stdin = true
             }
         end
@@ -32,8 +32,8 @@ local formatterConfig = {
         function()
             return {
                 -- remove trailing whitespace
-                exe = "sed",
-                args = {"-i", "'s/[ \t]*$//'"},
+                exe = 'sed',
+                args = {'-i', "'s/[ \t]*$//'"},
                 stdin = false
             }
         end
