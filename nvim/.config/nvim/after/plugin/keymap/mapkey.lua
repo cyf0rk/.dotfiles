@@ -5,30 +5,25 @@ local inoremap = Remap.inoremap
 local xnoremap = Remap.xnoremap
 local nmap = Remap.nmap
 
--- Saving
+-- Basics
 nnoremap("<C-s>", ":w<CR>")
-
 inoremap("<C-c>", "<Esc>")
-nnoremap("<C-p>", ":Telescope")
-
 nnoremap("<leader>pv", ":Ex<CR>")
 
 -- Tab page control
-nnoremap("<A-1>", "1gt")
-nnoremap("<A-2>", "2gt")
-nnoremap("<A-3>", "3gt")
-nnoremap("<A-4>", "4gt")
-nnoremap("<A-5>", "5gt")
-nnoremap("<A-6>", "6gt")
-nnoremap("<A-7>", "7gt")
-nnoremap("<A-8>", "8gt")
-nnoremap("<A-9>", "9gt")
-nnoremap("<A-0>", "0gt")
+nnoremap("<leader>1", "1gt")
+nnoremap("<leader>2", "2gt")
+nnoremap("<leader>3", "3gt")
+nnoremap("<leader>4", "4gt")
+nnoremap("<leader>5", "5gt")
+nnoremap("<leader>6", "6gt")
+nnoremap("<leader>7", "7gt")
+nnoremap("<leader>8", "8gt")
+nnoremap("<leader>9", "9gt")
+nnoremap("<leader>0", "0gt")
 
-nnoremap("<A-Left>", ":-tabmove<CR>")
-nnoremap("<A-Right>", ":+tabmove<CR>")
-
-nnoremap("<C-t>", ":tabnew<CR>")
+nnoremap("<leader>j", ":-tabmove<CR>")
+nnoremap("<leader>k", ":+tabmove<CR>")
 
 -- Moving text
 vnoremap("J", ":m '>+1<CR>gv=gv")
@@ -43,18 +38,15 @@ nnoremap("J", "mzJ`z")
 
 -- Copy-paste-delete
 nnoremap("Y", "yg$")
-
 xnoremap("<leader>p", "\"_dP")
-
 nnoremap("<leader>y", "\"+y")
 vnoremap("<leader>y", "\"+y")
 nmap("<leader>Y", "\"+Y")
-
 nnoremap("<leader>d", "\"_d")
 vnoremap("<leader>d", "\"_d")
-
 vnoremap("<leader>d", "\"_d")
 
+-- Replace word under cursor
 nnoremap("<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
 -- Undo break points

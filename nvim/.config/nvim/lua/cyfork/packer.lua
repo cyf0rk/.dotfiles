@@ -31,6 +31,7 @@ return require('packer').startup(function(use)
     -- quality pencils
     use'gruvbox-community/gruvbox'
     use'folke/tokyonight.nvim'
+    use'chrisbra/Colorizer'
 
     use {
         'nvim-treesitter/nvim-treesitter',

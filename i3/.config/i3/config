@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -42,7 +42,7 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -139,19 +139,22 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Assign apps to certain workspaces
 assign [class="Brave-browser"] $ws1
-assign [class="Alacritty"] $ws3
+assign [class="firefox"] $ws2
+assign [class="wezterm"] $ws3
+assign [class="Nautilus"] $ws5
 assign [class="Gimp"] $ws6
 assign [class="discord"] $ws8
 assign [class="Thunderbird"] $ws9
 assign [class="Spotify"] $ws10
 
 # Keybindings for opening apps
-bindsym $mod+Mod1+1 exec brave-browser
-bindsym $mod+Mod1+6 exec gimp
-bindsym $mod+Mod1+8 exec discord
-bindsym $mod+Mod1+9 exec thunderbird
-bindsym $mod+Mod1+0 exec spotify
-bindsym $mod+Mod1+e exec nautilus
+bindsym $mod+Mod4+1 exec brave-browser
+bindsym $mod+Mod4+2 exec firefox
+bindsym $mod+Mod4+e exec nautilus
+bindsym $mod+Mod4+6 exec gimp
+bindsym $mod+Mod4+8 exec discord
+bindsym $mod+Mod4+9 exec thunderbird
+bindsym $mod+Mod4+0 exec spotify
 
 # --------------------
 # Load apps on start--
@@ -208,21 +211,34 @@ bindsym $mod+r mode "resize"
 ###############################
 #### Gruvbox Material Dark ####
 ###############################
-set $bg       #282828
-set $fg       #d4be98
-set $red      #ea6962
-set $orange   #e78a4e
-set $green    #a9b665
-set $blue     #7daea3
-set $purple   #d3869b
-set $aqua     #89b482
-set $darkgray #282828
+# set $bg       #282828
+# set $fg       #d4be98
+# set $red      #ea6962
+# set $orange   #e78a4e
+# set $green    #a9b665
+# set $blue     #7daea3
+# set $purple   #d3869b
+# set $aqua     #89b482
+# set $darkgray #282828
+
+###############################
+#### Tokyo Night ####
+###############################
+set $bg       #12131b
+set $fg       #b5bee7
+set $red      #d0494a
+set $orange   #eb935f
+set $green    #8fba62
+set $blue     #617fc1
+set $purple   #8b6fbf
+set $aqua     #69c6b9
+set $darkgray #2f344c
 
 #######################
 #### i3 appearance ####
 #######################
 #       Gruvbox Theme   brdr        bg          text    indictr     chld_brdr
-client.focused          $orange     $orange     $bg     $orange     $orange
+client.focused          $blue       $blue       $bg     $blue       $blue
 client.focused_inactive $aqua       $aqua       $bg     $aqua       $aqua
 client.unfocused        $bg         $bg         $bg     $bg         $bg
 client.urgent           $red        $red        $bg     $red        $red
@@ -234,42 +250,21 @@ hide_edge_borders both
 #############
 #### BAR ####
 #############
-bar {
-    status_command i3status
-    tray_output primary
-    colors {
-            # bar background color
-            background $bg
-            # text color used for blocks that do not have a color specified.
-            statusline $fg
-
-            # workspaces section
-            #                    border     backgr.     text
-            focused_workspace    $orange    $orange     $bg
-            inactive_workspace   $bg        $aqua       $bg
-            active_workspace     $bg        $blue       $bg
-            urgent_workspace     $red       $red        $fg
-
-        }
-}
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # --------------------
 # System commands ----
 # --------------------
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # adjust brightness
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10 # decrease screen brightness
-
-# passmenu
-bindsym $mod+Shift+d exec passmenu
 
 # lock/suspend
 bindsym $mod+Control+period exec systemctl suspend
@@ -283,8 +278,5 @@ bindsym $mod+d exec rofi -show run
 # take screenshot
 bindsym $mod+Shift+s exec flameshot gui
 
-# Enable/disable caps mode
-mode "CAPS" {
-        bindsym Caps_Lock mode "default"
-}
-bindsym Caps_Lock mode "CAPS"
+# switch between keyboard layouts us/hr
+bindsym Control+Shift+space exec $HOME/.local/scripts/xkbmap_layout.sh
