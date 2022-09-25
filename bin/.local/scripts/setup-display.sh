@@ -18,15 +18,15 @@ debug() {
     fi
 }
 
-DISPLAY_PRIMARY=$(xrandr --query | grep "DisplayPort-0" | grep -oP "^[\w-]+ ")
+DISPLAY_PRIMARY=$(xrandr --query | grep "eDP" | grep -oP "^[\w-]+ ")
 if [[ -z $DISPLAY_PRIMARY ]]; then
-    debug "ERROR: Primary Monitor eDP1 cannot be detected";
+    debug "ERROR: Primary Monitor eDP cannot be detected";
     exit 1;
 else
     debug "found primary display $DISPLAY_PRIMARY";
 fi
 # Get secondary display
-DISPLAY_SECONDARY=$(xrandr --query | grep "\bconnected" | grep -v "$DISPLAY_PRIMARY" | grep -oP "^[\w-]+ ")
+DISPLAY_SECONDARY=$(xrandr --query | grep "DisplayPort-0" | grep -v "$DISPLAY_PRIMARY" | grep -oP "^[\w-]+ ")
 if [[ -z $DISPLAY_SECONDARY ]]; then
     debug "Secondary display not detected";
 else
@@ -97,6 +97,9 @@ while test $# -gt 0; do
             echo "  -off: switches off secondary display"
             echo "  -on: switches on secondary display"
             echo "  -h: shows this message"
+            echo "  -p: switches on only primary display"
+            echo "  -s: switches on only secondary display"
+            echo "  -m: switches on mirror mode for existing displays"
             ;;
         -n|--on)
             switch_on
