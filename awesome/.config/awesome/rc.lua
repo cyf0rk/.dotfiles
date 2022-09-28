@@ -1,28 +1,31 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
-pcall(require, "luarocks.loader")
+pcall(require, 'luarocks.loader')
 
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
+local gears = require'gears'
+local awful = require'awful'
 -- awful.autofocus is DEPRECATED, should be replaced
-require("awful.autofocus")
+require'awful.autofocus'
 
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful = require'beautiful'
 
 -- Miscellanous awesome library
-local menubar = require("menubar")
+local menubar = require'menubar'
 
 RC = {} -- global namespace, on top before require any modules
-RC.vars = require("main.user-variables")
+RC.vars = require'main.user-variables'
 
 -- {{{ Error handling -- }}}
-require("main.error-handling")
+require'main.error-handling'
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.font = "FiraCode Nerd Font Mono"
+beautiful.useless_gap = 4
+beautiful.gap_single_client = true
 beautiful.wallpaper = RC.vars.wallpaper
 -- }}}
 
@@ -30,19 +33,19 @@ modkey = RC.vars.modkey
 
 -- Custom Local Library
 local main = {
-  layouts = require("main.layouts"),
-  tags    = require("main.tags"),
-  menu    = require("main.menu"),
-  rules   = require("main.rules"),
+    layouts = require'main.layouts',
+    tags    = require'main.tags',
+    menu    = require'main.menu',
+    rules   = require'main.rules',
 }
 
 -- Custom Local Library: Keys and Mouse Binding
 local binding = {
-  globalbuttons = require("binding.globalbuttons"),
-  clientbuttons = require("binding.clientbuttons"),
-  globalkeys    = require("binding.globalkeys"),
-  bindtotags    = require("binding.bindtotags"),
-  clientkeys    = require("binding.clientkeys")
+    globalbuttons = require'binding.globalbuttons',
+    clientbuttons = require'binding.clientbuttons',
+    globalkeys    = require'binding.globalkeys',
+    bindtotags    = require'binding.bindtotags',
+    clientkeys    = require'binding.clientkeys'
 }
 
 -- {{{ Layouts
@@ -86,18 +89,17 @@ root.keys(RC.globalkeys)
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Statusbar: Wibar
-require("deco.statusbar")
+require'deco.statusbar'
 -- }}}
 
 -- {{{ Rules
--- Rules to apply to new clients (through the "manage" signal).
+-- Rules to apply to new clients (through the 'manage' signal).
 awful.rules.rules = main.rules(
-  binding.clientkeys(),
-  binding.clientbuttons()
+    binding.clientkeys(),
+    binding.clientbuttons()
 )
 -- }}}
 
 -- {{{ Signals
-require("main.signals")
+require'main.signals'
 -- }}}
-

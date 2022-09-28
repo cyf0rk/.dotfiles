@@ -1,11 +1,11 @@
 -- module("anybox.titlebar", package.seeall)
 
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
+local gears = require'gears'
+local awful = require'awful'
 
 -- Widget and layout library
-local wibox = require("wibox")
+local wibox = require'wibox'
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 

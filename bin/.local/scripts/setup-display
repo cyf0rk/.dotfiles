@@ -26,7 +26,7 @@ else
     debug "found primary display $DISPLAY_PRIMARY";
 fi
 # Get secondary display
-DISPLAY_SECONDARY=$(xrandr --query | grep "DisplayPort-0" | grep -v "$DISPLAY_PRIMARY" | grep -oP "^[\w-]+ ")
+DISPLAY_SECONDARY=$(xrandr --query | grep "\bconnected" | grep -v "$DISPLAY_PRIMARY" | grep -oP "^[\w-]+ ")
 if [[ -z $DISPLAY_SECONDARY ]]; then
     debug "Secondary display not detected";
 else

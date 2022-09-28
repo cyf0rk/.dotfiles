@@ -1,15 +1,17 @@
 -- Standard awesome library
-local gears = require("gears")
-local awful = require("awful")
+local gears = require'gears'
+local awful = require'awful'
 
 -- Widget and layout library
-local wibox = require("wibox")
+local wibox = require'wibox'
 
 -- Theme handling library
-local beautiful = require("beautiful")
+local beautiful = require'beautiful'
+
+local HOME = os.getenv('HOME')
 
 -- Custom Local Library: Common Functional Decoration
-require("deco.titlebar")
+require'deco.titlebar'
 
 -- reading
 -- https://awesomewm.org/apidoc/classes/signals.html
@@ -19,16 +21,16 @@ require("deco.titlebar")
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
-  -- Set the windows at the slave,
-  -- i.e. put it at the end of others instead of setting it master.
-  -- if not awesome.startup then awful.client.setslave(c) end
+    -- Set the windows at the slave,
+    -- i.e. put it at the end of others instead of setting it master.
+    -- if not awesome.startup then awful.client.setslave(c) end
 
-  if awesome.startup
+    if awesome.startup
     and not c.size_hints.user_position
     and not c.size_hints.program_position then
-      -- Prevent clients from being unreachable after screen count changes.
-      awful.placement.no_offscreen(c)
-  end
+        -- Prevent clients from being unreachable after screen count changes.
+        awful.placement.no_offscreen(c)
+    end
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
@@ -38,4 +40,14 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- Startup scripts
+awesome.connect_signal(
+    'startup',
+    function(args)
+        awful.util.spawn(string.format("%s/.local/scripts/tap-to-click", HOME))
+        awful.util.spawn(string.format("%s/.local/scripts/inverse-scroll", HOME))
+    end
+)
+
 -- }}}
