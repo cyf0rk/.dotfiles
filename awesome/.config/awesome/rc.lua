@@ -103,3 +103,7 @@ awful.rules.rules = main.rules(
 -- {{{ Signals
 require'main.signals'
 -- }}}
+
+-- {{{ Widgets
+require'widgets.widgets'
+-- }}}

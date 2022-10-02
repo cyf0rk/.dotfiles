@@ -1,9 +1,15 @@
 -- Standard awesome library
 local gears = require'gears'
 local awful = require'awful'
+local wibox = require'wibox'
 local hotkeys_popup = require'awful.hotkeys_popup'
 local menubar = require'menubar'
 local naughty = require'naughty'
+
+local widgets = {
+    capslock = require'widgets.capslock',
+    audio = require'widgets.audio'
+}
 
 -- Resource Configuration
 local modkey = RC.vars.modkey
@@ -18,6 +24,10 @@ local _M = {}
 
 -- reading
 -- https://awesomewm.org/wiki/Global_Keybindings
+
+local confirmQuitmenu = awful.menu({ items = { { "Cancel", function() do end end },
+    { "Quit wm", function() awesome.quit() end } }
+})
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
@@ -88,7 +98,7 @@ function _M.get()
             {description = "open a terminal", group = "launcher"}),
         awful.key({ modkey, "Shift" }, "r", awesome.restart,
             {description = "reload awesome", group = "awesome"}),
-        awful.key({ modkey, "Shift"   }, "e", awesome.quit,
+        awful.key({ modkey, "Shift"   }, "e", function () confirmQuitmenu:show() end,
             {description = "quit awesome", group = "awesome"}),
 
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -105,9 +115,9 @@ function _M.get()
             {description = "increase the number of columns", group = "layout"}),
         awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
             {description = "decrease the number of columns", group = "layout"}),
-        awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
+        awful.key({ modkey, "Shift"   }, "Right", function () awful.layout.inc( 1)                end,
             {description = "select next", group = "layout"}),
-        awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
+        awful.key({ modkey, "Shift"   }, "Left", function () awful.layout.inc(-1)                end,
             {description = "select previous", group = "layout"}),
 
         awful.key({ modkey, "Control" }, "n",
@@ -167,7 +177,89 @@ function _M.get()
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         -- Menubar
         awful.key({ modkey }, "d", function() menubar.show() end,
-            {description = "show the menubar", group = "launcher"})
+            {description = "show the menubar", group = "launcher"}),
+
+        --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+        -- fn keys
+        awful.key({}, "XF86AudioRaiseVolume", function()
+                awful.spawn.with_line_callback("pactl set-sink-volume @DEFAULT_SINK@ +5%", {
+                    stdout = function(line)
+                        naughty.notify { text = "LINE:"..line }
+                    end,
+                    stderr = function(line)
+                        naughty.notify { text = "ERR:"..line }
+                    end,
+                })
+                widgets.audio:check_audio()
+            end),
+        awful.key({}, "XF86AudioLowerVolume", function()
+                awful.spawn.with_line_callback("pactl set-sink-volume @DEFAULT_SINK@ -5%", {
+                    stdout = function(line)
+                        naughty.notify { text = "LINE:"..line }
+                    end,
+                    stderr = function(line)
+                        naughty.notify { text = "ERR:"..line }
+                    end,
+                })
+                widgets.audio:check_audio()
+            end),
+        awful.key({}, "XF86AudioMute", function()
+                awful.spawn.with_line_callback("pactl set-sink-mute @DEFAULT_SINK@ toggle", {
+                    stdout = function(line)
+                        naughty.notify { text = "LINE:"..line }
+                    end,
+                    stderr = function(line)
+                        naughty.notify { text = "ERR:"..line }
+                    end,
+                })
+                widgets.audio:check_audio()
+            end),
+        awful.key({}, "XF86AudioMicMute", function()
+                awful.spawn.with_line_callback("pactl set-source-mute @DEFAULT_SOURCE@ toggle", {
+                    stdout = function(line)
+                        naughty.notify { text = "LINE:"..line }
+                    end,
+                    stderr = function(line)
+                        naughty.notify { text = "ERR:"..line }
+                    end,
+                })
+            end),
+        awful.key({}, "XF86MonBrightnessUp", function()
+                awful.spawn.with_line_callback("light -A 10", {
+                    stdout = function(line)
+                        naughty.notify { text = "LINE:"..line }
+                    end,
+                    stderr = function(line)
+                        naughty.notify { text = "ERR:"..line }
+                    end,
+                })
+            end),
+        awful.key({}, "XF86MonBrightnessDown", function()
+                awful.spawn.with_line_callback("light -U 10", {
+                    stdout = function(line)
+                        naughty.notify { text = "LINE:"..line }
+                    end,
+                    stderr = function(line)
+                        naughty.notify { text = "ERR:"..line }
+                    end,
+                })
+            end),
+
+        --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+        -- Additional keybindings
+        awful.key({}, "Caps_Lock", function() widgets.capslock:check() end),
+
+        awful.key({ modkey, "Shift" }, "s", function()
+                awful.spawn.with_line_callback("flameshot gui", {
+                    stdout = function(line)
+                        naughty.notify { text = "LINE:"..line }
+                    end,
+                    stderr = function(line)
+                        naughty.notify { text = "ERR:"..line }
+                    end,
+                })
+            end,
+            {description = "take screenshot", group = "awesome"})
 
     )
 

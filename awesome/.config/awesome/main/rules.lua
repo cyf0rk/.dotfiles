@@ -87,7 +87,7 @@ function _M.get(clientkeys, clientbuttons)
         },
         {
             rule = { class = "wezterm" },
-            properties = { tag = "3", maximized_vertical = true, maximized_horizontal = true }
+            properties = { tag = "3" }
         },
         {
             rule = { class = "Gimp" },
@@ -102,7 +102,7 @@ function _M.get(clientkeys, clientbuttons)
             properties = { tag = "9" }
         },
         {
-            rule = { class = "spotify" },
+            rule = { class = "Spotify" },
             properties = { tag = "10" }
         },
 

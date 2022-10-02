@@ -1,23 +1,31 @@
 # .dotfiles
 
----
-
 ## Installation
+
+#### Prerequisites
+
+- git
+- stow
 
 #### Requirements:
 
 - AwesomeWM
+- lain - dependency for few AwesomeWM widgets
 - WezTerm
 - zsh
 - Neovim
 - tmux
-- git
+
+##### These make life easier:
+
+- pip
+- nvm/npm/node
+- ripgrep
+- [server_configurations](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) for Neovim lsp
 
 ### Git + bootstrap script
 
 Requirement for bootstrap script is `stow`
-
-```apt install stow```
 
 Clone repo on your local machine and run bootstrap script to setup symlinks
 
@@ -35,12 +43,13 @@ git clone https://github.com/marijanbat/.dotfiles && cd .dotfiles && sh bootstra
 - Thunderbird
 - Spotify
 - Flameshot
-- pass
-- ripgrep
-- pip
-- nvm/npm/node
 - lamp stack
+- composer
+- MySQL Workbench
 - php-xdebug
-- [server_configurations](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md) for Neovim
+- curiosity
+- passion
+- fun
+- bugs
 
-One more thing.. Just a little bit of creativity and passion
+And last but not least, never stop learning!
