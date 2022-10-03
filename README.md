@@ -15,6 +15,7 @@
 - zsh
 - Neovim
 - tmux
+- Nerd Font, Fira Code
 
 ##### These make life easier:
 

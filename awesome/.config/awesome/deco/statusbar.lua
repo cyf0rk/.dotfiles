@@ -57,47 +57,47 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = tasklist_buttons,
         style = {
             shape_border_width = 1,
-            shape_border_color = '#777777',
-            shape  = gears.shape.rounded_rect,
+            shape_border_color = theme.color.darkgray,
+            shape  = gears.shape.octogon,
         },
         layout = {
             spacing_widget = {
                 {
                     forced_width  = 5,
                     forced_height = 24,
-                    thickness     = 1,
-                    color         = '#777777',
+                    thickness     = 0,
+                    color         = theme.color.fg,
                     widget        = wibox.widget.separator
                 },
                 valign = 'center',
                 halign = 'center',
                 widget = wibox.container.place,
             },
-            spacing = 12,
+            spacing = 0,
             layout  = wibox.layout.fixed.horizontal
         },
         -- Notice that there is *NO* wibox.wibox prefix, it is a template,
         -- not a widget instance.
         widget_template = {
             {
-                wibox.widget.base.make_widget(),
-                forced_height = 5,
-                id            = 'background_role',
-                widget        = wibox.container.background,
-            },
-            {
                 {
-                    id     = 'clienticon',
-                    widget = awful.widget.clienticon,
+                    {
+                        {
+                            id     = "icon_role",
+                            widget = wibox.widget.imagebox,
+                        },
+                        margins = 2,
+                        widget  = wibox.container.margin,
+                    },
+                    layout = wibox.layout.fixed.horizontal,
                 },
-                margins = 2,
-                widget  = wibox.container.margin
+                left  = 6,
+                right = 6,
+                widget = wibox.container.margin
             },
-            nil,
-            create_callback = function(self, c, index, objects) --luacheck: no unused args
-                self:get_children_by_id('clienticon')[1].client = c
-            end,
-            layout = wibox.layout.align.vertical,
+            shape = gears.shape.rounded_rect,
+            id     = "background_role",
+            widget = wibox.container.background,
         },
     }
 
@@ -105,7 +105,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.mem = lain.widget.mem {
         settings = function()
-            widget:set_markup(" " .. mem_now.used)
+            widget:set_markup("  " .. mem_now.used)
         end
     }
 
@@ -118,7 +118,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.clock = wibox.widget.textclock()
 
     s.separator = wibox.widget.separator {
-        color = "#fff",
+        color = theme.color.gray,
         thickness = 1,
         orientation = "vertical",
         span_ratio = 0.8,
@@ -129,8 +129,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibar = awful.wibar({
         position = 'bottom',
         screen = s,
-        bg = "#12131b44",
-        fg = "#b5bee7"
+        bg = theme.color.bg,
+        fg = theme.color.fg
     })
 
     -- Add widgets to the wibox
@@ -138,16 +138,15 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            RC.launcher,
             s.mytaglist,
             s.mypromptbox,
+            s.separator,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             widgets.capslock,
             s.mysystray,
-            s.separator,
             s.mem,
             s.separator,
             s.cpu,
@@ -161,7 +160,6 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             s.separator,
             s.clock,
-            s.separator,
             s.mylayoutbox,
         },
     }

@@ -3,13 +3,9 @@
 pcall(require, 'luarocks.loader')
 
 -- Standard awesome library
-local gears = require'gears'
 local awful = require'awful'
 -- awful.autofocus is DEPRECATED, should be replaced
 require'awful.autofocus'
-
--- Theme handling library
-local beautiful = require'beautiful'
 
 -- Miscellanous awesome library
 local menubar = require'menubar'
@@ -19,15 +15,6 @@ RC.vars = require'main.user-variables'
 
 -- {{{ Error handling -- }}}
 require'main.error-handling'
-
--- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.font = "FiraCode Nerd Font Mono"
-beautiful.useless_gap = 4
-beautiful.gap_single_client = true
-beautiful.wallpaper = RC.vars.wallpaper
--- }}}
 
 modkey = RC.vars.modkey
 
@@ -65,11 +52,6 @@ RC.tags = main.tags()
 -- Create a laucher widget and a main menu
 RC.mainmenu = awful.menu({ items = main.menu() }) -- in globalkeys
 
--- a variable needed in statusbar (helper)
-RC.launcher = awful.widget.launcher(
-  { image = beautiful.awesome_icon, menu = RC.mainmenu }
-)
-
 -- Menubar configuration
 -- Set the terminal for applications that require it
 menubar.utils.terminal = RC.vars.terminal
@@ -90,6 +72,7 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Statusbar: Wibar
 require'deco.statusbar'
+require'deco.notification'
 -- }}}
 
 -- {{{ Rules
@@ -104,6 +87,6 @@ awful.rules.rules = main.rules(
 require'main.signals'
 -- }}}
 
--- {{{ Widgets
-require'widgets.widgets'
+-- {{{ Autostart apps
+require'scripts.autostart'
 -- }}}

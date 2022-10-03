@@ -182,67 +182,30 @@ function _M.get()
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         -- fn keys
         awful.key({}, "XF86AudioRaiseVolume", function()
-                awful.spawn.with_line_callback("pactl set-sink-volume @DEFAULT_SINK@ +5%", {
-                    stdout = function(line)
-                        naughty.notify { text = "LINE:"..line }
-                    end,
-                    stderr = function(line)
-                        naughty.notify { text = "ERR:"..line }
-                    end,
-                })
-                widgets.audio:check_audio()
+                awful.spawn.easy_async_with_shell("pactl set-sink-volume @DEFAULT_SINK@ +5%", function ()
+                    widgets.audio:check_audio()
+                end)
             end),
         awful.key({}, "XF86AudioLowerVolume", function()
-                awful.spawn.with_line_callback("pactl set-sink-volume @DEFAULT_SINK@ -5%", {
-                    stdout = function(line)
-                        naughty.notify { text = "LINE:"..line }
-                    end,
-                    stderr = function(line)
-                        naughty.notify { text = "ERR:"..line }
-                    end,
-                })
-                widgets.audio:check_audio()
+                awful.spawn.easy_async_with_shell("pactl set-sink-volume @DEFAULT_SINK@ -5%", function ()
+                    widgets.audio:check_audio()
+                end)
             end),
         awful.key({}, "XF86AudioMute", function()
-                awful.spawn.with_line_callback("pactl set-sink-mute @DEFAULT_SINK@ toggle", {
-                    stdout = function(line)
-                        naughty.notify { text = "LINE:"..line }
-                    end,
-                    stderr = function(line)
-                        naughty.notify { text = "ERR:"..line }
-                    end,
-                })
-                widgets.audio:check_audio()
+                awful.spawn.easy_async_with_shell("wpctl set-mute @DEFAULT_SINK@ toggle", function ()
+                    widgets.audio:check_audio()
+                end)
             end),
         awful.key({}, "XF86AudioMicMute", function()
-                awful.spawn.with_line_callback("pactl set-source-mute @DEFAULT_SOURCE@ toggle", {
-                    stdout = function(line)
-                        naughty.notify { text = "LINE:"..line }
-                    end,
-                    stderr = function(line)
-                        naughty.notify { text = "ERR:"..line }
-                    end,
-                })
+                awful.spawn.easy_async_with_shell("pactl set-source-mute @DEFAULT_SOURCE@ toggle", function ()
+                    widgets.audio:check_audio()
+                end)
             end),
         awful.key({}, "XF86MonBrightnessUp", function()
-                awful.spawn.with_line_callback("light -A 10", {
-                    stdout = function(line)
-                        naughty.notify { text = "LINE:"..line }
-                    end,
-                    stderr = function(line)
-                        naughty.notify { text = "ERR:"..line }
-                    end,
-                })
+                awful.spawn.with_shell("light -A 10")
             end),
         awful.key({}, "XF86MonBrightnessDown", function()
-                awful.spawn.with_line_callback("light -U 10", {
-                    stdout = function(line)
-                        naughty.notify { text = "LINE:"..line }
-                    end,
-                    stderr = function(line)
-                        naughty.notify { text = "ERR:"..line }
-                    end,
-                })
+                awful.spawn.with_shell("light -U 10")
             end),
 
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -250,14 +213,7 @@ function _M.get()
         awful.key({}, "Caps_Lock", function() widgets.capslock:check() end),
 
         awful.key({ modkey, "Shift" }, "s", function()
-                awful.spawn.with_line_callback("flameshot gui", {
-                    stdout = function(line)
-                        naughty.notify { text = "LINE:"..line }
-                    end,
-                    stderr = function(line)
-                        naughty.notify { text = "ERR:"..line }
-                    end,
-                })
+                awful.spawn.with_shell("flameshot gui")
             end,
             {description = "take screenshot", group = "awesome"})
 

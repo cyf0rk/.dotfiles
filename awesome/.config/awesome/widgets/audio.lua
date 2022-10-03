@@ -36,4 +36,10 @@ end
 
 audio:check_audio()
 
+audio:connect_signal('button::press', function ()
+    awful.spawn.easy_async_with_shell("wpctl set-mute @DEFAULT_SINK@ toggle", function ()
+        audio:check_audio()
+    end)
+end)
+
 return audio
