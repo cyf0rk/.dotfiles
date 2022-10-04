@@ -58,7 +58,7 @@ awful.screen.connect_for_each_screen(function(s)
         style = {
             shape_border_width = 1,
             shape_border_color = theme.color.darkgray,
-            shape  = gears.shape.octogon,
+            shape  = theme.rounded_shape,
         },
         layout = {
             spacing_widget = {

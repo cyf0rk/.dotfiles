@@ -43,18 +43,18 @@ function network:check()
             local status = line:gsub(".*(enx%g+:%s.*state%s)(%a+).*", "%2")
                 tooltip.text = "Ethernet connection: " .. status
             if status == "UP" then
-                eth.markup = "<span color='" .. theme.color.blue .. "'>" .. eth.connected .."</span> "
+                eth.markup = "<span color='" .. theme.color.blue .. "'>" .. eth.connected .."</span>"
             else
-                eth.markup = "<span color='" .. theme.color.red .. "'>" .. eth.disconnected .."</span> "
+                eth.markup = "<span color='" .. theme.color.red .. "'>" .. eth.disconnected .."</span>"
             end
         end
         if line:match("%d+:%s+(wl%g+):%s.*") then
           local status = line:gsub(".*(wl%g+:%s.*state%s)(%a+).*", "%2")
           tooltip.text = "Wireless connection: " .. status
           if status == "UP" then
-            wifi.markup = "<span color='" .. theme.color.blue .. "'>" .. wifi.connected .."</span> "
+            wifi.markup = "<span color='" .. theme.color.blue .. "'>" .. wifi.connected .."</span>"
           else
-            wifi.markup = "<span color='" .. theme.color.red .. "'>" .. wifi.disconnected .."</span> "
+            wifi.markup = "<span color='" .. theme.color.red .. "'>" .. wifi.disconnected .."</span>"
           end
         end
       end

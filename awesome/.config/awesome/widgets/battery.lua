@@ -14,9 +14,20 @@ local batbar = wibox.widget {
     paddings = 2,
     ticks = true,
     ticks_size = dpi(4),
-    shape = gears.shape.rounded_bar,
+    shape = theme.rounded_shape,
     widget = wibox.widget.progressbar
 }
+
+local bat_bg = wibox.container.background(batbar, theme.color.darkgray, gears.shape.rounded_rect)
+local bat_margin = wibox.container.margin(bat_bg, dpi(2), dpi(2), dpi(4), dpi(4))
+
+local charging_icon = wibox.widget {
+    markup = "",
+    widget = wibox.widget.textbox
+}
+
+charging_icon.charging = "<span color='".. theme.color.blue .. "'> </span>"
+charging_icon.discharging = ""
 
 local bat_status_t = awful.tooltip {
     objects = { batbar }
@@ -27,12 +38,11 @@ local batupd = lain.widget.bat({
         if (not bat_now.status) or bat_now.status == "N/A" or type(bat_now.perc) ~= "number" then return end
 
         if bat_now.status == "Charging" then
-            if bat_now.perc >= 98 then
-                batbar:set_color(theme.color.green)
-            else
-                batbar:set_color(theme.color.aqua)
-            end
+            charging_icon:set_markup(charging_icon.charging)
+            batbar:set_color(theme.color.aqua)
         else
+            charging_icon:set_markup(charging_icon.discharging)
+
             if bat_now.perc >= 88 then
                 batbar:set_color(theme.color.green)
             elseif bat_now.perc > 35 then
@@ -51,7 +61,10 @@ batbar:connect_signal('mouse::enter', function ()
     bat_status_t:set_text(bat_now.perc .. "%")
 end)
 
-local batbg = wibox.container.background(batbar, theme.color.darkgray, gears.shape.rounded_rect)
-local batwidget = wibox.container.margin(batbg, dpi(2), dpi(2), dpi(4), dpi(4))
+local bat_widget = wibox.widget {
+    charging_icon,
+    bat_margin,
+    layout = wibox.layout.fixed.horizontal
+}
 
-return batwidget
+return bat_widget
