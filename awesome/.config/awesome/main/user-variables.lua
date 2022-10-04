@@ -8,7 +8,7 @@ local _M = {
     modkey = "Mod1",
 
     -- user defined wallpaper
-    wallpaper = home .. "/Pictures/wp.jpg",
+    wallpaper = home .. "/.config/awesome/theme/wp.jpg",
 }
 
 return _M

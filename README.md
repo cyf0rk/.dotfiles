@@ -31,7 +31,7 @@ Requirement for bootstrap script is `stow`
 Clone repo on your local machine and run bootstrap script to setup symlinks
 
 ```bash
-git clone https://github.com/marijanbat/.dotfiles && cd .dotfiles && sh bootstrap
+git clone https://github.com/cyf0rk/.dotfiles && cd .dotfiles && sh bootstrap
 ```
 
 ---
