@@ -8,7 +8,8 @@ local naughty = require'naughty'
 
 local widgets = {
     capslock = require'widgets.capslock',
-    audio = require'widgets.audio'
+    audio = require'widgets.audio',
+    passbar = require'widgets.passbar'
 }
 
 -- Resource Configuration
@@ -178,6 +179,9 @@ function _M.get()
         -- Menubar
         awful.key({ modkey }, "d", function() menubar.show() end,
             {description = "show the menubar", group = "launcher"}),
+
+        awful.key({ modkey, "Control" }, "p", function() widgets.passbar.show() end,
+            {description = "show the passbar", group = "launcher"}),
 
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         -- fn keys
