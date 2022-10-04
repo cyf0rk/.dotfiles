@@ -5,7 +5,7 @@ local awful = require'awful'
 -- Wibox handling library
 local wibox = require'wibox'
 
-local theme = require'theme.theme'
+local theme = require'theme'
 local lain = require'lain'
 local deco = {
     wallpaper = require'deco.wallpaper',

@@ -1,6 +1,6 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
-pcall(require, 'luarocks.loader')
+-- pcall(require, 'luarocks.loader')
 
 -- Standard awesome library
 local awful = require'awful'
@@ -16,7 +16,9 @@ RC.vars = require'main.user-variables'
 -- {{{ Error handling -- }}}
 require'main.error-handling'
 
-modkey = RC.vars.modkey
+-- {{{ Theme stuff
+require'theme.beautiful'
+-- }}}
 
 -- Custom Local Library
 local main = {

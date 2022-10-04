@@ -1,6 +1,6 @@
 local awful = require'awful'
 local lain = require'lain'
-local theme = require'theme.theme'
+local theme = require'theme'
 local dpi = require'beautiful.xresources'.apply_dpi
 local gears = require'gears'
 local wibox = require'wibox'

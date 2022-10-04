@@ -1,6 +1,6 @@
 local awful = require'awful'
 local wibox = require'wibox'
-local theme = require'theme.theme'
+local theme = require'theme'
 local naughty = require'naughty'
 
 local audio = wibox.widget {

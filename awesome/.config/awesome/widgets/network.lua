@@ -1,6 +1,6 @@
 local awful = require'awful'
 local wibox = require'wibox'
-local theme = require'theme.theme'
+local theme = require'theme'
 
 local eth = wibox.widget {
   widget = wibox.widget.textbox,
