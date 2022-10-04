@@ -129,7 +129,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibar = awful.wibar({
         position = 'bottom',
         screen = s,
-        bg = theme.color.bg,
+        bg = theme.color.bg_transparent,
         fg = theme.color.fg
     })
 

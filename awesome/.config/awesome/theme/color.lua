@@ -1,5 +1,6 @@
 color = {
     bg = "#12131b",
+    bg_transparent = "#12131b33",
     fg = "#b5bee7",
     red = "#d0494a",
     orange = "#eb935f",
