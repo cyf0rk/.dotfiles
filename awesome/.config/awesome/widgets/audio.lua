@@ -23,10 +23,10 @@ function audio:check_audio()
                     local volume_status = line:match("Volume:%s+(%d+.%d+)")
 
                     if line:match("MUTED") then
-                        self.markup = self.muted
+                        self.markup = "<span color='" .. theme.color.red .. "'>" .. self.muted .."</span>"
                         self.width = 40
                     else
-                        self.markup = self.speaker .. math.floor(volume_status * 100 + 0.5) .. "%"
+                        self.markup = "<span color='" .. theme.color.blue .. "'>" .. self.speaker .."</span>" .. math.floor(volume_status * 100 + 0.5) .. "%"
                     end
                 end
             end

@@ -105,13 +105,13 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.mem = lain.widget.mem {
         settings = function()
-            widget:set_markup("  " .. mem_now.used)
+            widget:set_markup("<span color='" .. theme.color.blue .. "'> </span> " .. mem_now.used)
         end
     }
 
     s.cpu = lain.widget.cpu {
         settings = function()
-            widget:set_markup(" " .. cpu_now.usage .. "%")
+            widget:set_markup("<span color='" .. theme.color.blue .. "'></span> " .. cpu_now.usage .. "%")
         end
     }
 
