@@ -5,7 +5,8 @@ local awful = require'awful'
 -- Wibox handling library
 local wibox = require'wibox'
 
-local theme = require'theme'
+local color = require'theme.color'
+local shape = require'theme.shape'
 local lain = require'lain'
 local deco = {
     wallpaper = require'deco.wallpaper',
@@ -57,8 +58,8 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = tasklist_buttons,
         style = {
             shape_border_width = 1,
-            shape_border_color = theme.color.darkgray,
-            shape  = theme.rounded_shape,
+            shape_border_color = color.dark_gray,
+            shape  = shape.rounded_shape,
         },
         layout = {
             spacing_widget = {
@@ -66,7 +67,7 @@ awful.screen.connect_for_each_screen(function(s)
                     forced_width  = 5,
                     forced_height = 24,
                     thickness     = 0,
-                    color         = theme.color.fg,
+                    color         = color.fg,
                     widget        = wibox.widget.separator
                 },
                 valign = 'center',
@@ -105,21 +106,21 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.mem = lain.widget.mem {
         settings = function()
-            widget:set_markup("<span color='" .. theme.color.blue .. "'> </span> " .. mem_now.used)
+            widget:set_markup("<span color='" .. color.blue .. "'> </span> " .. mem_now.used)
         end
     }
 
     s.cpu = lain.widget.cpu {
         settings = function()
-            widget:set_markup("<span color='" .. theme.color.blue .. "'></span> " .. cpu_now.usage .. "%")
+            widget:set_markup("<span color='" .. color.blue .. "'></span> " .. cpu_now.usage .. "%")
         end
     }
 
     s.clock = wibox.widget.textclock()
 
     s.separator = wibox.widget.separator {
-        color = theme.color.gray,
-        thickness = 1,
+        color = color.dark_gray,
+        thickness = 2,
         orientation = "vertical",
         span_ratio = 0.8,
         forced_width = 20
@@ -129,8 +130,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.mywibar = awful.wibar({
         position = 'bottom',
         screen = s,
-        bg = theme.color.bg_transparent,
-        fg = theme.color.fg
+        bg = color.bg_transparent,
+        fg = color.fg
     })
 
     -- Add widgets to the wibox
@@ -139,8 +140,8 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
-            s.mypromptbox,
             s.separator,
+            s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets

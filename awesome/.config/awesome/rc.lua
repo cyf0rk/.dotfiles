@@ -17,7 +17,10 @@ RC.vars = require'main.user-variables'
 require'main.error-handling'
 
 -- {{{ Theme stuff
-require'theme.beautiful'
+local beautiful = require'beautiful'
+local gears = require'gears'
+
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme/theme.lua")
 -- }}}
 
 -- Custom Local Library
@@ -57,7 +60,6 @@ RC.mainmenu = awful.menu({ items = main.menu() }) -- in globalkeys
 -- Menubar configuration
 -- Set the terminal for applications that require it
 menubar.utils.terminal = RC.vars.terminal
-
 -- }}}
 
 -- {{{ Mouse and Key bindings

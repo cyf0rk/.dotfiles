@@ -1,6 +1,7 @@
 local awful = require'awful'
 local lain = require'lain'
-local theme = require'theme'
+local color = require'theme.color'
+local shape = require'theme.shape'
 local dpi = require'beautiful.xresources'.apply_dpi
 local gears = require'gears'
 local wibox = require'wibox'
@@ -8,17 +9,17 @@ local wibox = require'wibox'
 local batbar = wibox.widget {
     forced_height = dpi(1),
     forced_width = dpi(36),
-    color = theme.color.fg,
-    background_color = theme.color.bg,
+    color = color.fg,
+    background_color = color.bg,
     margins = 2,
     paddings = 2,
     ticks = true,
     ticks_size = dpi(4),
-    shape = theme.rounded_shape,
+    shape = shape.rounded_shape,
     widget = wibox.widget.progressbar
 }
 
-local bat_bg = wibox.container.background(batbar, theme.color.darkgray, gears.shape.rounded_rect)
+local bat_bg = wibox.container.background(batbar, color.dark_gray, gears.shape.rounded_rect)
 local bat_margin = wibox.container.margin(bat_bg, dpi(2), dpi(2), dpi(4), dpi(4))
 
 local charging_icon = wibox.widget {
@@ -26,7 +27,7 @@ local charging_icon = wibox.widget {
     widget = wibox.widget.textbox
 }
 
-charging_icon.charging = "<span color='".. theme.color.blue .. "'> </span>"
+charging_icon.charging = "<span color='".. color.cyan .. "'> </span>"
 charging_icon.discharging = ""
 
 local bat_status_t = awful.tooltip {
@@ -39,18 +40,18 @@ local batupd = lain.widget.bat({
 
         if bat_now.status == "Charging" then
             charging_icon:set_markup(charging_icon.charging)
-            batbar:set_color(theme.color.aqua)
+            batbar:set_color(color.cyan)
         else
             charging_icon:set_markup(charging_icon.discharging)
 
             if bat_now.perc >= 88 then
-                batbar:set_color(theme.color.green)
+                batbar:set_color(color.green)
             elseif bat_now.perc > 35 then
-                batbar:set_color(theme.color.fg)
-            elseif bat_now.perc > 15 then
-                batbar:set_color(theme.color.orange)
+                batbar:set_color(color.fg)
+            elseif bat_now.perc > 10 then
+                batbar:set_color(color.orange)
             else
-                batbar:set_color(theme.color.red)
+                batbar:set_color(color.red)
             end
         end
         batbar:set_value(bat_now.perc / 100)

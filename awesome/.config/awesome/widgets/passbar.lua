@@ -174,7 +174,7 @@ function passbar.show(type_input)
     cache_pass_options()
 
     local prompt_args = {
-        prompt              = "Search: ",
+        prompt              = " Search: ",
         textbox             = instance.prompt.widget,
         done_callback       = passbar.hide,
         changed_callback    = update,

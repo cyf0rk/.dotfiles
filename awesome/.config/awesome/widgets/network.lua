@@ -1,32 +1,29 @@
 local awful = require'awful'
 local wibox = require'wibox'
-local theme = require'theme'
+local color = require'theme.color'
+
+local icons = {
+    eth_connected = "<span color='" .. color.blue .. "'></span>",
+    eth_disconnected = "<span color='" .. color.red .. "'></span>",
+    wifi_connected = "<span color='" .. color.blue .. "'>直</span>",
+    wifi_disconnected = "<span color='" .. color.red .. "'>睊</span>"
+}
 
 local eth = wibox.widget {
   widget = wibox.widget.textbox,
   align = "center",
   valign = "center",
   forced_width = 25,
-  markup = "",
+  markup = icons.eth_disconnected,
 }
-
-eth.connected = ""
-eth.disconnected = ""
 
 local wifi = wibox.widget {
   widget = wibox.widget.textbox,
   align = "center",
   valign = "center",
   forced_width = 25,
-  markup = "睊"
+  markup = icons.wifi_disconnected
 }
-
-wifi.connected = "直"
-wifi.disconnected = "睊"
-
-local tooltip = awful.tooltip({})
-
-tooltip:add_to_object(capslock)
 
 local network = wibox.widget {
     eth,
@@ -41,20 +38,18 @@ function network:check()
       stdout = function (line)
         if line:match("%d+:%s+(en%g+):%s.*") then
             local status = line:gsub(".*(enx%g+:%s.*state%s)(%a+).*", "%2")
-                tooltip.text = "Ethernet connection: " .. status
             if status == "UP" then
-                eth.markup = "<span color='" .. theme.color.blue .. "'>" .. eth.connected .."</span>"
+                eth.markup = icons.eth_connected
             else
-                eth.markup = "<span color='" .. theme.color.red .. "'>" .. eth.disconnected .."</span>"
+                eth.markup = icons.eth_disconnected
             end
         end
         if line:match("%d+:%s+(wl%g+):%s.*") then
           local status = line:gsub(".*(wl%g+:%s.*state%s)(%a+).*", "%2")
-          tooltip.text = "Wireless connection: " .. status
           if status == "UP" then
-            wifi.markup = "<span color='" .. theme.color.blue .. "'>" .. wifi.connected .."</span>"
+            wifi.markup = icons.wifi_connected
           else
-            wifi.markup = "<span color='" .. theme.color.red .. "'>" .. wifi.disconnected .."</span>"
+            wifi.markup = icons.wifi_disconnected
           end
         end
       end

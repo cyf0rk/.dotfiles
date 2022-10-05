@@ -1,6 +1,6 @@
 local awful = require'awful'
 local wibox = require'wibox'
-local theme = require'theme'
+local color = require'theme.color'
 
 local capslock = wibox.widget {
     widget = wibox.widget.textbox,
@@ -8,7 +8,7 @@ local capslock = wibox.widget {
     valign = "center",
 }
 
-capslock.activated = "<b><span color='".. theme.color.blue .."'></span> CAPS</b>"
+capslock.activated = "<b><span color='".. color.blue .."'></span> CAPS</b>"
 capslock.deactivated = ""
 
 local tooltip = awful.tooltip({})

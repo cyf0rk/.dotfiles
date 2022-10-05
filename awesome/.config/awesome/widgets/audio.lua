@@ -1,6 +1,6 @@
 local awful = require'awful'
 local wibox = require'wibox'
-local theme = require'theme'
+local color = require'theme.color'
 local naughty = require'naughty'
 
 local audio = wibox.widget {
@@ -23,10 +23,10 @@ function audio:check_audio()
                     local volume_status = line:match("Volume:%s+(%d+.%d+)")
 
                     if line:match("MUTED") then
-                        self.markup = "<span color='" .. theme.color.red .. "'>" .. self.muted .."</span>"
+                        self.markup = "<span color='" .. color.red .. "'>" .. self.muted .."</span>"
                         self.width = 40
                     else
-                        self.markup = "<span color='" .. theme.color.blue .. "'>" .. self.speaker .."</span>" .. math.floor(volume_status * 100 + 0.5) .. "%"
+                        self.markup = "<span color='" .. color.blue .. "'>" .. self.speaker .."</span>" .. math.floor(volume_status * 100 + 0.5) .. "%"
                     end
                 end
             end
