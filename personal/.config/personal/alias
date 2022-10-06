@@ -2,5 +2,5 @@
 alias vim="$EDITOR"
 alias awrc="cd $AWESOME_DIR && $EDITOR ."
 alias vimrc="cd $NVIM_DIR && $EDITOR ."
-alias prj="cd $HOME/development"
-alias todo="$EDITOR $HOME/development/todo.md"
+alias dev="cd $HOME/development"
+alias todo="$EDITOR $HOME/todo.md"
