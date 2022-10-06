@@ -4,8 +4,6 @@
 
 -- Standard awesome library
 local awful = require'awful'
--- awful.autofocus is DEPRECATED, should be replaced
-require'awful.autofocus'
 
 -- Miscellanous awesome library
 local menubar = require'menubar'
@@ -16,29 +14,14 @@ RC.vars = require'main.user-variables'
 -- {{{ Error handling -- }}}
 require'main.error-handling'
 
--- {{{ Theme stuff
-local beautiful = require'beautiful'
-local gears = require'gears'
-
-beautiful.init(gears.filesystem.get_configuration_dir() .. "theme/theme.lua")
+-- {{{ Theme
+require'theme'
 -- }}}
 
 -- Custom Local Library
-local main = {
-    layouts = require'main.layouts',
-    tags    = require'main.tags',
-    menu    = require'main.menu',
-    rules   = require'main.rules',
-}
-
+local main = require'main'
 -- Custom Local Library: Keys and Mouse Binding
-local binding = {
-    globalbuttons = require'binding.globalbuttons',
-    clientbuttons = require'binding.clientbuttons',
-    globalkeys    = require'binding.globalkeys',
-    bindtotags    = require'binding.bindtotags',
-    clientkeys    = require'binding.clientkeys'
-}
+local binding = require'binding'
 
 -- {{{ Layouts
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -71,25 +54,28 @@ root.buttons(binding.globalbuttons())
 root.keys(RC.globalkeys)
 -- }}}
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
--- {{{ Statusbar: Wibar
-require'deco.statusbar'
-require'deco.notification'
--- }}}
-
 -- {{{ Rules
 -- Rules to apply to new clients (through the 'manage' signal).
 awful.rules.rules = main.rules(
     binding.clientkeys(),
     binding.clientbuttons()
 )
+
+-- Keyboard map indicator and switcher
+mykeyboardlayout = awful.widget.keyboardlayout()
+-- }}}
+
+-- {{{ Statusbar: Wibar
+require'deco.statusbar'
+require'deco.notification'
 -- }}}
 
 -- {{{ Signals
 require'main.signals'
 -- }}}
+--
+-- awful.autofocus is DEPRECATED, should be replaced
+require'awful.autofocus'
 
 -- {{{ Autostart apps
 require'scripts.autostart'
