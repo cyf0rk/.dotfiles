@@ -1,8 +1,9 @@
-local theme_assets = require("beautiful.theme_assets")
-local xresources = require("beautiful.xresources")
+local theme_assets = require'beautiful.theme_assets'
+local xresources = require'beautiful.xresources'
 local dpi = xresources.apply_dpi
 
-local gfs = require("gears.filesystem")
+local gears = require'gears'
+local gfs = require'gears.filesystem'
 local themes_path = gfs.get_themes_dir()
 
 local color = require'theme.color'
@@ -150,22 +151,22 @@ theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/m
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
 -- You can use your own layout icons like this:
-theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
-theme.layout_fairv = themes_path.."default/layouts/fairvw.png"
-theme.layout_floating  = themes_path.."default/layouts/floatingw.png"
-theme.layout_magnifier = themes_path.."default/layouts/magnifierw.png"
-theme.layout_max = themes_path.."default/layouts/maxw.png"
-theme.layout_fullscreen = themes_path.."default/layouts/fullscreenw.png"
-theme.layout_tilebottom = themes_path.."default/layouts/tilebottomw.png"
-theme.layout_tileleft   = themes_path.."default/layouts/tileleftw.png"
-theme.layout_tile = themes_path.."default/layouts/tilew.png"
-theme.layout_tiletop = themes_path.."default/layouts/tiletopw.png"
-theme.layout_spiral  = themes_path.."default/layouts/spiralw.png"
-theme.layout_dwindle = themes_path.."default/layouts/dwindlew.png"
-theme.layout_cornernw = themes_path.."default/layouts/cornernww.png"
-theme.layout_cornerne = themes_path.."default/layouts/cornernew.png"
-theme.layout_cornersw = themes_path.."default/layouts/cornersww.png"
-theme.layout_cornerse = themes_path.."default/layouts/cornersew.png"
+theme.layout_fairh = gears.color.recolor_image(themes_path.."default/layouts/fairhw.png", color.blue)
+theme.layout_fairv = gears.color.recolor_image(themes_path.."default/layouts/fairvw.png", color.blue)
+theme.layout_floating  = gears.color.recolor_image(themes_path.."default/layouts/floatingw.png", color.blue)
+theme.layout_magnifier = gears.color.recolor_image(themes_path.."default/layouts/magnifierw.png", color.blue)
+theme.layout_max = gears.color.recolor_image(themes_path.."default/layouts/maxw.png", color.blue)
+theme.layout_fullscreen = gears.color.recolor_image(themes_path.."default/layouts/fullscreenw.png", color.blue)
+theme.layout_tilebottom = gears.color.recolor_image(themes_path.."default/layouts/tilebottomw.png", color.blue)
+theme.layout_tileleft   = gears.color.recolor_image(themes_path.."default/layouts/tileleftw.png", color.blue)
+theme.layout_tile = gears.color.recolor_image(themes_path.."default/layouts/tilew.png", color.blue)
+theme.layout_tiletop = gears.color.recolor_image(themes_path.."default/layouts/tiletopw.png", color.blue)
+theme.layout_spiral  = gears.color.recolor_image(themes_path.."default/layouts/spiralw.png", color.blue)
+theme.layout_dwindle = gears.color.recolor_image(themes_path.."default/layouts/dwindlew.png", color.blue)
+theme.layout_cornernw = gears.color.recolor_image(themes_path.."default/layouts/cornernww.png", color.blue)
+theme.layout_cornerne = gears.color.recolor_image(themes_path.."default/layouts/cornernew.png", color.blue)
+theme.layout_cornersw = gears.color.recolor_image(themes_path.."default/layouts/cornersww.png", color.blue)
+theme.layout_cornerse = gears.color.recolor_image(themes_path.."default/layouts/cornersew.png", color.blue)
 
 -- Generate Awesome icon:
 -- theme.awesome_icon = theme_assets.awesome_icon(
