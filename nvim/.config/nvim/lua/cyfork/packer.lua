@@ -42,8 +42,6 @@ return require('packer').startup(function(use)
     use'nvim-treesitter/playground'
     use'romgrk/nvim-treesitter-context'
 
-    use'lukas-reineke/indent-blankline.nvim'
-
     -- bugs bunny
     use'mfussenegger/nvim-dap'
     use'mfussenegger/nvim-dap-python'

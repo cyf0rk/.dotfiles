@@ -90,6 +90,10 @@ function _M.get(clientkeys, clientbuttons)
             properties = { tag = "3" }
         },
         {
+            rule = { class = "Code" },
+            properties = { tag = "4" }
+        },
+        {
             rule = { class = "Gimp" },
             properties = { tag = "6" }
         },

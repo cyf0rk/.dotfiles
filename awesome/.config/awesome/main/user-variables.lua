@@ -5,7 +5,7 @@ local _M = {
     terminal = "x-terminal-emulator",
 
     -- Default modkey.
-    modkey = "Mod1",
+    modkey = "Mod4",
 
     -- user defined wallpaper
     wallpaper = home .. "/.config/awesome/theme/assets/wallpaper.jpg",

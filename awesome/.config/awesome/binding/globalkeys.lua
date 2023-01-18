@@ -81,7 +81,7 @@ function _M.get()
                 end
             end,
             {description = "go back", group = "client"}),
-        awful.key({ "Mod4", "Control" }, "p", function ()
+        awful.key({ "Mod4", "Control" }, "l", function ()
                 awful.spawn.with_line_callback(string.format("%s/.local/scripts/setup-display -a", HOME), {
                     stdout = function(line)
                         naughty.notify { text = "LINE:"..line }
@@ -200,6 +200,18 @@ function _M.get()
                     widgets.audio:check_audio()
                 end)
             end),
+        awful.key({ }, "XF86AudioPlay", function ()
+            awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause", false)
+        end),
+        awful.key({ }, "XF86AudioNext", function ()
+            awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next", false)
+        end),
+        awful.key({ }, "XF86AudioPrev", function ()
+            awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous", false)
+        end),
+        awful.key({ }, "XF86AudioStop", function ()
+            awful.util.spawn("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop", false)
+        end),
         awful.key({}, "XF86AudioMicMute", function()
                 awful.spawn.easy_async_with_shell("pactl set-source-mute @DEFAULT_SOURCE@ toggle", function ()
                     widgets.audio:check_audio()
@@ -220,7 +232,6 @@ function _M.get()
                 awful.spawn.with_shell("flameshot gui")
             end,
             {description = "take screenshot", group = "awesome"})
-
     )
 
     return globalkeys
