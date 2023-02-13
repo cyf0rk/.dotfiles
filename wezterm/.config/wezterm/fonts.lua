@@ -7,7 +7,7 @@ config.adjust_window_size_when_changing_font_size = false
 -- that one was opening a separate win on first unknown glyph, stealing windows focus (!!)
 config.warn_about_missing_glyphs = false
 
-config.font_size = 14.0
+config.font_size = 16.0
 
 -- Makes FontAwesome's double-width glyphs display properly!
 config.allow_square_glyphs_to_overflow_width = 'WhenFollowedBySpace'
@@ -54,12 +54,22 @@ local function font_and_rules_for_firacode()
     return font, font_rules
 end
 
+local function font_and_rules_for_ubuntu()
+    local font = font_with_fallback('Ubuntu Mono')
+    local font_rules = {
+        {
+            font = wezterm.font('Ubuntu Mono')
+        },
+    }
+    return font, font_rules
+end
+
 -- FIXME (<- this is an example of bolded text)
 -- 0 1 2 3 4 5 6 7 8 9
 -- Some ligatures: != <-> <-  -> ----> => ==> ===> -- --- /../;;/ #{}
 --  <> <!-- --> ->> --> <= >= ++ == === := a::b::c a&&b a||b
 
-config.font, config.font_rules = font_and_rules_for_firacode()
+config.font, config.font_rules = font_and_rules_for_ubuntu()
 
 -- Enable various OpenType features
 -- See https://docs.microsoft.com/en-us/typography/opentype/spec/featurelist
