@@ -23,4 +23,4 @@ end
 -- use the spawn_once
 spawn_once("brave-browser", "Brave-browser", 1)
 spawn_once("wezterm-gui", "wezterm", 3)
-spawn_once("spotify", "Spotify", 10)
+-- spawn_once("spotify", "Spotify", 10)

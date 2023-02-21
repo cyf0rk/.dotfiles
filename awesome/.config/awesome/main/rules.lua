@@ -105,10 +105,10 @@ function _M.get(clientkeys, clientbuttons)
             rule = { class = "Thunderbird" },
             properties = { tag = "9" }
         },
-        {
-            rule = { class = "Spotify" },
-            properties = { tag = "10" }
-        },
+        -- {
+            -- rule = { class = "Spotify" },
+            -- properties = { tag = "10" }
+        -- },
 
     }
 
