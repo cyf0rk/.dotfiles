@@ -6,8 +6,7 @@ local act = wezterm.action
 
 local config = {}
 
-config.disable_default_mouse_bindings = true
-
+config.disable_default_mouse_bindings = false
 
 local mouse_bindings = {}
 

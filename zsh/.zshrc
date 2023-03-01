@@ -104,3 +104,4 @@ source $PERSONAL/alias
 
 autoload -Uz compinit
 compinit
+fpath+=${ZDOTDIR:-~}/.zsh_functions
