@@ -1,5 +1,6 @@
 local Remap = require'cyfork.keymap'
 local nnoremap = Remap.nnoremap
+local util = require'lspconfig'.util
 local capabilities = require'cmp_nvim_lsp'.default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -28,3 +29,17 @@ require'lspconfig'.html.setup(config())
 require'lspconfig'.tsserver.setup(config())
 
 require'lspconfig'.pyright.setup(config())
+
+require'lspconfig'.gopls.setup({
+    cmd = {"gopls", "serve"},
+    filetypes = {"go", "gomod"},
+    root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+      },
+    },
+  })

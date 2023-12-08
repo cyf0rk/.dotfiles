@@ -79,36 +79,40 @@ function _M.get(clientkeys, clientbuttons)
         -- Map apps to different tags and screens
         {
             rule = { class = "Brave-browser" },
-            properties = { tag = "1" }
+            properties = { tag = "1", screen = "DisplayPort-0"}
         },
         {
-            rule = { class = "firefox" },
-            properties = { tag = "2" }
+            rule_any = { class = { "firefox", "Postman" } },
+            properties = { tag = "2", screen = "DisplayPort-0" }
         },
         {
             rule = { class = "wezterm" },
-            properties = { tag = "3" }
+            properties = { tag = "3", screen = "DisplayPort-0" }
         },
         {
             rule = { class = "Code" },
-            properties = { tag = "4" }
+            properties = { tag = "4", screen = "DisplayPort-0" }
+        },
+        {
+            rule = { class = "DBeaver" },
+            properties = { tag = "5", screen = "DisplayPort-0" }
         },
         {
             rule = { class = "Gimp" },
-            properties = { tag = "6" }
+            properties = { tag = "6", screen = "DisplayPort-0" }
         },
         {
-            rule = { class = "discord" },
-            properties = { tag = "8" }
+            rule_any = { class = { "discord", "Slack" } },
+            properties = { tag = "8", screen = "eDP" }
         },
         {
             rule = { class = "Thunderbird" },
-            properties = { tag = "9" }
+            properties = { tag = "9", screen = "eDP" }
         },
-        -- {
-            -- rule = { class = "Spotify" },
-            -- properties = { tag = "10" }
-        -- },
+        {
+            rule = { class = "Spotify" },
+            properties = { tag = "10", screen = "eDP" }
+        },
 
     }
 

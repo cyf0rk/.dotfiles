@@ -7,7 +7,7 @@ config.adjust_window_size_when_changing_font_size = false
 -- that one was opening a separate win on first unknown glyph, stealing windows focus (!!)
 config.warn_about_missing_glyphs = false
 
-config.font_size = 14.0
+config.font_size = 6.0
 
 -- Makes FontAwesome's double-width glyphs display properly!
 config.allow_square_glyphs_to_overflow_width = 'WhenFollowedBySpace'

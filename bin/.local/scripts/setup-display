@@ -64,7 +64,7 @@ display_dual_primary_external() {
 # Dual display, primary mirrored to secondary
 display_mirror() {
     # ensure displays are on
-    display_dual_primary_inbuilt
+    display_dual_primary_external
     eval "xrandr --output $DISPLAY_SECONDARY --same-as $DISPLAY_PRIMARY"
 }
 
