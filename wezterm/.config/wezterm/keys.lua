@@ -128,6 +128,20 @@ config.keys = {
     }),
 }
 
+for i = 1, 9 do
+  -- CTRL+ALT + number to activate that tab
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = 'CTRL',
+    action = act.ActivateTab(i - 1),
+  })
+  -- F1 through F8 to activate that tab
+  table.insert(config.keys, {
+    key = 'F' .. tostring(i),
+    action = act.ActivateTab(i - 1),
+  })
+end
+
 -- Events related to config reloading
 wezterm.on('my-reload-config-with-notif', function(win, pane)
     wezterm.GLOBAL.want_reload_notification = true
