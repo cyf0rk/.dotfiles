@@ -1,12 +1,11 @@
 require'cyfork.packer'
 require'cyfork.set'
-require'cyfork.debugger'
 require'cyfork.format'
-require'cyfork.cmp'
 require'Comment'.setup()
+--require'cyfork.debugger'
 
 local augroup = vim.api.nvim_create_augroup
-cyforkGroup = augroup('cyfork', {})
+local cyforkGroup = augroup('cyfork', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 local yank_group = augroup('HighlightYank', {})
@@ -26,18 +25,10 @@ autocmd('TextYankPost', {
     end,
 })
 
-autocmd({'BufEnter', 'BufWinEnter', 'TabEnter'}, {
-    group = cyforkGroup,
-    pattern = "*.rs",
-    callback = function()
-        require'lsp_extensions'.inlay_hints{}
-    end
-})
-
 autocmd({'BufWritePre'}, {
     group = cyforkGroup,
     pattern = "*",
-    command = "%s/\\s\\+$//e",
+    command = [[%s/\s\+$//e]],
 })
 
 vim.g.netrw_browse_split = 0

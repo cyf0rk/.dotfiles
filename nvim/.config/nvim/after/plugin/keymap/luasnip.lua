@@ -1,7 +1,7 @@
-local Remap = require('cyfork.keymap')
+local Remap = require'cyfork.keymap'
 local inoremap = Remap.inoremap
 local nnoremap = Remap.nnoremap
-local ls = require "luasnip"
+local ls = require'luasnip'
 
 -- This will expand the current item or jump to the next item within the snippet.
 vim.keymap.set({"i", "s"}, "<C-k>", function()
