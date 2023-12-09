@@ -1,4 +1,5 @@
 export XDG_CONFIG_HOME=$HOME/.config
+VIM="nvim"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -8,7 +9,8 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:/usr/local/go/bin
 export PATH=$PATH":$HOME/.local/scripts"
 export PERSONAL=$HOME/.config/personal
-export EDITOR=nvim
+export EDITOR=$VIM
+export GIT_EDITOR=$VIM
 export DOTFILES=$HOME/.dotfiles
 export AWESOME_DIR=$HOME/.config/awesome
 export NVIM_DIR=$HOME/.config/nvim

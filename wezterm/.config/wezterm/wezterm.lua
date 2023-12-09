@@ -2,10 +2,6 @@
 ---------------------------------------------------------------
 
 local config_misc = {
-    color_scheme = 'tokyonight',
-    dpi = 226,
-    tab_bar_at_bottom = true,
-
     window_close_confirmation = 'NeverPrompt',
     check_for_updates = false,
 
@@ -18,11 +14,11 @@ local config_misc = {
     -- easy selection of (partial) paths.
     selection_word_boundary = " \t\n{}[]()\''`,;:@│*",
 
-    -- Do not hold on exit by default.
-    -- Because the default 'CloseOnCleanExit' can be annoying when exiting with
-    -- Ctrl-D and the last command exited with non-zero: the shell will exit
-    -- with non-zero and the terminal would hang until the window is closed manually.
-    exit_behavior = 'Close', -- NOTE: this is now the default, remove?
+    unix_domains = { {
+        name = 'unix'
+    } },
+
+    default_gui_startup_args = { 'connect', 'unix' },
 }
 
 -- Merge configs and return!
