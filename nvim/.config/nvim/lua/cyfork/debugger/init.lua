@@ -2,10 +2,9 @@ local dap = require'dap'
 local dapui = require'dapui'
 local daptext = require'nvim-dap-virtual-text'
 
-local remap = require'cyfork.keymap'
-local nnoremap = remap.nnoremap
-
 require'nvim-dap-virtual-text'.setup()
+require'cyfork.debugger.python'
+require'cyfork.debugger.php'
 
 daptext.setup()
 dapui.setup({
@@ -39,41 +38,38 @@ dap.listeners.before.event_exited['dapui_config'] = function()
     dapui.close()
 end
 
-require'cyfork.debugger.python'
-require'cyfork.debugger.php'
-
-nnoremap("<S-Right>", function()
+vim.keymap.set("n", "<S-Right>", function()
     dapui.toggle(1)
 end)
-nnoremap("<S-Left>", function()
+vim.keymap.set("n", "<S-Left>", function()
     dapui.toggle(2)
 end)
 
-nnoremap("<leader>cs", function()
+vim.keymap.set("n", "<leader>cs", function()
     dap.close()
 end)
 
-nnoremap("<Up>", function()
+vim.keymap.set("n", "<Up>", function()
     dap.continue()
 end)
-nnoremap("<Down>", function()
+vim.keymap.set("n", "<Down>", function()
     dap.step_over()
 end)
-nnoremap("<Right>", function()
+vim.keymap.set("n", "<Right>", function()
     dap.step_into()
 end)
-nnoremap("<Left>", function()
+vim.keymap.set("n", "<Left>", function()
     dap.step_out()
 end)
-nnoremap("<Leader>b", function()
+vim.keymap.set("n", "<Leader>b", function()
     dap.toggle_breakpoint()
 end)
-nnoremap("<Leader>B", function()
+vim.keymap.set("n", "<Leader>B", function()
     dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
 end)
-nnoremap("<leader>rc", function()
+vim.keymap.set("n", "<leader>rc", function()
     dap.run_to_cursor()
 end)
-nnoremap("<Leader>cb", function()
+vim.keymap.set("n", "<Leader>cb", function()
     dap.clear_breakpoints()
 end)

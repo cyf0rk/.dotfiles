@@ -1,5 +1,3 @@
-local nnoremap = require'cyfork.keymap'.nnoremap
-
 function ContextSetup(show_all_context)
     require'treesitter-context'.setup({
         enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
@@ -35,6 +33,6 @@ function ContextSetup(show_all_context)
     })
 end
 
-nnoremap("<leader>cf", function() ContextSetup(true) end)
-nnoremap("<leader>cp", function() ContextSetup(false) end)
+vim.keymap.set('n', "<leader>cf", function() ContextSetup(true) end)
+vim.keymap.set('n', "<leader>cp", function() ContextSetup(false) end)
 ContextSetup(false)

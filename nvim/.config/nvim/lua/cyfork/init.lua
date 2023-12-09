@@ -1,5 +1,6 @@
 require'cyfork.packer'
 require'cyfork.set'
+require'cyfork.remap'
 require'cyfork.format'
 require'Comment'.setup()
 --require'cyfork.debugger'

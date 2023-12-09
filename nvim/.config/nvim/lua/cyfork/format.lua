@@ -13,7 +13,7 @@ local formatterConfig = {
         function()
             return {
                 exe = 'stylua',
-                args = {  '-' },
+                args = {'-'},
                 stdin = true,
             }
         end,
@@ -53,7 +53,8 @@ local commonFT = {
     "yaml",
     "xml",
     "svg",
-    "svelte"
+    "svelte",
+    "go"
 }
 for _, ft in ipairs(commonFT) do
     formatterConfig[ft] = {prettierConfig}
