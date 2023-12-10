@@ -1,24 +1,13 @@
---local color = 'tokyonight'
+require'rose-pine'.setup({
+    disable_background = true
+})
 
-function forkPencils()
-    vim.g.tokyonight_transparent_sidebar = true
-    vim.g.tokyonight_transparent = true
-    vim.opt.background = 'dark'
-
-    color = color or "rose-pine"
+function forkPencils(color)
+    color = color or 'rose-pine'
     vim.cmd.colorscheme(color)
 
-    local hl = function(thing, opts)
-        vim.api.nvim_set_hl(0, thing, opts)
-    end
-
-    hl('Normal', {
-        bg = "none"
-    })
-
-    hl('NormalFloat', {
-        bg = "none"
-    })
-
+    vim.api.nvim_set_hl(0, 'Normal', { bg = "none" })
+    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = "none" })
 end
+
 forkPencils()
