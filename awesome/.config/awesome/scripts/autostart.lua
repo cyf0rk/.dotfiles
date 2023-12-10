@@ -21,6 +21,6 @@ function spawn_once(command, class, tag)
 end
 
 -- use the spawn_once
-spawn_once("brave-browser", "Brave-browser", 1)
-spawn_once("wezterm", "wezterm", 3)
--- spawn_once("spotify", "Spotify", 10)
+spawn_once("brave-browser", "Brave-browser")
+spawn_once("firefox", "Navigator")
+spawn_once("wezterm-gui", "wezterm")

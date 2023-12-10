@@ -129,17 +129,20 @@ config.keys = {
 }
 
 for i = 1, 9 do
-  -- CTRL+ALT + number to activate that tab
-  table.insert(config.keys, {
-    key = tostring(i),
-    mods = 'CTRL',
-    action = act.ActivateTab(i - 1),
-  })
-  -- F1 through F8 to activate that tab
-  table.insert(config.keys, {
-    key = 'F' .. tostring(i),
-    action = act.ActivateTab(i - 1),
-  })
+    -- vim ctrl+6 is reserved keybinding for switching between files, don't bind it
+    if i == 6 then goto continue end
+    -- CTRL+ALT + number to activate that tab
+    table.insert(config.keys, {
+        key = tostring(i),
+        mods = 'CTRL',
+        action = act.ActivateTab(i - 1),
+    })
+    -- F1 through F8 to activate that tab
+    table.insert(config.keys, {
+        key = 'F' .. tostring(i),
+        action = act.ActivateTab(i - 1),
+    })
+    ::continue::
 end
 
 -- Events related to config reloading

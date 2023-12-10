@@ -75,44 +75,49 @@ function _M.get(clientkeys, clientbuttons)
             }
         },
 
-        -- TODO: make use of only single display if second is unplugged
         -- Map apps to different tags and screens
+        -- it assumes there are only 2 screens and Primary monitor (1) is external one
+        -- (set in $HOME/.local/scripts/setup-display script)
         {
             rule = { class = "Brave-browser" },
-            properties = { tag = "1", screen = "DisplayPort-0"}
+            properties = { tag = "1", screen = 1 }
         },
         {
-            rule_any = { class = { "firefox", "Postman" } },
-            properties = { tag = "2", screen = "DisplayPort-0" }
+            rule_any = { class = { "firefox" } },
+            properties = { tag = "1", screen = function() return screen.count() end }
+        },
+        {
+            rule_any = { class = { "Postman" } },
+            properties = { tag = "2", screen = 1 }
         },
         {
             rule = { class = "wezterm" },
-            properties = { tag = "3", screen = "DisplayPort-0" }
+            properties = { tag = "3", screen = 1 }
         },
         {
             rule = { class = "Code" },
-            properties = { tag = "4", screen = "DisplayPort-0" }
+            properties = { tag = "4", screen = 1 }
         },
         {
             rule = { class = "DBeaver" },
-            properties = { tag = "5", screen = "DisplayPort-0" }
+            properties = { tag = "5", screen = 1 }
         },
         {
             rule = { class = "Gimp" },
-            properties = { tag = "6", screen = "DisplayPort-0" }
+            properties = { tag = "6", screen = 1 }
         },
         {
             rule_any = { class = { "discord", "Slack" } },
-            properties = { tag = "8", screen = "eDP" }
+            properties = { tag = "8", screen = function() return screen.count() end }
         },
         {
-            rule = { class = "Thunderbird" },
-            properties = { tag = "9", screen = "eDP" }
+            rule = { class = "thunderbird" },
+            properties = { tag = "9", screen = function() return screen.count() end }
         },
-        {
-            rule = { class = "Spotify" },
-            properties = { tag = "10", screen = "eDP" }
-        },
+        -- {
+            -- rule = { class = "Spotify" },
+            -- properties = { tag = "10", screen = function() return screen.count() end }
+        -- },
 
     }
 

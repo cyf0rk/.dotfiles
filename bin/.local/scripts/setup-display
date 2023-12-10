@@ -70,7 +70,7 @@ display_mirror() {
 
 # switch on secondary display
 switch_on() {
-    display_dual_primary_inbuilt
+    display_dual_primary_external
 }
 # switch off secondary display
 switch_off() {
@@ -114,7 +114,7 @@ while test $# -gt 0; do
                 display_only_primary
             else
                 debug "switching to dual output"
-                display_dual_primary_inbuilt
+                display_dual_primary_external
             fi
             ;;
         -p|--primary-only)

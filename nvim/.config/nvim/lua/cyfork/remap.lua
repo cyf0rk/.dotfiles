@@ -44,6 +44,7 @@ vim.keymap.set("n", "<leader>u", ":UndotreeShow<CR>")
 
 -- Source config
 vim.keymap.set("n", "<leader>?", ":source ~/.config/nvim/init.lua<CR>")
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Move errors
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
