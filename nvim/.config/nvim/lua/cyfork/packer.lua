@@ -6,7 +6,10 @@ return require('packer').startup(function(use)
         -- or                          , branch = '0.1.x',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
-    use'theprimeagen/harpoon'
+    use {
+        'theprimeagen/harpoon',
+        branch = "harpoon2"
+    }
     use'theprimeagen/refactoring.nvim'
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -72,6 +75,10 @@ return require('packer').startup(function(use)
     -- marinade in code
     use'folke/zen-mode.nvim'
     use'github/copilot.vim'
+
+    -- practice vim
+    use'ThePrimeagen/vim-be-good'
+
     -- bugs bunny
     -- use'mfussenegger/nvim-dap'
     -- use'mfussenegger/nvim-dap-python'

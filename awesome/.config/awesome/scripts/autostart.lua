@@ -22,5 +22,7 @@ end
 
 -- use the spawn_once
 spawn_once("brave-browser", "Brave-browser")
-spawn_once("firefox", "Navigator")
 spawn_once("wezterm-gui", "wezterm")
+-- for some reason, firefox doesn't work with spawn_once
+-- would need to investigate further
+awful.spawn.single_instance("firefox", awful.rules.rules)

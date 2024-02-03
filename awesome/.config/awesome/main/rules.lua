@@ -83,11 +83,11 @@ function _M.get(clientkeys, clientbuttons)
             properties = { tag = "1", screen = 1 }
         },
         {
-            rule_any = { class = { "firefox" } },
-            properties = { tag = "1", screen = function() return screen.count() end }
+            rule = { class = "firefox" },
+            properties = { tag = "10", screen = 1 }
         },
         {
-            rule_any = { class = { "Postman" } },
+            rule = { class = "Postman" },
             properties = { tag = "2", screen = 1 }
         },
         {
@@ -95,11 +95,11 @@ function _M.get(clientkeys, clientbuttons)
             properties = { tag = "3", screen = 1 }
         },
         {
-            rule = { class = "Code" },
+            rule_any = { class = { "Code", "DBeaver" } },
             properties = { tag = "4", screen = 1 }
         },
         {
-            rule = { class = "DBeaver" },
+            rule = { class = "obsidian" },
             properties = { tag = "5", screen = 1 }
         },
         {
@@ -108,11 +108,11 @@ function _M.get(clientkeys, clientbuttons)
         },
         {
             rule_any = { class = { "discord", "Slack" } },
-            properties = { tag = "8", screen = function() return screen.count() end }
+            properties = { tag = "8", screen = 1 }
         },
         {
             rule = { class = "thunderbird" },
-            properties = { tag = "9", screen = function() return screen.count() end }
+            properties = { tag = "9", screen = 1 }
         },
         -- {
             -- rule = { class = "Spotify" },

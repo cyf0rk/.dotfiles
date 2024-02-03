@@ -4,11 +4,15 @@ vim.keymap.set("n", "<leader>zz", function()
             width = 90,
             options = { }
         },
+        plugins = {
+            wezterm = {
+              enabled = false,
+              -- can be either an absolute font size or the number of incremental steps
+              font = "+2", -- (10% increase per step)
+            }
+        }
     }
     require'zen-mode'.toggle()
-    vim.wo.wrap = false
-    vim.wo.number = true
-    vim.wo.rnu = true
     forkPencils()
 end)
 
@@ -21,9 +25,5 @@ vim.keymap.set("n", "<leader>zZ", function()
         },
     }
     require'zen-mode'.toggle()
-    vim.wo.wrap = false
-    vim.wo.number = false
-    vim.wo.rnu = false
-    vim.opt.colorcolumn = "0"
     forkPencils()
 end)

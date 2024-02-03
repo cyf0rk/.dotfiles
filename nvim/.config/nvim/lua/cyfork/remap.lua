@@ -1,7 +1,10 @@
 vim.g.mapleader = " "
 -- Basics
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("n", "<C-s>", ":w<CR>")
+-- vim.keymap.set("n", "<C-s>", ":w<CR>")
+
+-- helps with copilot in normal mode and some block selections stuff
+vim.keymap.set("i", "<C-c>", "<Esc>")
 
 -- Moving text
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -23,6 +26,9 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "Q", "<nop>")
+
+-- Make copy of current file
+vim.keymap.set("n", "<leader>mc", ":silent exec \"!cp '%:p' '%:p:h/%:t:r-copy.%:e'\"")
 
 -- Replace word under cursor
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
