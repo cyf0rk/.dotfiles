@@ -79,6 +79,13 @@ return require('packer').startup(function(use)
     -- practice vim
     use'ThePrimeagen/vim-be-good'
 
+    -- note taking
+    use({
+      "epwalsh/obsidian.nvim",
+      tag = "*",  -- recommended, use latest release instead of latest commit
+      requires = { "nvim-lua/plenary.nvim" },
+    })
+
     -- bugs bunny
     -- use'mfussenegger/nvim-dap'
     -- use'mfussenegger/nvim-dap-python'
