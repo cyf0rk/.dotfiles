@@ -11,6 +11,7 @@ return require('packer').startup(function(use)
         branch = "harpoon2"
     }
     use'theprimeagen/refactoring.nvim'
+    -- treeshitter
     use {
         'nvim-treesitter/nvim-treesitter',
         run = function()
@@ -87,8 +88,22 @@ return require('packer').startup(function(use)
     })
 
     -- bugs bunny
-    -- use'mfussenegger/nvim-dap'
-    -- use'mfussenegger/nvim-dap-python'
-    -- use'rcarriga/nvim-dap-ui'
-    -- use'theHamsta/nvim-dap-virtual-text'
+    use({
+        'mfussenegger/nvim-dap',
+        requires = {
+            -- Creates a beautiful debugger UI
+            'rcarriga/nvim-dap-ui',
+            'theHamsta/nvim-dap-virtual-text',
+            'ray-x/guihua.lua',
+
+            -- Installs the debug adapters for you
+            'williamboman/mason.nvim',
+            'jay-babu/mason-nvim-dap.nvim',
+
+            -- Add your own debuggers here
+            'leoluz/nvim-dap-go',
+            'mfussenegger/nvim-dap-python',
+            'ray-x/go.nvim',
+          }
+    })
 end)

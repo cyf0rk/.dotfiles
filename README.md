@@ -22,6 +22,7 @@
 - pip
 - nvm/npm/node
 - ripgrep
+- pavucontrol
 
 ### Git + bootstrap script
 
