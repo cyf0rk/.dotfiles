@@ -76,6 +76,17 @@ return require('packer').startup(function(use)
     -- marinade in code
     use'folke/zen-mode.nvim'
     use'github/copilot.vim'
+    use {
+        'CopilotC-Nvim/CopilotChat.nvim',
+        requires = {
+            {'zbirenbaum/copilot.lua'},
+            {'nvim-lua/plenary.nvim'},
+        },
+        branch = "canary",
+        opts = {
+            debug = true,
+        },
+    }
 
     -- practice vim
     use'ThePrimeagen/vim-be-good'
