@@ -10,10 +10,17 @@ return require('packer').startup(function(use)
         'theprimeagen/harpoon',
         branch = "harpoon2"
     }
-    use'theprimeagen/refactoring.nvim'
+    use {
+        'ThePrimeagen/refactoring.nvim',
+        requires = {
+            {'nvim-lua/plenary.nvim'},
+            {'nvim-treesitter/nvim-treesitter'}
+        }
+    }
     -- treeshitter
     use {
         'nvim-treesitter/nvim-treesitter',
+        tag = 'v0.9.2',
         run = function()
             require'nvim-treesitter.install'.update({ with_sync = true })
         end,
@@ -56,10 +63,10 @@ return require('packer').startup(function(use)
         }
     }
     use({
-        "folke/trouble.nvim",
+        'folke/trouble.nvim',
         requires = { {'nvim-tree/nvim-web-devicons'} },
         config = function()
-            require("trouble").setup {
+            require('trouble').setup {
                 icons = true,
                 -- your configuration comes here
                 -- or leave it empty to use the default settings
