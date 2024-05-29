@@ -29,7 +29,7 @@ chat.setup {
         return select.visual(source) or select.line(source)
     end,
     window = {
-        layout = 'vertical', -- 'vertical', 'horizontal', 'float'
+        layout = 'float', -- 'vertical', 'horizontal', 'float'
         -- Options below only apply to floating windows
         relative = 'editor', -- 'editor', 'win', 'cursor', 'mouse'
         border = 'single', -- 'none', single', 'double', 'rounded', 'solid', 'shadow'
@@ -44,7 +44,7 @@ chat.setup {
     mappings = {
         complete = {
             detail = 'Use @<Tab> or /<Tab> for options.',
-            insert ='<Tab>',
+            insert ='<C-y>',
         },
         close = {
             normal = 'q',
