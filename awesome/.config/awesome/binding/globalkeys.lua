@@ -217,6 +217,7 @@ function _M.get()
                     widgets.audio:check_audio()
                 end)
             end),
+        -- requires light package for controlling brightness
         awful.key({}, "XF86MonBrightnessUp", function()
                 awful.spawn.with_shell("light -A 10")
             end),
