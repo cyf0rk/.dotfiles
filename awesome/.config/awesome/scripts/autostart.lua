@@ -1,4 +1,14 @@
 local awful = require'awful'
+local HOME = os.getenv('HOME')
+
+awful.spawn.with_line_callback(string.format("%s/.local/scripts/setup-display -a", HOME), {
+    stdout = function(line)
+        naughty.notify { text = "LINE:"..line }
+    end,
+    stderr = function(line)
+        naughty.notify { text = "ERR:"..line}
+    end,
+})
 
 function spawn_once(command, class, tag)
     -- create move callback
