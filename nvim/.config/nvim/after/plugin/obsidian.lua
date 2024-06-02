@@ -6,8 +6,8 @@ obsidian.setup({
   -- your vault root (where the `.obsidian` folder is located).
   workspaces = {
     {
-      name = "general",
-      path = "~/vaults/general",
+      name = "notes",
+      path = "~/vaults/notes",
     },
   },
 
