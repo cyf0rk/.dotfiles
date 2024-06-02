@@ -83,11 +83,7 @@ function _M.get(clientkeys, clientbuttons)
             properties = { tag = "1", screen = 1 }
         },
         {
-            rule = { class = "firefox" },
-            properties = { tag = "10", screen = 1 }
-        },
-        {
-            rule = { class = "Postman" },
+            rule_any = { class = { "Postman", "Hoppscotch" } },
             properties = { tag = "2", screen = 1 }
         },
         {
@@ -113,6 +109,10 @@ function _M.get(clientkeys, clientbuttons)
         {
             rule = { class = "thunderbird" },
             properties = { tag = "9", screen = 1 }
+        },
+        {
+            rule = { class = "firefox" },
+            properties = { tag = "10", screen = 1 }
         },
         -- {
             -- rule = { class = "Spotify" },

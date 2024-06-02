@@ -106,16 +106,16 @@ local function gen_on_keypress(type_input)
           if instance.current <= #instance.shown then
               pass = instance.shown[instance.current].name
               if type_input then
-                cmd = "pass " .. pass .. " | head -n1"
+                cmd = "gopass " .. pass .. " | head -n1"
                 awful.spawn.easy_async_with_shell(cmd, function(password)
-                  cmd = "pass " .. pass .. " | grep -i username: | sed -e 's/^username: \\?//I'"
+                  cmd = "gopass " .. pass .. " | grep -i username: | sed -e 's/^username: \\?//I'"
                   awful.spawn.easy_async_with_shell(cmd, function(username)
                     cmd = "xdotool type '" .. username:sub(1, -2) .. '	' .. password:sub(1, -2) .. "'"
                     awful.spawn.easy_async(cmd, function()end)
                   end)
                 end)
               else
-                awful.spawn("pass -c " .. instance.shown[instance.current].name)
+                awful.spawn("gopass -c " .. instance.shown[instance.current].name)
               end
           end
       end
