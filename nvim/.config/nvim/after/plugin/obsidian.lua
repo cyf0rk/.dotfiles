@@ -6,16 +6,8 @@ obsidian.setup({
   -- your vault root (where the `.obsidian` folder is located).
   workspaces = {
     {
-      name = "personal",
-      path = "~/vaults/personal",
-    },
-    {
-      name = "work",
-      path = "~/vaults/work",
-      -- Optional, override certain settings.
-      overrides = {
-        notes_subdir = "notes",
-      },
+      name = "general",
+      path = "~/vaults/general",
     },
   },
 

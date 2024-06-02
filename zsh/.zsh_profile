@@ -8,7 +8,6 @@ export NVM_DIR="$HOME/.nvm"
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:/usr/local/go/bin
 export PATH=$PATH":$HOME/.local/scripts"
-export PERSONAL=$HOME/.config/personal
 export EDITOR=$VIM
 export GIT_EDITOR=$VIM
 export DOTFILES=$HOME/.dotfiles
@@ -17,5 +16,17 @@ export NVIM_DIR=$HOME/.config/nvim
 export STOW_FOLDERS="awesome,wezterm,bin,personal,nvim,tmux,zsh"
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+export PERSONAL=$HOME/.config/personal
+source $PERSONAL/env
+for i in `find -L $PERSONAL`; do
+    source $i
+done
+
+bindkey -s ^n "tmux-sessionizer\n"
+
+addToPathFront $HOME/.local/scripts
+addToPathFront $HOME/.local/bin
+addToPathFront $HOME/.local/go/bin
+addToPathFront $HOME/go/bin
 
 bindkey -s '^K' 'ls -al\n'
