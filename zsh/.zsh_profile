@@ -22,11 +22,9 @@ for i in `find -L $PERSONAL`; do
     source $i
 done
 
-bindkey -s ^n "tmux-sessionizer\n"
+bindkey -s ^o "tmux-sessionizer\n"
 
 addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
 addToPathFront $HOME/.local/go/bin
 addToPathFront $HOME/go/bin
-
-bindkey -s '^K' 'ls -al\n'
