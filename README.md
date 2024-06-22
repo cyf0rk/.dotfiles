@@ -10,12 +10,12 @@
 #### Requirements:
 
 - [awesomeWM][awesomewm]
-- lain - dependency for few AwesomeWM widgets
 - [WezTerm][wezterm]
 - zsh and [oh-my-zsh][oh-my-zsh]
 - [neovim][neovim]
 - [tmux][tmux]
 - [Nerd Fonts][nerd-fonts] (Fira Code)
+- [xscreensaver][xscreensaver]
 
 ##### Additional:
 
@@ -39,3 +39,4 @@ git clone https://github.com/cyf0rk/.dotfiles && cd .dotfiles && sh bootstrap
 [nerd-fonts]: https://github.com/ryanoasis/nerd-fonts
 [nvm]: https://github.com/nvm-sh/nvm
 [ripgrep]: https://github.com/BurntSushi/ripgrep
+[xscreensaver]: https://www.jwz.org/xscreensaver/
