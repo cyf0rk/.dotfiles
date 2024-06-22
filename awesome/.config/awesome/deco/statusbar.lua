@@ -106,13 +106,13 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.mem = lain.widget.mem {
         settings = function()
-            widget:set_markup("<span color='" .. color.blue .. "'> </span> " .. mem_now.used)
+            widget:set_markup("<span color='" .. color.blue .. "'>󰍛</span>   " .. mem_now.used)
         end
     }
 
     s.cpu = lain.widget.cpu {
         settings = function()
-            widget:set_markup("<span color='" .. color.blue .. "'></span> " .. cpu_now.usage .. "%")
+            widget:set_markup("<span color='" .. color.blue .. "'></span>    " .. cpu_now.usage .. "%")
         end
     }
 
@@ -148,6 +148,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             widgets.capslock,
             s.mysystray,
+            s.separator,
             s.mem,
             s.separator,
             s.cpu,

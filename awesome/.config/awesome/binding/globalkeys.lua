@@ -18,8 +18,7 @@ local terminal = RC.vars.terminal
 
 -- Scripts
 local change_kayboard_layout = require'scripts.xkbmap'
-
-local HOME = os.getenv('HOME')
+local setup_displays = require'scripts.setup_displays'
 
 local _M = {}
 
@@ -81,17 +80,6 @@ function _M.get()
                 end
             end,
             {description = "go back", group = "client"}),
-        awful.key({ "Mod4", "Control" }, "l", function ()
-                awful.spawn.with_line_callback(string.format("%s/.local/scripts/setup-display -a", HOME), {
-                    stdout = function(line)
-                        naughty.notify { text = "LINE:"..line }
-                    end,
-                    stderr = function(line)
-                        naughty.notify { text = "ERR:"..line}
-                    end,
-                })
-            end,
-            {description = "setup display output", group = "screen"}),
 
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         -- Standard program
@@ -120,7 +108,6 @@ function _M.get()
             {description = "select next", group = "layout"}),
         awful.key({ modkey, "Shift"   }, "Left", function () awful.layout.inc(-1)                end,
             {description = "select previous", group = "layout"}),
-
         awful.key({ modkey, "Control" }, "n",
             function ()
                 local c = awful.client.restore()
@@ -132,9 +119,6 @@ function _M.get()
                 end
             end,
             {description = "restore minimized", group = "client"}),
-
-        awful.key({ "Mod4" }, "space", change_kayboard_layout(),
-            {description = "change keyboard layout", group = "layout"}),
 
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         -- Prompt
@@ -228,11 +212,18 @@ function _M.get()
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         -- Additional keybindings
         awful.key({}, "Caps_Lock", function() widgets.capslock:check() end),
-
         awful.key({ modkey, "Shift" }, "s", function()
                 awful.spawn.with_shell("flameshot gui")
             end,
-            {description = "take screenshot", group = "awesome"})
+            {description = "take screenshot", group = "awesome"}),
+        awful.key({ "Mod4" }, "space", change_kayboard_layout(),
+            {description = "change keyboard layout", group = "awesome"}),
+        awful.key({ "Mod1", "Control" }, "p", setup_displays(),
+            {description = "setup display output", group = "screen"}),
+        awful.key({ modkey, "Control" }, "l", function()
+                awful.spawn.with_shell("xscreensaver-command -lock")
+            end,
+            {description = "lock screen", group = "awesome"})
     )
 
     return globalkeys

@@ -10,8 +10,8 @@ local audio = wibox.widget {
     width = 60
 }
 
-audio.muted = "婢"
-audio.speaker = " "
+audio.muted = " "
+audio.speaker = "    "
 
 function audio:check_audio()
     awful.spawn.with_line_callback(

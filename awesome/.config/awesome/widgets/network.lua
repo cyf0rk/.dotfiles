@@ -3,10 +3,10 @@ local wibox = require'wibox'
 local color = require'theme.color'
 
 local icons = {
-    eth_connected = "<span color='" .. color.blue .. "'></span>",
-    eth_disconnected = "<span color='" .. color.red .. "'></span>",
-    wifi_connected = "<span color='" .. color.blue .. "'>直</span>",
-    wifi_disconnected = "<span color='" .. color.red .. "'>睊</span>"
+    eth_connected = "<span color='" .. color.blue .. "'>󰈀</span>",
+    eth_disconnected = "<span color='" .. color.red .. "'>󰈂</span>",
+    wifi_connected = "<span color='" .. color.blue .. "'>󱚽</span>",
+    wifi_disconnected = "<span color='" .. color.red .. "'>󰖪</span>"
 }
 
 local eth = wibox.widget {

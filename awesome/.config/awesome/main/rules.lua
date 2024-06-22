@@ -111,14 +111,9 @@ function _M.get(clientkeys, clientbuttons)
             properties = { tag = "9", screen = 1 }
         },
         {
-            rule = { class = "firefox" },
+            rule_any = { class = { "firefox", "Spotify" } },
             properties = { tag = "10", screen = 1 }
         },
-        -- {
-            -- rule = { class = "Spotify" },
-            -- properties = { tag = "10", screen = function() return screen.count() end }
-        -- },
-
     }
 
     return rules

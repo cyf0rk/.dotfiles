@@ -30,9 +30,12 @@ function spawn_once(command, class, tag)
     awful.spawn.with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || exec " .. command)
 end
 
+-- screen saver and lock
+awful.spawn.with_shell("xscreensaver &")
+
 -- use the spawn_once
 spawn_once("brave-browser", "Brave-browser")
 spawn_once("wezterm-gui", "wezterm")
 -- for some reason, firefox doesn't work with spawn_once
 -- would need to investigate further
-awful.spawn.single_instance("firefox", awful.rules.rules)
+-- awful.spawn.single_instance("firefox", awful.rules.rules)
