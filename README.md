@@ -29,7 +29,7 @@
 Clone repo on your local machine and run bootstrap script to setup symlinks
 
 ```bash
-git clone https://github.com/cyf0rk/.dotfiles && cd .dotfiles && sh bootstrap
+git clone --recurse-submodules https://github.com/cyf0rk/.dotfiles && cd .dotfiles && sh bootstrap
 ```
 [awesomewm]: https://github.com/awesomeWM/awesome
 [wezterm]: https://github.com/wez/wezterm
