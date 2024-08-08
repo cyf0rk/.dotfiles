@@ -65,15 +65,10 @@ return require('packer').startup(function(use)
     use({
         'folke/trouble.nvim',
         requires = { {'nvim-tree/nvim-web-devicons'} },
-        config = function()
-            require('trouble').setup {
-                icons = true,
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
-        end
+        opts = {},
     })
+    -- linting
+    use'mfussenegger/nvim-lint'
     -- git
     use'tpope/vim-fugitive'
     -- comments
@@ -81,7 +76,6 @@ return require('packer').startup(function(use)
     -- format
     use'mhartington/formatter.nvim'
     -- marinade in code
-    use'folke/zen-mode.nvim'
     use'github/copilot.vim'
     use {
         'CopilotC-Nvim/CopilotChat.nvim',

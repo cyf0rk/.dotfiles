@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -147,15 +147,6 @@ assign [class="discord"] $ws8
 assign [class="Thunderbird"] $ws9
 assign [class="Spotify"] $ws10
 
-# Keybindings for opening apps
-bindsym $mod+Mod4+1 exec brave-browser
-bindsym $mod+Mod4+2 exec firefox
-bindsym $mod+Mod4+e exec nautilus
-bindsym $mod+Mod4+6 exec gimp
-bindsym $mod+Mod4+8 exec discord
-bindsym $mod+Mod4+9 exec thunderbird
-bindsym $mod+Mod4+0 exec spotify
-
 # --------------------
 # Load apps on start--
 # --------------------
@@ -269,7 +260,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10 # increase screen b
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10 # decrease screen brightness
 
 # lock/suspend
-bindsym Mod4+Control+period exec systemctl suspend
+bindsym Mod1+Control+period exec systemctl suspend
 
 # load wallpaper
 exec_always nitrogen --restore
