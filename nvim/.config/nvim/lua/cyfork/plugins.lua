@@ -1,49 +1,72 @@
-return require('packer').startup(function(use)
-    use'wbthomason/packer.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
 
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.4',
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+local plugins = {
+    'wbthomason/packer.nvim',
+
+    {
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.4',
         -- or                          , branch = '0.1.x',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
-    use {
+        dependencies = { {'nvim-lua/plenary.nvim'} }
+    },
+    {
         'theprimeagen/harpoon',
         branch = "harpoon2"
-    }
-    use {
+    },
+    {
         'ThePrimeagen/refactoring.nvim',
-        requires = {
+        dependencies = {
             {'nvim-lua/plenary.nvim'},
             {'nvim-treesitter/nvim-treesitter'}
         }
-    }
+    },
     -- treeshitter
-    use {
+    {
         'nvim-treesitter/nvim-treesitter',
         tag = 'v0.9.2',
-        run = function()
+        build = function()
             require'nvim-treesitter.install'.update({ with_sync = true })
         end,
-    }
-    use'nvim-treesitter/playground'
-    use'romgrk/nvim-treesitter-context'
+    },
+    'nvim-treesitter/playground',
+    'romgrk/nvim-treesitter-context',
+    -- go
+    'ray-x/go.nvim',
+    'ray-x/guihua.lua',
     -- undotee
-    use'mbbill/undotree'
+    'mbbill/undotree',
     -- quality pencils
-    use({
+    {
         'rose-pine/neovim',
         as = 'rose-pine',
         config = function()
             vim.cmd('colorscheme rose-pine')
         end
-    })
-    use'folke/tokyonight.nvim'
-    use'chrisbra/Colorizer'
+    },
+    'folke/tokyonight.nvim',
+    'chrisbra/Colorizer',
     -- lsd
-    use {
+    {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',
-        requires = {
+        dependencies = {
             -- LSP Support
             {'neovim/nvim-lspconfig'},
             {'williamboman/mason.nvim'},
@@ -61,48 +84,48 @@ return require('packer').startup(function(use)
             {'L3MON4D3/LuaSnip'},
             {'rafamadriz/friendly-snippets'},
         }
-    }
-    use({
+    },
+    {
         'folke/trouble.nvim',
-        requires = { {'nvim-tree/nvim-web-devicons'} },
-        opts = {},
-    })
+        dependencies = { {'nvim-tree/nvim-web-devicons'} },
+        lazy = {},
+    },
     -- linting
-    use'mfussenegger/nvim-lint'
+    'mfussenegger/nvim-lint',
     -- git
-    use'tpope/vim-fugitive'
+    'tpope/vim-fugitive',
     -- comments
-    use'numToStr/Comment.nvim'
+    'numToStr/Comment.nvim',
     -- format
-    use'mhartington/formatter.nvim'
+    'mhartington/formatter.nvim',
     -- marinade in code
-    use'github/copilot.vim'
-    use {
+    'github/copilot.vim',
+    {
         'CopilotC-Nvim/CopilotChat.nvim',
-        requires = {
+        dependencies = {
             {'zbirenbaum/copilot.lua'},
             {'nvim-lua/plenary.nvim'},
         },
         branch = "canary",
-        opts = {
+        lazy = {
             debug = true,
         },
-    }
+    },
 
     -- practice vim
-    use'ThePrimeagen/vim-be-good'
+    'ThePrimeagen/vim-be-good',
 
     -- note taking
-    use({
-      "epwalsh/obsidian.nvim",
-      tag = "*",  -- recommended, use latest release instead of latest commit
-      requires = { "nvim-lua/plenary.nvim" },
-    })
+    {
+        "epwalsh/obsidian.nvim",
+        tag = "*",  -- recommended,  latest release instead of latest commit
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
 
     -- bugs bunny
-    use({
+    {
         'mfussenegger/nvim-dap',
-        requires = {
+        dependencies = {
             -- Creates a beautiful debugger UI
             'rcarriga/nvim-dap-ui',
             'theHamsta/nvim-dap-virtual-text',
@@ -114,8 +137,13 @@ return require('packer').startup(function(use)
 
             -- Add your own debuggers here
             'leoluz/nvim-dap-go',
+            'nvim-neotest/nvim-nio',
             'mfussenegger/nvim-dap-python',
             'ray-x/go.nvim',
-          }
-    })
-end)
+        }
+    }
+}
+
+local opts = {}
+
+require("lazy").setup(plugins, opts)

@@ -1,9 +1,9 @@
-require'cyfork.packer'
+require'cyfork.plugins'
 require'cyfork.set'
 require'cyfork.remap'
 require'cyfork.format'
 require'Comment'.setup()
---require'cyfork.debugger'
+require'cyfork.debugger'
 
 local augroup = vim.api.nvim_create_augroup
 local cyforkGroup = augroup('cyfork', {})

@@ -1,4 +1,6 @@
 local lsp = require("lsp-zero")
+local lspconfig = require("lspconfig")
+local util = require("lspconfig.util")
 
 lsp.preset("recommended")
 
@@ -9,9 +11,25 @@ lsp.ensure_installed({
   'pyright'
 })
 
+lspconfig.gopls.setup({
+  on_attach = lsp.on_attach,
+  capabilities = lsp.capabilities,
+  cmd = {"gopls"},
+  filetypes = {"go", "gomod", "gowork", "gotmpl"},
+  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+      gopls = {
+          completeUnimported = true,
+          usePlaceholders = true,
+          analyses = {
+              unusedparams = true,
+          },
+      },
+  },
+})
+
 -- Fix Undefined global 'vim'
 lsp.nvim_workspace()
-
 
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
