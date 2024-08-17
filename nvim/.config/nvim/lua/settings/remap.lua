@@ -1,6 +1,5 @@
 -- Basics
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
--- vim.keymap.set("n", "<C-s>", ":w<CR>")
 
 -- helps with copilot in normal mode and some block selections stuff
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -20,9 +19,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- Copy-paste-delete
 vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 vim.keymap.set("n", "Q", "<nop>")
 
@@ -39,13 +38,6 @@ vim.keymap.set("i", "[", "[<c-g>u")
 vim.keymap.set("i", "!", "!<c-g>u")
 vim.keymap.set("i", "?", "?<c-g>u")
 vim.keymap.set("i", ":", ":<c-g>u")
-
--- Formatting (requires Prettier)
-vim.keymap.set("n", "<leader>f", ":Format<CR>")
-vim.keymap.set("n", "<leader>F", ":FormatWrite<CR>")
-
--- Undotree
-vim.keymap.set("n", "<leader>u", ":UndotreeShow<CR>")
 
 -- Source config
 vim.keymap.set("n", "<leader>?", ":source ~/.config/nvim/init.lua<CR>")

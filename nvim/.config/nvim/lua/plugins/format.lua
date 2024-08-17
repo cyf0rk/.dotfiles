@@ -1,75 +1,36 @@
 return {
-  'mhartington/formatter.nvim',
-  config = function()
-    local vim = vim
-    local formatter = require'formatter'
-    local prettierConfig = function()
-      return {
-        exe = 'prettier',
-        args = {'--stdin-filepath', vim.fn.shellescape(vim.api.nvim_buf_get_name(0)), '--single-quote'},
-        stdin = true
-      }
-    end
+	"stevearc/conform.nvim",
+	event = { "BufReadPre", "BufNewFile" },
+	config = function()
+		local conform = require("conform")
 
-    local formatterConfig = {
-      lua = {
-        function()
-          return {
-            exe = 'stylua',
-            args = {'-'},
-            stdin = true,
-          }
-        end,
-      },
-      python = {
-        function()
-          return {
-            -- Black
-            exe = 'black',
-            args = {'-'},
-            stdin = true
-          }
-        end
-      },
-      ["*"] = {
-        function()
-          return {
-            -- remove trailing whitespace
-            exe = 'sed',
-            args = {'-i', "'s/[ \t]*$//'"},
-            stdin = false
-          }
-        end
-      }
-    }
-    local commonFT = {
-      "css",
-      "scss",
-      "html",
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact",
-      "markdown",
-      "markdown.mdx",
-      "json",
-      "yaml",
-      "xml",
-      "svg",
-      "svelte",
-      "go",
-      "lua"
-    }
-    for _, ft in ipairs(commonFT) do
-      formatterConfig[ft] = {prettierConfig}
-    end
-    -- Setup functions
-    formatter.setup(
-      {
-        logging = true,
-        filetype = formatterConfig,
-        log_level = 2,
-      }
-    )
-  end
+		conform.setup({
+			formatters_by_ft = {
+				lua = { "stylua" },
+				svelte = { { "prettierd", "prettier", stop_after_first = true } },
+				javascript = { { "prettierd", "prettier", stop_after_first = true } },
+				typescript = { { "prettierd", "prettier", stop_after_first = true } },
+				javascriptreact = { { "prettierd", "prettier", stop_after_first = true } },
+				typescriptreact = { { "prettierd", "prettier", stop_after_first = true } },
+				json = { { "prettierd", "prettier", stop_after_first = true } },
+				graphql = { { "prettierd", "prettier", stop_after_first = true } },
+				markdown = { { "prettierd", "prettier", stop_after_first = true } },
+				html = { "htmlbeautifier" },
+				bash = { "beautysh" },
+				rust = { "rustfmt" },
+				css = { { "prettierd", "prettier", stop_after_first = true } },
+				scss = { { "prettierd", "prettier", stop_after_first = true } },
+				sh = { "shellcheck" },
+				go = { "gofmt" },
+			},
+		})
+
+		vim.keymap.set({ "n", "v" }, "<leader>f", function()
+			conform.format({
+				lsp_fallback = true,
+				async = false,
+				timeout_ms = 1000,
+			})
+		end, { desc = "Format file or range (in visual mode)" })
+	end,
 }
