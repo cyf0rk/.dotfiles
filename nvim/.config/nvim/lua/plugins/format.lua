@@ -15,6 +15,7 @@ return {
 				json = { { "prettierd", "prettier", stop_after_first = true } },
 				graphql = { { "prettierd", "prettier", stop_after_first = true } },
 				markdown = { { "prettierd", "prettier", stop_after_first = true } },
+        liquid = { "prettier" },
 				html = { "htmlbeautifier" },
 				bash = { "beautysh" },
 				rust = { "rustfmt" },
@@ -22,8 +23,19 @@ return {
 				scss = { { "prettierd", "prettier", stop_after_first = true } },
 				sh = { "shellcheck" },
 				go = { "gofmt" },
+				python = { "blackd-client" },
 			},
 		})
+
+    -- Go formatting
+    local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = "*.go",
+      callback = function()
+        require("go.format").goimport()
+      end,
+      group = format_sync_grp,
+    })
 
 		vim.keymap.set({ "n", "v" }, "<leader>f", function()
 			conform.format({

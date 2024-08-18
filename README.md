@@ -23,6 +23,11 @@
 - [nvm][nvm]/npm/node
 - [ripgrep][ripgrep]
 - pavucontrol
+- setup venv in home dir and install python debugger
+    - mkdir .virtualenvs
+    - cd .virtualenvs
+    - python -m venv debugpy
+    - debugpy/bin/python -m pip install debugpy
 
 ### Git + bootstrap script
 

@@ -24,14 +24,29 @@ return {
 					"prettier",
 					"prettierd",
 					"eslint_d",
-					"rustfmt",
 					"shellcheck",
 					"gopls",
 					"delve",
 					"stylua",
 					"htmlbeautifier",
+					"blackd-client",
 				},
 			})
+		end,
+	},
+	{
+		"ray-x/go.nvim",
+		dependencies = {
+			"ray-x/guihua.lua",
+		},
+		config = function()
+			require("go").setup()
+		end,
+	},
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
 		end,
 	},
 	{
