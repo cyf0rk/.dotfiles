@@ -28,8 +28,8 @@ return {
 					"gopls",
 					"delve",
 					"stylua",
-					"htmlbeautifier",
 					"blackd-client",
+          "lua-language-server"
 				},
 			})
 		end,

@@ -21,7 +21,10 @@
 
 - pip
 - [nvm][nvm]/npm/node
+- [go][go]
+- rubygems
 - [ripgrep][ripgrep]
+- [cargo][cargo]
 - pavucontrol
 - setup venv in home dir and install python debugger
     - mkdir .virtualenvs
@@ -45,3 +48,5 @@ git clone --recurse-submodules https://github.com/cyf0rk/.dotfiles && cd .dotfil
 [nvm]: https://github.com/nvm-sh/nvm
 [ripgrep]: https://github.com/BurntSushi/ripgrep
 [xscreensaver]: https://www.jwz.org/xscreensaver/
+[go]: https://go.dev/doc/install
+[cargo]: https://doc.rust-lang.org/cargo/getting-started/installation.html

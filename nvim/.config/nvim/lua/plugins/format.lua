@@ -16,7 +16,7 @@ return {
 				graphql = { { "prettierd", "prettier", stop_after_first = true } },
 				markdown = { { "prettierd", "prettier", stop_after_first = true } },
         liquid = { "prettier" },
-				html = { "htmlbeautifier" },
+				html = { "prettier" },
 				bash = { "beautysh" },
 				rust = { "rustfmt" },
 				css = { { "prettierd", "prettier", stop_after_first = true } },
