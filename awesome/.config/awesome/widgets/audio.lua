@@ -1,45 +1,55 @@
-local awful = require'awful'
-local wibox = require'wibox'
-local color = require'theme.color'
-local naughty = require'naughty'
+local awful = require("awful")
+local wibox = require("wibox")
+local color = require("theme.color")
+local naughty = require("naughty")
 
-local audio = wibox.widget {
+local audio = wibox.widget({
     align = "center",
     valign = "center",
     widget = wibox.widget.textbox,
-    width = 60
-}
+    width = 60,
+})
 
 audio.muted = " "
 audio.speaker = "    "
 
 function audio:check_audio()
-    awful.spawn.with_line_callback(
-        "wpctl get-volume @DEFAULT_SINK@",
-        {
-            stdout = function (line)
-                if line:match("Volume") then
-                    local muted_status = line:match("Volume:%s+%d+.%d+%s+[(MUTED)]")
-                    local volume_status = line:match("Volume:%s+(%d+.%d+)")
+    awful.spawn.with_line_callback("wpctl get-volume @DEFAULT_SINK@", {
+        stdout = function(line)
+            if line:match("Volume") then
+                local muted_status = line:match("Volume:%s+%d+.%d+%s+[(MUTED)]")
+                local volume_status = line:match("Volume:%s+(%d+.%d+)")
 
-                    if line:match("MUTED") then
-                        self.markup = "<span color='" .. color.red .. "'>" .. self.muted .."</span>"
-                        self.width = 40
-                    else
-                        self.markup = "<span color='" .. color.blue .. "'>" .. self.speaker .."</span>" .. math.floor(volume_status * 100 + 0.5) .. "%"
-                    end
+                if line:match("MUTED") then
+                    self.markup = "<span color='"
+                        .. color.red
+                        .. "'>"
+                        .. self.muted
+                        .. "</span>"
+                    self.width = 40
+                else
+                    self.markup = "<span color='"
+                        .. color.blue
+                        .. "'>"
+                        .. self.speaker
+                        .. "</span>"
+                        .. math.floor(volume_status * 100 + 0.5)
+                        .. "%"
                 end
             end
-        }
-    )
+        end,
+    })
 end
 
 audio:check_audio()
 
-audio:connect_signal('button::press', function ()
-    awful.spawn.easy_async_with_shell("wpctl set-mute @DEFAULT_SINK@ toggle", function ()
-        audio:check_audio()
-    end)
+audio:connect_signal("button::press", function()
+    awful.spawn.easy_async_with_shell(
+        "wpctl set-mute @DEFAULT_SINK@ toggle",
+        function()
+            audio:check_audio()
+        end
+    )
 end)
 
 return audio

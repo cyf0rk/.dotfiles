@@ -1,7 +1,7 @@
 -- Standard awesome library
-local awful     = require'awful'
+local awful = require("awful")
 -- Theme handling library
-local beautiful = require'beautiful'
+local beautiful = require("beautiful")
 
 local _M = {}
 
@@ -14,25 +14,26 @@ function _M.get(clientkeys, clientbuttons)
     local rules = {
         -- All clients will match this rule.
         {
-            rule = { },
+            rule = {},
             properties = {
                 border_width = beautiful.border_width,
                 border_color = beautiful.border_normal,
-                focus     = awful.client.focus.filter,
-                raise     = true,
-                keys      = clientkeys,
-                buttons   = clientbuttons,
-                screen    = awful.screen.preferred,
-                placement = awful.placement.no_overlap+awful.placement.no_offscreen
-            }
+                focus = awful.client.focus.filter,
+                raise = true,
+                keys = clientkeys,
+                buttons = clientbuttons,
+                screen = awful.screen.preferred,
+                placement = awful.placement.no_overlap
+                    + awful.placement.no_offscreen,
+            },
         },
 
         -- Floating clients.
         {
             rule_any = {
                 instance = {
-                    "DTA",  -- Firefox addon DownThemAll.
-                    "copyq",  -- Includes session name in class.
+                    "DTA", -- Firefox addon DownThemAll.
+                    "copyq", -- Includes session name in class.
                     "pinentry",
                 },
                 class = {
@@ -40,39 +41,39 @@ function _M.get(clientkeys, clientbuttons)
                     "Blueman-manager",
                     "Gpick",
                     "Kruler",
-                    "MessageWin",  -- kalarm.
+                    "MessageWin", -- kalarm.
                     "Sxiv",
                     "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                     "Wpa_gui",
                     "veromix",
                     "xtightvncviewer",
-                    "Nautilus"
+                    "Nautilus",
                 },
 
                 -- Note that the name property shown in xprop might be set slightly after creation of the client
                 -- and the name shown there might not match defined rules here.
                 name = {
-                    "Event Tester",  -- xev.
+                    "Event Tester", -- xev.
                 },
                 role = {
-                    "AlarmWindow",  -- Thunderbird's calendar.
-                    "ConfigManager",  -- Thunderbird's about:config.
-                    "pop-up",       -- e.g. Google Chrome's (detached) Developer Tools.
-                }
+                    "AlarmWindow", -- Thunderbird's calendar.
+                    "ConfigManager", -- Thunderbird's about:config.
+                    "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+                },
             },
             properties = {
-                floating = true
-            }
+                floating = true,
+            },
         },
 
         -- Add titlebars to normal clients and dialogs
         {
             rule_any = {
-                type = { "normal", "dialog" }
+                type = { "normal", "dialog" },
             },
             properties = {
-                titlebars_enabled = false
-            }
+                titlebars_enabled = false,
+            },
         },
 
         -- Map apps to different tags and screens
@@ -80,39 +81,39 @@ function _M.get(clientkeys, clientbuttons)
         -- (set in $HOME/.local/scripts/setup-display script)
         {
             rule = { class = "Brave-browser" },
-            properties = { tag = "1", screen = 1 }
+            properties = { tag = "1", screen = 1 },
         },
         {
             rule_any = { class = { "Postman", "Hoppscotch" } },
-            properties = { tag = "2", screen = 1 }
+            properties = { tag = "2", screen = 1 },
         },
         {
             rule = { class = "wezterm" },
-            properties = { tag = "3", screen = 1 }
+            properties = { tag = "3", screen = 1 },
         },
         {
             rule_any = { class = { "Code", "DBeaver" } },
-            properties = { tag = "4", screen = 1 }
+            properties = { tag = "4", screen = 1 },
         },
         {
             rule = { class = "obsidian" },
-            properties = { tag = "5", screen = 1 }
+            properties = { tag = "5", screen = 1 },
         },
         {
             rule = { class = "Gimp" },
-            properties = { tag = "6", screen = 1 }
+            properties = { tag = "6", screen = 1 },
         },
         {
             rule_any = { class = { "discord", "Slack" } },
-            properties = { tag = "8", screen = 1 }
+            properties = { tag = "8", screen = 1 },
         },
         {
             rule = { class = "thunderbird" },
-            properties = { tag = "9", screen = 1 }
+            properties = { tag = "9", screen = 1 },
         },
         {
             rule_any = { class = { "firefox", "Spotify" } },
-            properties = { tag = "10", screen = 1 }
+            properties = { tag = "10", screen = 1 },
         },
     }
 
@@ -121,4 +122,8 @@ end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })
+return setmetatable({}, {
+    __call = function(_, ...)
+        return _M.get(...)
+    end,
+})

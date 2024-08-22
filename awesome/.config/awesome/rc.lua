@@ -3,25 +3,25 @@
 -- pcall(require, 'luarocks.loader')
 
 -- Standard awesome library
-local awful = require'awful'
+local awful = require("awful")
 
 -- Miscellanous awesome library
-local menubar = require'menubar'
+local menubar = require("menubar")
 
 RC = {} -- global namespace, on top before require any modules
-RC.vars = require'main.user-variables'
+RC.vars = require("main.user-variables")
 
 -- {{{ Error handling -- }}}
-require'main.error-handling'
+require("main.error-handling")
 
 -- {{{ Theme
-require'theme'
+require("theme")
 -- }}}
 
 -- Custom Local Library
-local main = require'main'
+local main = require("main")
 -- Custom Local Library: Keys and Mouse Binding
-local binding = require'binding'
+local binding = require("binding")
 
 -- {{{ Layouts
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -56,27 +56,24 @@ root.keys(RC.globalkeys)
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the 'manage' signal).
-awful.rules.rules = main.rules(
-    binding.clientkeys(),
-    binding.clientbuttons()
-)
+awful.rules.rules = main.rules(binding.clientkeys(), binding.clientbuttons())
 
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 -- }}}
 
 -- {{{ Statusbar: Wibar
-require'deco.statusbar'
-require'deco.notification'
+require("deco.statusbar")
+require("deco.notification")
 -- }}}
 
 -- {{{ Signals
-require'main.signals'
+require("main.signals")
 -- }}}
 --
 -- awful.autofocus is DEPRECATED, should be replaced
-require'awful.autofocus'
+require("awful.autofocus")
 
 -- {{{ Autostart apps
-require'scripts.autostart'
+require("scripts.autostart")
 -- }}}

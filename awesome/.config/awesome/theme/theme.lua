@@ -1,13 +1,13 @@
-local theme_assets = require'beautiful.theme_assets'
-local xresources = require'beautiful.xresources'
+local theme_assets = require("beautiful.theme_assets")
+local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 
-local gears = require'gears'
-local gfs = require'gears.filesystem'
+local gears = require("gears")
+local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
-local color = require'theme.color'
-local shape = require'theme.shape'
+local color = require("theme.color")
+local shape = require("theme.shape")
 
 local theme = {}
 
@@ -124,49 +124,117 @@ theme.wibar_margins = 4
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = themes_path.."default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = themes_path.."default/titlebar/close_focus.png"
+theme.titlebar_close_button_normal = themes_path
+    .. "default/titlebar/close_normal.png"
+theme.titlebar_close_button_focus = themes_path
+    .. "default/titlebar/close_focus.png"
 
-theme.titlebar_minimize_button_normal = themes_path.."default/titlebar/minimize_normal.png"
-theme.titlebar_minimize_button_focus  = themes_path.."default/titlebar/minimize_focus.png"
+theme.titlebar_minimize_button_normal = themes_path
+    .. "default/titlebar/minimize_normal.png"
+theme.titlebar_minimize_button_focus = themes_path
+    .. "default/titlebar/minimize_focus.png"
 
-theme.titlebar_ontop_button_normal_inactive = themes_path.."default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive  = themes_path.."default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active = themes_path.."default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active  = themes_path.."default/titlebar/ontop_focus_active.png"
+theme.titlebar_ontop_button_normal_inactive = themes_path
+    .. "default/titlebar/ontop_normal_inactive.png"
+theme.titlebar_ontop_button_focus_inactive = themes_path
+    .. "default/titlebar/ontop_focus_inactive.png"
+theme.titlebar_ontop_button_normal_active = themes_path
+    .. "default/titlebar/ontop_normal_active.png"
+theme.titlebar_ontop_button_focus_active = themes_path
+    .. "default/titlebar/ontop_focus_active.png"
 
-theme.titlebar_sticky_button_normal_inactive = themes_path.."default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive  = themes_path.."default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active = themes_path.."default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active  = themes_path.."default/titlebar/sticky_focus_active.png"
+theme.titlebar_sticky_button_normal_inactive = themes_path
+    .. "default/titlebar/sticky_normal_inactive.png"
+theme.titlebar_sticky_button_focus_inactive = themes_path
+    .. "default/titlebar/sticky_focus_inactive.png"
+theme.titlebar_sticky_button_normal_active = themes_path
+    .. "default/titlebar/sticky_normal_active.png"
+theme.titlebar_sticky_button_focus_active = themes_path
+    .. "default/titlebar/sticky_focus_active.png"
 
-theme.titlebar_floating_button_normal_inactive = themes_path.."default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive  = themes_path.."default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active = themes_path.."default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active  = themes_path.."default/titlebar/floating_focus_active.png"
+theme.titlebar_floating_button_normal_inactive = themes_path
+    .. "default/titlebar/floating_normal_inactive.png"
+theme.titlebar_floating_button_focus_inactive = themes_path
+    .. "default/titlebar/floating_focus_inactive.png"
+theme.titlebar_floating_button_normal_active = themes_path
+    .. "default/titlebar/floating_normal_active.png"
+theme.titlebar_floating_button_focus_active = themes_path
+    .. "default/titlebar/floating_focus_active.png"
 
-theme.titlebar_maximized_button_normal_inactive = themes_path.."default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = themes_path.."default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = themes_path
+    .. "default/titlebar/maximized_normal_inactive.png"
+theme.titlebar_maximized_button_focus_inactive = themes_path
+    .. "default/titlebar/maximized_focus_inactive.png"
+theme.titlebar_maximized_button_normal_active = themes_path
+    .. "default/titlebar/maximized_normal_active.png"
+theme.titlebar_maximized_button_focus_active = themes_path
+    .. "default/titlebar/maximized_focus_active.png"
 
 -- You can use your own layout icons like this:
-theme.layout_fairh = gears.color.recolor_image(themes_path.."default/layouts/fairhw.png", color.blue)
-theme.layout_fairv = gears.color.recolor_image(themes_path.."default/layouts/fairvw.png", color.blue)
-theme.layout_floating  = gears.color.recolor_image(themes_path.."default/layouts/floatingw.png", color.blue)
-theme.layout_magnifier = gears.color.recolor_image(themes_path.."default/layouts/magnifierw.png", color.blue)
-theme.layout_max = gears.color.recolor_image(themes_path.."default/layouts/maxw.png", color.blue)
-theme.layout_fullscreen = gears.color.recolor_image(themes_path.."default/layouts/fullscreenw.png", color.blue)
-theme.layout_tilebottom = gears.color.recolor_image(themes_path.."default/layouts/tilebottomw.png", color.blue)
-theme.layout_tileleft   = gears.color.recolor_image(themes_path.."default/layouts/tileleftw.png", color.blue)
-theme.layout_tile = gears.color.recolor_image(themes_path.."default/layouts/tilew.png", color.blue)
-theme.layout_tiletop = gears.color.recolor_image(themes_path.."default/layouts/tiletopw.png", color.blue)
-theme.layout_spiral  = gears.color.recolor_image(themes_path.."default/layouts/spiralw.png", color.blue)
-theme.layout_dwindle = gears.color.recolor_image(themes_path.."default/layouts/dwindlew.png", color.blue)
-theme.layout_cornernw = gears.color.recolor_image(themes_path.."default/layouts/cornernww.png", color.blue)
-theme.layout_cornerne = gears.color.recolor_image(themes_path.."default/layouts/cornernew.png", color.blue)
-theme.layout_cornersw = gears.color.recolor_image(themes_path.."default/layouts/cornersww.png", color.blue)
-theme.layout_cornerse = gears.color.recolor_image(themes_path.."default/layouts/cornersew.png", color.blue)
+theme.layout_fairh = gears.color.recolor_image(
+    themes_path .. "default/layouts/fairhw.png",
+    color.blue
+)
+theme.layout_fairv = gears.color.recolor_image(
+    themes_path .. "default/layouts/fairvw.png",
+    color.blue
+)
+theme.layout_floating = gears.color.recolor_image(
+    themes_path .. "default/layouts/floatingw.png",
+    color.blue
+)
+theme.layout_magnifier = gears.color.recolor_image(
+    themes_path .. "default/layouts/magnifierw.png",
+    color.blue
+)
+theme.layout_max = gears.color.recolor_image(
+    themes_path .. "default/layouts/maxw.png",
+    color.blue
+)
+theme.layout_fullscreen = gears.color.recolor_image(
+    themes_path .. "default/layouts/fullscreenw.png",
+    color.blue
+)
+theme.layout_tilebottom = gears.color.recolor_image(
+    themes_path .. "default/layouts/tilebottomw.png",
+    color.blue
+)
+theme.layout_tileleft = gears.color.recolor_image(
+    themes_path .. "default/layouts/tileleftw.png",
+    color.blue
+)
+theme.layout_tile = gears.color.recolor_image(
+    themes_path .. "default/layouts/tilew.png",
+    color.blue
+)
+theme.layout_tiletop = gears.color.recolor_image(
+    themes_path .. "default/layouts/tiletopw.png",
+    color.blue
+)
+theme.layout_spiral = gears.color.recolor_image(
+    themes_path .. "default/layouts/spiralw.png",
+    color.blue
+)
+theme.layout_dwindle = gears.color.recolor_image(
+    themes_path .. "default/layouts/dwindlew.png",
+    color.blue
+)
+theme.layout_cornernw = gears.color.recolor_image(
+    themes_path .. "default/layouts/cornernww.png",
+    color.blue
+)
+theme.layout_cornerne = gears.color.recolor_image(
+    themes_path .. "default/layouts/cornernew.png",
+    color.blue
+)
+theme.layout_cornersw = gears.color.recolor_image(
+    themes_path .. "default/layouts/cornersww.png",
+    color.blue
+)
+theme.layout_cornerse = gears.color.recolor_image(
+    themes_path .. "default/layouts/cornersew.png",
+    color.blue
+)
 
 -- Generate Awesome icon:
 -- theme.awesome_icon = theme_assets.awesome_icon(

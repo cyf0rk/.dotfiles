@@ -1,14 +1,17 @@
-local awful = require'awful'
-local HOME = os.getenv('HOME')
+local awful = require("awful")
+local HOME = os.getenv("HOME")
 
-awful.spawn.with_line_callback(string.format("%s/.local/scripts/setup-display -a", HOME), {
-    stdout = function(line)
-        naughty.notify { text = "LINE:"..line }
-    end,
-    stderr = function(line)
-        naughty.notify { text = "ERR:"..line}
-    end,
-})
+awful.spawn.with_line_callback(
+    string.format("%s/.local/scripts/setup-display -a", HOME),
+    {
+        stdout = function(line)
+            naughty.notify({ text = "LINE:" .. line })
+        end,
+        stderr = function(line)
+            naughty.notify({ text = "ERR:" .. line })
+        end,
+    }
+)
 
 function spawn_once(command, class, tag)
     -- create move callback
@@ -24,10 +27,12 @@ function spawn_once(command, class, tag)
     local findme = command
     local firstspace = findme:find(" ")
     if firstspace then
-        findme = findme:sub(0, firstspace-1)
+        findme = findme:sub(0, firstspace - 1)
     end
     -- finally run it
-    awful.spawn.with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || exec " .. command)
+    awful.spawn.with_shell(
+        "pgrep -u $USER -x " .. findme .. " > /dev/null || exec " .. command
+    )
 end
 
 -- screen saver and lock

@@ -1,6 +1,6 @@
-local wezterm = require'wezterm'
-local colors = require'lua/rose-pine'.colors()
-local window_frame_colors = require'lua/rose-pine'.window_frame()
+local wezterm = require("wezterm")
+local colors = require("lua/rose-pine").colors()
+local window_frame_colors = require("lua/rose-pine").window_frame()
 
 local window_frame = {
     font_size = 3,
@@ -19,8 +19,10 @@ local config = {
     -- Pad window to avoid the content to be too close to the border,
     -- so it's easier to see and select.
     window_padding = {
-        left = 5, right = 5,
-        top = 5, bottom = 0,
+        left = 5,
+        right = 5,
+        top = 5,
+        bottom = 0,
     },
     inactive_pane_hsb = {
         -- NOTE: these values are multipliers, applied on normal pane values
@@ -31,13 +33,13 @@ local config = {
 }
 
 -- NOTE: this is a workaround for changing font-size on the fly in Zen Mode for NeoVim
-wezterm.on('user-var-changed', function(window, pane, name, value)
+wezterm.on("user-var-changed", function(window, pane, name, value)
     local overrides = window:get_config_overrides() or {}
     if name == "ZEN_MODE" then
         local incremental = value:find("+")
         local number_value = tonumber(value)
         if incremental ~= nil then
-            while (number_value > 0) do
+            while number_value > 0 do
                 window:perform_action(wezterm.action.IncreaseFontSize, pane)
                 number_value = number_value - 1
             end

@@ -11,7 +11,7 @@ color = {
     purple = "#8b6fbf",
     aqua = "#69c6b9",
     gray = "#9E9C9A",
-    dark_gray = "#2f344c"
+    dark_gray = "#2f344c",
 }
 
 return color

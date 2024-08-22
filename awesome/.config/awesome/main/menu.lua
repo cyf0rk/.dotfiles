@@ -1,10 +1,10 @@
 -- Standard awesome library
-local awful = require'awful'
-local hotkeys_popup = require'awful.hotkeys_popup'.widget
+local awful = require("awful")
+local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- Theme handling library
-local beautiful = require'beautiful' -- for awesome.icon
+local beautiful = require("beautiful") -- for awesome.icon
 
-local M = {}  -- menu
+local M = {} -- menu
 local _M = {} -- module
 
 -- reading
@@ -24,15 +24,23 @@ local editor_cmd = terminal .. " -e " .. editor
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 M.awesome = {
-    { "hotkeys", function()
-        hotkeys_popup.show_help(nil, awful.screen.focused())
-    end },
+    {
+        "hotkeys",
+        function()
+            hotkeys_popup.show_help(nil, awful.screen.focused())
+        end,
+    },
     { "manual", terminal .. " -e man awesome" },
     { "edit config", editor_cmd .. " " .. awesome.conffile },
     { "Terminal", terminal },
     { "Shutdown/Logout", "oblogout" },
     { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end }
+    {
+        "quit",
+        function()
+            awesome.quit()
+        end,
+    },
 }
 
 M.favorite = {
@@ -44,7 +52,7 @@ M.favorite = {
 
 M.network_main = {
     { "wicd-curses", "wicd-curses" },
-    { "wicd-gtk", "wicd-gtk" }
+    { "wicd-gtk", "wicd-gtk" },
 }
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
@@ -55,7 +63,7 @@ function _M.get()
         { "awesome", M.awesome, beautiful.awesome_subicon },
         { "open terminal", terminal },
         { "network", M.network_main },
-        { "favorite", M.favorite }
+        { "favorite", M.favorite },
     }
 
     return menu_items
@@ -63,4 +71,8 @@ end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })
+return setmetatable({}, {
+    __call = function(_, ...)
+        return _M.get(...)
+    end,
+})

@@ -1,6 +1,6 @@
-local wezterm = require'wezterm'
-local mytable = require'lib/stdlib'.mytable
-local mods = require'utils'.mods
+local wezterm = require("wezterm")
+local mytable = require("lib/stdlib").mytable
+local mods = require("utils").mods
 
 local act = wezterm.action
 
@@ -13,12 +13,12 @@ local mouse_bindings = {}
 local function binds_for_mouse_actions(mods, button, streak, mouse_actions)
     local function mouse_bind_for(event_kind, action)
         return {
-            mods=mods,
+            mods = mods,
             event = {
                 [event_kind] = {
                     streak = streak,
-                    button = button
-                }
+                    button = button,
+                },
             },
             action = action,
         }
@@ -26,13 +26,13 @@ local function binds_for_mouse_actions(mods, button, streak, mouse_actions)
 
     local binds = {}
     if mouse_actions.down_action then
-        table.insert(binds, mouse_bind_for('Down', mouse_actions.down_action))
+        table.insert(binds, mouse_bind_for("Down", mouse_actions.down_action))
     end
     if mouse_actions.drag_action then
-        table.insert(binds, mouse_bind_for('Drag', mouse_actions.drag_action))
+        table.insert(binds, mouse_bind_for("Drag", mouse_actions.drag_action))
     end
     if mouse_actions.up_action then
-        table.insert(binds, mouse_bind_for('Up', mouse_actions.up_action))
+        table.insert(binds, mouse_bind_for("Up", mouse_actions.up_action))
     end
     return binds
 end
@@ -44,17 +44,37 @@ local function initial_selection_mouse_actions(selection_mode)
         -- Extend on Drag event
         drag_action = act.ExtendSelectionToMouseCursor(selection_mode),
         -- Complete & Copy on Up event
-        up_action   = act.CompleteSelection('PrimarySelection'),
+        up_action = act.CompleteSelection("PrimarySelection"),
     }
 end
 
 -- Left click always starts a new selection.
 -- The number of clicks determines the selection mode: 1:Cell 2:Word: 3:Line & Alt+1:Block
 table.insert(mouse_bindings, {
-    binds_for_mouse_actions(mods._, 'Left', 1, initial_selection_mouse_actions('Cell')),
-    binds_for_mouse_actions(mods._, 'Left', 2, initial_selection_mouse_actions('Word')),
-    binds_for_mouse_actions(mods._, 'Left', 3, initial_selection_mouse_actions('Line')),
-    binds_for_mouse_actions(mods.A, 'Left', 1, initial_selection_mouse_actions('Block')),
+    binds_for_mouse_actions(
+        mods._,
+        "Left",
+        1,
+        initial_selection_mouse_actions("Cell")
+    ),
+    binds_for_mouse_actions(
+        mods._,
+        "Left",
+        2,
+        initial_selection_mouse_actions("Word")
+    ),
+    binds_for_mouse_actions(
+        mods._,
+        "Left",
+        3,
+        initial_selection_mouse_actions("Line")
+    ),
+    binds_for_mouse_actions(
+        mods.A,
+        "Left",
+        1,
+        initial_selection_mouse_actions("Block")
+    ),
 })
 
 local function extend_selection_mouse_actions(selection_mode)
@@ -63,26 +83,46 @@ local function extend_selection_mouse_actions(selection_mode)
         down_action = act.ExtendSelectionToMouseCursor(selection_mode),
         drag_action = act.ExtendSelectionToMouseCursor(selection_mode),
         -- Complete & Copy on Up event
-        up_action   = act.CompleteSelection('PrimarySelection'),
+        up_action = act.CompleteSelection("PrimarySelection"),
     }
 end
 
 -- Right click always extends the selection.
 -- The number of clicks determines the selection mode: 1:Cell 2:Word: 3:Line & Alt+1:Block
 table.insert(mouse_bindings, {
-    binds_for_mouse_actions(mods._, 'Right', 1, extend_selection_mouse_actions('Cell')),
-    binds_for_mouse_actions(mods._, 'Right', 2, extend_selection_mouse_actions('Word')),
-    binds_for_mouse_actions(mods._, 'Right', 3, extend_selection_mouse_actions('Line')),
-    binds_for_mouse_actions(mods.A, 'Right', 1, extend_selection_mouse_actions('Block')),
+    binds_for_mouse_actions(
+        mods._,
+        "Right",
+        1,
+        extend_selection_mouse_actions("Cell")
+    ),
+    binds_for_mouse_actions(
+        mods._,
+        "Right",
+        2,
+        extend_selection_mouse_actions("Word")
+    ),
+    binds_for_mouse_actions(
+        mods._,
+        "Right",
+        3,
+        extend_selection_mouse_actions("Line")
+    ),
+    binds_for_mouse_actions(
+        mods.A,
+        "Right",
+        1,
+        extend_selection_mouse_actions("Block")
+    ),
 })
 
 -- Ctrl-Left click (on Up) opens the link under the mouse pointer if any.
 -- (on Down, the click is disabled. This is to avoid bugging the running
 -- program which would receive _only_ the down event and not the up event)
 table.insert(mouse_bindings, {
-    binds_for_mouse_actions(mods.C, 'Left', 1, {
+    binds_for_mouse_actions(mods.C, "Left", 1, {
         down_action = act.Nop,
-        up_action   = act.OpenLinkAtMouseCursor,
+        up_action = act.OpenLinkAtMouseCursor,
     }),
 })
 
@@ -90,15 +130,15 @@ table.insert(mouse_bindings, {
 table.insert(mouse_bindings, {
     -- Middle click pastes from the primary selection (for any other mods).
     wezterm.permute_any_or_no_mods({
-        event={Down={streak=1, button='Middle'}},
-        action=act.PasteFrom('PrimarySelection'),
+        event = { Down = { streak = 1, button = "Middle" } },
+        action = act.PasteFrom("PrimarySelection"),
     }),
     -- Alt-Middle click pastes from the clipboard selection
     -- NOTE: Must be last to overwrite the existing Alt-Middle binding done by permute_any_or_no_mods.
     {
-        mods=mods.A,
-        event={Down={streak=1, button='Middle'}},
-        action=act.PasteFrom('Clipboard'),
+        mods = mods.A,
+        event = { Down = { streak = 1, button = "Middle" } },
+        action = act.PasteFrom("Clipboard"),
     },
 })
 

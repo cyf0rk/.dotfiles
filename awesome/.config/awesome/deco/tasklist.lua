@@ -1,6 +1,6 @@
 -- {{{ Required libraries
-local gears = require'gears'
-local awful = require'awful'
+local gears = require("gears")
+local awful = require("awful")
 -- }}}
 
 local _M = {}
@@ -9,24 +9,20 @@ local _M = {}
 
 function _M.get()
     local tasklist_buttons = gears.table.join(
-        awful.button({ }, 1, function (c)
+        awful.button({}, 1, function(c)
             if c == client.focus then
                 c.minimized = true
             else
-                c:emit_signal(
-                    "request::activate",
-                    "tasklist",
-                    {raise = true}
-                )
+                c:emit_signal("request::activate", "tasklist", { raise = true })
             end
         end),
-        awful.button({ }, 3, function()
+        awful.button({}, 3, function()
             awful.menu.client_list({ theme = { width = 250 } })
         end),
-        awful.button({ }, 4, function ()
+        awful.button({}, 4, function()
             awful.client.focus.byidx(1)
         end),
-        awful.button({ }, 5, function ()
+        awful.button({}, 5, function()
             awful.client.focus.byidx(-1)
         end)
     )
@@ -36,4 +32,8 @@ end
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })
+return setmetatable({}, {
+    __call = function(_, ...)
+        return _M.get(...)
+    end,
+})

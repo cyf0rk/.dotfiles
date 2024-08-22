@@ -1,4 +1,4 @@
-local naughty = require'naughty'
+local naughty = require("naughty")
 
 -- Changing spotify notifications.
 naughty.config.presets.spotify = {
@@ -8,7 +8,10 @@ naughty.config.presets.spotify = {
     end,
 
     height = 50,
-    width  = 300,
-    icon_size = 40
+    width = 300,
+    icon_size = 40,
 }
-table.insert(naughty.dbus.config.mapping, {{appname = "Spotify"}, naughty.config.presets.spotify})
+table.insert(
+    naughty.dbus.config.mapping,
+    { { appname = "Spotify" }, naughty.config.presets.spotify }
+)
