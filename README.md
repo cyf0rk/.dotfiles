@@ -25,12 +25,16 @@
 - rubygems
 - [ripgrep][ripgrep]
 - [cargo][cargo]
+- light
 - pavucontrol
+- flameshot
+- [docker][docker]
 - setup venv in home dir and install python debugger
     - mkdir .virtualenvs
     - cd .virtualenvs
     - python -m venv debugpy
     - debugpy/bin/python -m pip install debugpy
+- add user to video and docker groups
 
 ### Git + bootstrap script
 
@@ -50,3 +54,4 @@ git clone --recurse-submodules https://github.com/cyf0rk/.dotfiles && cd .dotfil
 [xscreensaver]: https://www.jwz.org/xscreensaver/
 [go]: https://go.dev/doc/install
 [cargo]: https://doc.rust-lang.org/cargo/getting-started/installation.html
+[docker]: https://docs.docker.com/desktop/install/linux-install/

@@ -1,0 +1,18 @@
+#!/bin/bash
+
+resolution=1024x1024
+filetype=$1
+outputtype=$2
+outputdir=$3
+
+if [ -z "$filetype" ] || [ -z "$outputtype" ] || [ -z "$outputdir" ]; then
+  echo "Usage: $0 <filetype> <outputtype> <outputdir>"
+  exit 1
+fi
+
+mkdir -p "$outputdir"
+for image in *.$filetype; do
+  basename=$(basename "$image" ".$filetype")
+  convert -resize $resolution "$image" "$outputdir/${basename}.$outputtype"
+  ls -ltr "$outputdir" | tail -1
+done
