@@ -9,7 +9,7 @@ return {
     },
     config = function()
         require("chatgpt").setup({
-            api_key_cmd = "gopass show personal/sec/openai",
+            api_key_cmd = os.getenv("OPENAI_API_KEY"),
             model = "gpt-4o-mini",
         })
 

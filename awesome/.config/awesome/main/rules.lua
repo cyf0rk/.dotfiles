@@ -84,7 +84,7 @@ function _M.get(clientkeys, clientbuttons)
             properties = { tag = "1", screen = 1 },
         },
         {
-            rule_any = { class = { "Postman", "Hoppscotch" } },
+            rule_any = { class = { "Postman", "Hoppscotch", "bruno" } },
             properties = { tag = "2", screen = 1 },
         },
         {
