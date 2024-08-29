@@ -1,6 +1,6 @@
 return {
     "epwalsh/obsidian.nvim",
-    tag = "*", -- recommended,  latest release instead of latest commit
+    version = "*", -- recommended,  latest release instead of latest commit
     dependencies = {
         { "nvim-lua/plenary.nvim" },
         { "hrsh7th/nvim-cmp" },
@@ -15,7 +15,7 @@ return {
             workspaces = {
                 {
                     name = "notes",
-                    path = "~/vaults/Personal",
+                    path = "~/vaults/personal",
                 },
             },
 
