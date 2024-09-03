@@ -35,6 +35,11 @@ return {
         end,
     },
     {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = true,
+    },
+    {
         "ray-x/go.nvim",
         dependencies = {
             "ray-x/guihua.lua",
