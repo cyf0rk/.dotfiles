@@ -28,6 +28,7 @@ addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
 addToPathFront $HOME/.local/go/bin
 addToPathFront $HOME/go/bin
+addToPathFront $HOME/dev/bin
 
 SSH_ENV="$HOME/.ssh/.env"
 
