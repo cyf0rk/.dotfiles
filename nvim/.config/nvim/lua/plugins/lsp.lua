@@ -31,6 +31,7 @@ return {
             "rust_analyzer",
             "gopls",
             "pyright",
+            "tailwindcss",
         })
 
         lspconfig.gopls.setup({
