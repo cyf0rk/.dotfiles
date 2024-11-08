@@ -112,7 +112,7 @@ function _M.get(clientkeys, clientbuttons)
             properties = { tag = "9", screen = 1 },
         },
         {
-            rule_any = { class = { "firefox", "Spotify" } },
+            rule_any = { class = { "firefox", "Spotify", "tidal-hifi" } },
             properties = { tag = "10", screen = 1 },
         },
     }
