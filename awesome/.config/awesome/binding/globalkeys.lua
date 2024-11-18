@@ -347,7 +347,7 @@ function _M.get()
             awful.spawn.with_shell("flameshot gui")
         end, { description = "take screenshot", group = "awesome" }),
         awful.key(
-            { "Mod4" },
+            { "Mod4", "Mod1", "Control" },
             "space",
             change_kayboard_layout(),
             { description = "change keyboard layout", group = "awesome" }
