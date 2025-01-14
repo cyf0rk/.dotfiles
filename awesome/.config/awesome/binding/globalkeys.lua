@@ -133,7 +133,7 @@ function _M.get()
 
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         -- Standard program
-        awful.key({ modkey }, "Return", function()
+        awful.key({ modkey, "Mod1" }, "Return", function()
             awful.spawn(terminal)
         end, { description = "open a terminal", group = "launcher" }),
         awful.key(

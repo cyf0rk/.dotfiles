@@ -1,6 +1,5 @@
 #!/bin/bash
 
-resolution=1024x1024
 filetype=$1
 outputtype=$2
 outputdir=$3
@@ -13,6 +12,7 @@ fi
 mkdir -p "$outputdir"
 for image in *.$filetype; do
   basename=$(basename "$image" ".$filetype")
-  convert -resize $resolution "$image" "$outputdir/${basename}.$outputtype"
+  resolution=$(identify -format "%wx%h" "$image")
+  convert -resize $resolution -quality 80 "$image" "$outputdir/${basename}.$outputtype"
   ls -ltr "$outputdir" | tail -1
 done
