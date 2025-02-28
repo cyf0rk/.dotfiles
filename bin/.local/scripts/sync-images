@@ -1,0 +1,38 @@
+#!/bin/bash
+set -euo pipefail
+
+# Configuration
+POSTS_DIR="/home/cyf0rk/vaults/personal/content/posts"
+ATTACHMENTS_DIR="/home/cyf0rk/vaults/personal/content/images"
+STATIC_IMAGES_DIR="/home/cyf0rk/work/marijan.dev/static/images"
+
+# Create destination directory if needed
+mkdir -p "$STATIC_IMAGES_DIR"
+
+# Verify source directories exist
+[ -d "$POSTS_DIR" ] || { echo "Error: Posts directory not found: $POSTS_DIR"; exit 1; }
+[ -d "$ATTACHMENTS_DIR" ] || { echo "Error: Attachments directory not found: $ATTACHMENTS_DIR"; exit 1; }
+
+# Process Markdown files
+find "$POSTS_DIR" -name '*.md' -print0 | while IFS= read -r -d '' md_file; do
+    echo "Processing: $md_file"
+
+    # Replace Obsidian-style image links with Hugo paths
+    sed -i.bak -E 's|\[\[([^]]+\.png)\]\]|![Image Description](/images/\1)|g' "$md_file"
+
+    # Clean up backup file
+    rm -f "${md_file}.bak"
+done
+
+# Copy images with proper encoding
+find "$ATTACHMENTS_DIR" -name '*.png' -print0 | while IFS= read -r -d '' src_image; do
+    # URL-encode spaces in filenames
+    dest_image=$(basename "$src_image" | sed 's/ /%20/g')
+
+    echo "Copying: $src_image -> $STATIC_IMAGES_DIR/$dest_image"
+    cp -n "$src_image" "$STATIC_IMAGES_DIR/$dest_image"
+done
+
+echo "Processing complete. Results:"
+echo "- Markdown files updated in: $POSTS_DIR"
+echo "- Images copied to: $STATIC_IMAGES_DIR"
