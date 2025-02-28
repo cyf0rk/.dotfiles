@@ -195,6 +195,7 @@ config.keys = {
     keybind(mods.CS, "g", act_callback(function(win, pane)
       wezterm.action_callback(sessionizer.open(win, pane, true))
     end)),
+    keybind(mods.A, "e", act.SpawnCommandInNewTab({ args = { "spf" } })),
 }
 
 for i = 1, 9 do
