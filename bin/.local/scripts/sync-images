@@ -18,7 +18,7 @@ find "$POSTS_DIR" -name '*.md' -print0 | while IFS= read -r -d '' md_file; do
     echo "Processing: $md_file"
 
     # Replace Obsidian-style image links with Hugo paths
-    sed -i.bak -E 's|\[\[([^]]+\.png)\]\]|![Image Description](/images/\1)|g' "$md_file"
+    sed -i.bak -E 's|\[\[([^]]+\.png)\]\]|![Image Description](/content/images/\1)|g' "$md_file"
 
     # Clean up backup file
     rm -f "${md_file}.bak"
