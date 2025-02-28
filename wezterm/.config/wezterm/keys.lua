@@ -203,7 +203,7 @@ for i = 1, 9 do
     if i == 6 then
         goto continue
     end
-    -- CTRL+ALT + number to activate that tab
+    -- CTRL + number to activate that tab
     table.insert(config.keys, {
         key = tostring(i),
         mods = "CTRL",
