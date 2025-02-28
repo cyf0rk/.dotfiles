@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 local mytable = require("lib/stdlib").mytable
 local mods = require("utils").mods
+local sessionizer = require("sessionizer")
 
 local act = wezterm.action
 local act_callback = wezterm.action_callback
@@ -38,7 +39,6 @@ end
 --   and key should be the shifted key that is going to reach the terminal.
 --   (based on the keyboard-layout)
 config.keys = {
-    -- keybind(mods.CS, 'r', act.ReloadConfiguration),
     keybind(mods.CS, "r", act.EmitEvent("my-reload-config-with-notif")),
 
     keybind(mods.CS, "l", act.ClearScrollback("ScrollbackAndViewport")),
@@ -93,7 +93,7 @@ config.keys = {
 
     -- Toggle font ligatures
     keybind(
-        mods.CS,
+        mods.ACS,
         "g",
         act_callback(function(win, _)
             local overrides = win:get_config_overrides() or {}
@@ -184,6 +184,17 @@ config.keys = {
             },
         })
     ),
+
+    -- Workspace management
+    keybind(mods.CS, "s", wezterm.action.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' }),
+
+    -- Custom plugins
+    keybind(mods.CS, "o", act_callback(function(win, pane)
+      wezterm.action_callback(sessionizer.open(win, pane, false))
+    end)),
+    keybind(mods.CS, "g", act_callback(function(win, pane)
+      wezterm.action_callback(sessionizer.open(win, pane, true))
+    end)),
 }
 
 for i = 1, 9 do

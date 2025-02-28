@@ -22,8 +22,6 @@ for i in `find -L $PERSONAL`; do
     source $i
 done
 
-bindkey -s ^o "tmux-sessionizer\n"
-
 addToPathFront $HOME/.local/scripts
 addToPathFront $HOME/.local/bin
 addToPathFront $HOME/.local/go/bin
