@@ -12,7 +12,7 @@ local config = {
     window_frame = window_frame,
 
     dpi = 226,
-    hide_tab_bar_if_only_one_tab = true,
+    hide_tab_bar_if_only_one_tab = false,
     use_fancy_tab_bar = false,
     show_new_tab_button_in_tab_bar = false,
     tab_max_width = 16,
