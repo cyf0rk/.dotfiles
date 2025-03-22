@@ -11,7 +11,7 @@ local shape = require("theme.shape")
 
 local theme = {}
 
-theme.font = "FiraMono 12"
+theme.font = "UbuntuMono 12"
 theme.wallpaper = RC.vars.wallpaper
 
 theme.bg_normal = color.bg

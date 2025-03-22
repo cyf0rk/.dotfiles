@@ -56,11 +56,11 @@ local function font_and_rules_for_firacode()
 end
 
 local function font_and_rules_for_ubuntu()
-    local font = font_with_fallback("Ubuntu Nerd Font")
+    local font = font_with_fallback("UbuntuMono")
     local font_rules = {
         {
             italic = true,
-            font = wezterm.font("Ubuntu Nerd Font", { italic = true }),
+            font = wezterm.font("UbuntuMono", { italic = true }),
         },
     }
     return font, font_rules
