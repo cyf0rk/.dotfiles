@@ -15,7 +15,7 @@ M.open = function(window, pane, find_git)
         "-td",
         "--prune",
         find_git and "--glob" or ".",
-        find_git and ".git" or ".",
+        find_git and ".git" or "",
         "--max-depth=" .. (find_git and 4 or 1),
         rootPath,
         -- add more paths here
@@ -35,7 +35,7 @@ M.open = function(window, pane, find_git)
         local project = line:gsub("/.git/?$", "") -- Handle both /.git and /.git/ paths
         local id = project:match(".*/(.*)") -- Extract last directory name
         table.insert(projects, {
-            label = tostring(project:gsub(os.getenv("HOME") .. "/", "")), -- Shorter display path
+            label = tostring(project:gsub(rootPath .. "/", "")), -- Shorter display path
             id = tostring(id),
         })
     end
