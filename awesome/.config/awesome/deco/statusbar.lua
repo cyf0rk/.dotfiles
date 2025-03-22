@@ -117,7 +117,7 @@ awful.screen.connect_for_each_screen(function(s)
             widget:set_markup(
                 "<span color='"
                     .. color.blue
-                    .. "'>󰍛</span>   "
+                    .. "'>󰍛</span>  "
                     .. mem_now.used
             )
         end,
@@ -128,7 +128,7 @@ awful.screen.connect_for_each_screen(function(s)
             widget:set_markup(
                 "<span color='"
                     .. color.blue
-                    .. "'></span>    "
+                    .. "'></span>  "
                     .. cpu_now.usage
                     .. "%"
             )

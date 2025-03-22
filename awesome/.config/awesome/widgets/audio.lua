@@ -11,7 +11,7 @@ local audio = wibox.widget({
 })
 
 audio.muted = " "
-audio.speaker = "    "
+audio.speaker = "  "
 
 function audio:check_audio()
     awful.spawn.with_line_callback("wpctl get-volume @DEFAULT_SINK@", {
