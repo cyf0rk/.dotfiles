@@ -24,6 +24,7 @@ M.open = function(window, pane, find_git)
         rootPath .. "/work/typescript",
         rootPath .. "/work/javascript",
         rootPath .. "/work/python",
+        rootPath .. "/vaults",
     })
 
     if not success then
