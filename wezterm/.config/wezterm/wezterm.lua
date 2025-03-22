@@ -19,7 +19,9 @@ local config_misc = {
         { name = "unix" },
     },
 
-    default_gui_startup_args = { "connect", "unix" },
+    -- TODO: this causes weird rendering problems for some reason
+    -- figure out why
+    -- default_gui_startup_args = { "connect", "unix" },
 }
 
 ------------------------------------------
