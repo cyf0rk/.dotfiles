@@ -45,11 +45,11 @@ local function font_and_rules_for_jetbrains()
 end
 
 local function font_and_rules_for_firacode()
-    local font = font_with_fallback("FiraMono")
+    local font = font_with_fallback("FiraCode")
     local font_rules = {
         {
             italic = true,
-            font = wezterm.font("FiraMono", { italic = true }),
+            font = wezterm.font("FiraCode", { italic = true }),
         },
     }
     return font, font_rules
