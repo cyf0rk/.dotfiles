@@ -23,7 +23,7 @@ return {
                 scss = { "prettierd", "prettier" },
                 sh = { "shellcheck" },
                 go = { "gofmt" },
-                python = { "blackd-client" },
+                python = { "isort", "black" },
             },
         })
 
