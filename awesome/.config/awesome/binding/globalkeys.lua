@@ -1,15 +1,15 @@
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local menubar = require("menubar")
-local naughty = require("naughty")
+local lain = require("lain")
 
 local widgets = {
     capslock = require("widgets.capslock"),
     audio = require("widgets.audio"),
     passbar = require("widgets.passbar"),
+    redshift = require("widgets.redshift"),
 }
 
 -- Resource Configuration
@@ -98,17 +98,12 @@ function _M.get()
             end,
             { description = "swap with next client by index", group = "client" }
         ),
-        awful.key(
-            { modkey, "Shift" },
-            "k",
-            function()
-                awful.client.swap.byidx(-1)
-            end,
-            {
-                description = "swap with previous client by index",
-                group = "client",
-            }
-        ),
+        awful.key({ modkey, "Shift" }, "k", function()
+            awful.client.swap.byidx(-1)
+        end, {
+            description = "swap with previous client by index",
+            group = "client",
+        }),
         awful.key({ modkey, "Control" }, "j", function()
             awful.screen.focus_relative(1)
         end, { description = "focus the next screen", group = "screen" }),
@@ -160,28 +155,18 @@ function _M.get()
             description = "decrease master width factor",
             group = "layout",
         }),
-        awful.key(
-            { modkey, "Shift" },
-            "h",
-            function()
-                awful.tag.incnmaster(1, nil, true)
-            end,
-            {
-                description = "increase the number of master clients",
-                group = "layout",
-            }
-        ),
-        awful.key(
-            { modkey, "Shift" },
-            "l",
-            function()
-                awful.tag.incnmaster(-1, nil, true)
-            end,
-            {
-                description = "decrease the number of master clients",
-                group = "layout",
-            }
-        ),
+        awful.key({ modkey, "Shift" }, "h", function()
+            awful.tag.incnmaster(1, nil, true)
+        end, {
+            description = "increase the number of master clients",
+            group = "layout",
+        }),
+        awful.key({ modkey, "Shift" }, "l", function()
+            awful.tag.incnmaster(-1, nil, true)
+        end, {
+            description = "decrease the number of master clients",
+            group = "layout",
+        }),
         awful.key(
             { modkey, "Control" },
             "h",
@@ -336,6 +321,10 @@ function _M.get()
         end),
         awful.key({}, "XF86MonBrightnessDown", function()
             awful.spawn.with_shell("light -U 10")
+        end),
+        -- requires redshift for controlling screen
+        awful.key({ modkey, "Shift" }, "t", function()
+            widgets.redshift.toggle()
         end),
 
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
