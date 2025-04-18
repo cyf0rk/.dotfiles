@@ -25,6 +25,7 @@
 - rubygems
 - [ripgrep][ripgrep]
 - [cargo][cargo]
+- redshift
 - light
 - pavucontrol
 - flameshot
