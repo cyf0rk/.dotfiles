@@ -68,6 +68,20 @@ return {
             vim.keymap.set("n", "<leader>u", ":UndotreeShow<CR>")
         end,
     },
+    -- Markdown reader
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = {
+            "MarkdownPreviewToggle",
+            "MarkdownPreview",
+            "MarkdownPreviewStop",
+        },
+        build = "cd app && yarn install",
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+        end,
+        ft = { "markdown" },
+    },
     -- practice vim
     "ThePrimeagen/vim-be-good",
 }
