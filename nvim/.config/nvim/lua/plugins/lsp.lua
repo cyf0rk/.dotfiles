@@ -26,12 +26,21 @@ return {
 
         lsp.preset("recommended")
 
-        lsp.ensure_installed({
-            "ts_ls",
-            "rust_analyzer",
-            "gopls",
-            "pyright",
-            "tailwindcss",
+        require('mason').setup({})
+        require("mason-lspconfig").setup({
+            ensure_installed = {
+                "ts_ls",
+                "rust_analyzer",
+                "gopls",
+                "pyright",
+                "tailwindcss",
+                "lua_ls",
+            },
+            handlers = {
+                function(server_name)
+                    lspconfig[server_name].setup({})
+                end,
+            },
         })
 
         lspconfig.gopls.setup({
