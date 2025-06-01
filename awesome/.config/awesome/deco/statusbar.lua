@@ -195,8 +195,8 @@ awful.screen.connect_for_each_screen(function(s)
             widgets.bluelight,
             s.separator,
             widgets.batteryarc({
-                show_current_level = true,
-                arc_thickness = 1,
+                arc_thickness = 3,
+                timeout = 40,
             }),
             s.separator,
             mykeyboardlayout,
