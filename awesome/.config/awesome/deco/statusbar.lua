@@ -188,11 +188,11 @@ awful.screen.connect_for_each_screen(function(s)
             s.separator,
             s.cpu,
             s.separator,
+            widgets.bluelight,
+            s.separator,
             widgets.network,
             s.separator,
             widgets.audio,
-            s.separator,
-            widgets.bluelight,
             s.separator,
             widgets.batteryarc({
                 arc_thickness = 3,
