@@ -8,7 +8,6 @@ local widgets = {
     capslock = require("widgets.capslock"),
     audio = require("widgets.audio"),
     passbar = require("widgets.passbar"),
-    redshift = require("widgets.redshift"),
     syspopup = require("widgets.syspopup"),
 }
 
