@@ -3,13 +3,13 @@ local gears = require("gears")
 local awful = require("awful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local menubar = require("menubar")
-local lain = require("lain")
 
 local widgets = {
     capslock = require("widgets.capslock"),
     audio = require("widgets.audio"),
     passbar = require("widgets.passbar"),
     redshift = require("widgets.redshift"),
+    syspopup = require("widgets.syspopup"),
 }
 
 -- Resource Configuration
@@ -322,10 +322,6 @@ function _M.get()
         awful.key({}, "XF86MonBrightnessDown", function()
             awful.spawn.with_shell("light -U 10")
         end),
-        -- requires redshift for controlling screen
-        awful.key({ modkey, "Shift" }, "t", function()
-            widgets.redshift.toggle()
-        end),
 
         --   -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
         -- Additional keybindings
@@ -334,12 +330,12 @@ function _M.get()
         end),
         awful.key({ modkey, "Shift" }, "s", function()
             awful.spawn.with_shell("flameshot gui")
-        end, { description = "take screenshot", group = "awesome" }),
+        end, { description = "take screenshot", group = "custom" }),
         awful.key(
             { "Mod4", "Mod1", "Control" },
             "space",
             change_kayboard_layout(),
-            { description = "change keyboard layout", group = "awesome" }
+            { description = "change keyboard layout", group = "custom" }
         ),
         awful.key(
             { "Mod1", "Control" },
@@ -348,8 +344,8 @@ function _M.get()
             { description = "setup display output", group = "screen" }
         ),
         awful.key({ modkey, "Control" }, "l", function()
-            awful.spawn.with_shell("xscreensaver-command -lock")
-        end, { description = "lock screen", group = "awesome" })
+            widgets.syspopup.launch()
+        end, { description = "Show logout screen", group = "custom" })
     )
 
     return globalkeys

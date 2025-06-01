@@ -15,9 +15,11 @@ local deco = {
 }
 local widgets = {
     audio = require("widgets.audio"),
-    battery = require("widgets.battery"),
+    batteryarc = require("widgets.batteryarc"),
     capslock = require("widgets.capslock"),
+    calendar = require("widgets.calendar"),
     network = require("widgets.network"),
+    bluelight = require("widgets.bluelight"),
 }
 
 local taglist_buttons = deco.taglist()
@@ -137,6 +139,20 @@ awful.screen.connect_for_each_screen(function(s)
 
     s.clock = wibox.widget.textclock()
 
+    local cw = widgets.calendar({
+        theme = "nord",
+        placement = "bottom_right",
+        start_sunday = true,
+        radius = 8,
+        previous_month_button = 1,
+        next_month_button = 3,
+    })
+    s.clock:connect_signal("button::press", function(_, _, _, button)
+        if button == 1 then
+            cw.toggle()
+        end
+    end)
+
     s.separator = wibox.widget.separator({
         color = color.dark_gray,
         thickness = 2,
@@ -176,7 +192,12 @@ awful.screen.connect_for_each_screen(function(s)
             s.separator,
             widgets.audio,
             s.separator,
-            widgets.battery,
+            widgets.bluelight,
+            s.separator,
+            widgets.batteryarc({
+                show_current_level = true,
+                arc_thickness = 1,
+            }),
             s.separator,
             mykeyboardlayout,
             s.separator,
