@@ -1,5 +1,4 @@
 local awful = require("awful")
-local naughty = require("naughty")
 local common = require("awful.widget.common")
 local theme = require("beautiful")
 local gcolor = require("gears.color")
@@ -46,6 +45,10 @@ end
 
 local function update(raw_query)
     local query = (raw_query or ""):lower()
+    if not instance then
+        return
+    end
+
     if query ~= instance.query then
         instance.query = query
         local fuzzed_query = fuzzify(query)
@@ -72,12 +75,16 @@ local function update(raw_query)
 end
 
 local function cache_pass_options()
+    if not instance then
+        return
+    end
+
     instance.passnames = {}
     local cmd = "find \"${PASSWORD_STORE_DIR:-$HOME/.password-store}\" -type f -name '*.gpg' -printf '%P\\n' | "
         .. "sort -f | "
         .. "sed 's/\\.gpg$//g'"
 
-    ret = awful.spawn.easy_async_with_shell(cmd, function(out)
+    awful.spawn.easy_async_with_shell(cmd, function(out)
         for passname in out:gmatch("[^\n]+") do
             table.insert(instance.passnames, passname)
         end
@@ -93,18 +100,30 @@ end
 local function gen_on_keypress(type_input)
     return function(mod, key)
         if key == "Left" or (mod.Shift and key == "Tab") then
+            if not instance or #instance.shown == 0 then
+                return false
+            end
+
             instance.shown[instance.current].focused = false
             instance.current = wrap_index(instance.current - 1, #instance.shown)
             return true
         elseif key == "Right" or key == "Tab" then
+            if not instance or #instance.shown == 0 then
+                return false
+            end
+
             instance.shown[instance.current].focused = false
             instance.current = wrap_index(instance.current + 1, #instance.shown)
             return true
         elseif key == "Return" or key == "KP_Enter" then
+            if not instance or #instance.shown == 0 then
+                return false
+            end
+
             if instance.current <= #instance.shown then
-                pass = instance.shown[instance.current].name
+                local pass = instance.shown[instance.current].name
                 if type_input then
-                    cmd = "gopass " .. pass .. " | head -n1"
+                    local cmd = "gopass " .. pass .. " | head -n1"
                     awful.spawn.easy_async_with_shell(cmd, function(password)
                         cmd = "gopass "
                             .. pass
@@ -133,7 +152,7 @@ local function gen_on_keypress(type_input)
 end
 
 function passbar.show(type_input)
-    scr = screen[awful.screen.focused() or 1]
+    local scr = screen[awful.screen.focused() or 1]
     local fg_color, bg_color = colors()
     local border_width = themeget("border_width") or 0
     local border_color = themeget("border_color")
