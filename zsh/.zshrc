@@ -108,8 +108,10 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 eval "$(direnv hook zsh)"
 
+# Requires terraform & aws
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+complete -C aws_completer aws
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
