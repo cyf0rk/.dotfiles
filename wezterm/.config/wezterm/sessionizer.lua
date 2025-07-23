@@ -20,6 +20,8 @@ M.open = function(window, pane, find_git)
         rootPath,
         -- add more paths here
         rootPath .. "/work",
+        rootPath .. "/work/cloud",
+        rootPath .. "/work/shopify",
         rootPath .. "/work/go",
         rootPath .. "/work/typescript",
         rootPath .. "/work/javascript",
