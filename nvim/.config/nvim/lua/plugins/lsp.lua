@@ -35,6 +35,7 @@ return {
                 "pyright",
                 "tailwindcss",
                 "lua_ls",
+                "svelte",
             },
             handlers = {
                 function(server_name)
