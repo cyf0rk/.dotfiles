@@ -5,6 +5,10 @@ return {
     },
     config = function()
         local ls = require("luasnip")
+        require("luasnip").setup({ enable_autosnippets = true })
+        require("luasnip.loaders.from_lua").load({
+            paths = "~/.config/nvim/lua/snippets/",
+        })
 
         -- This will expand the current item or jump to the next item within the snippet.
         vim.keymap.set({ "i", "s" }, "<C-k>", function()
