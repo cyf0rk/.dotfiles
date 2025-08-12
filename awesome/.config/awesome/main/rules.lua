@@ -92,11 +92,11 @@ function _M.get(clientkeys, clientbuttons)
             properties = { tag = "3", screen = 1 },
         },
         {
-            rule_any = { class = { "Code", "DBeaver" } },
+            rule_any = { class = { "Code", "DBeaver", "jetbrains-goland", "jetbrains-webstorm" } },
             properties = { tag = "4", screen = 1 },
         },
         {
-            rule = { class = "obsidian" },
+            rule_any = { class = { "obsidian", "jetbrains-datagrip" } },
             properties = { tag = "5", screen = 1 },
         },
         {
@@ -112,7 +112,7 @@ function _M.get(clientkeys, clientbuttons)
             properties = { tag = "9", screen = 1 },
         },
         {
-            rule_any = { class = { "firefox", "Spotify", "tidal-hifi" } },
+            rule_any = { class = { "firefox", "Spotify" } },
             properties = { tag = "10", screen = 1 },
         },
     }
