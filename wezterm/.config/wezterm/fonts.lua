@@ -7,7 +7,7 @@ config.adjust_window_size_when_changing_font_size = false
 -- that one was opening a separate win on first unknown glyph, stealing windows focus (!!)
 config.warn_about_missing_glyphs = false
 
-config.font_size = 14.0
+config.font_size = 10.0
 
 -- Makes FontAwesome's double-width glyphs display properly!
 config.allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace"
@@ -45,11 +45,11 @@ local function font_and_rules_for_jetbrains()
 end
 
 local function font_and_rules_for_firacode()
-    local font = font_with_fallback("FiraCode")
+    local font = font_with_fallback("Fira Code")
     local font_rules = {
         {
             italic = true,
-            font = wezterm.font("FiraCode", { italic = true }),
+            font = wezterm.font("Fira Code", { italic = true }),
         },
     }
     return font, font_rules

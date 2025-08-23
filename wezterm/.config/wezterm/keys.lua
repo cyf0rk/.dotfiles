@@ -189,11 +189,11 @@ config.keys = {
     keybind(mods.CS, "s", wezterm.action.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' }),
 
     -- Custom plugins
-    keybind(mods.CS, "o", act_callback(function(win, pane)
-      wezterm.action_callback(sessionizer.open(win, pane, false))
+    keybind(mods.CS, "o", wezterm.action_callback(function(win, pane)
+      sessionizer.open(win, pane, false)
     end)),
-    keybind(mods.CS, "g", act_callback(function(win, pane)
-      wezterm.action_callback(sessionizer.open(win, pane, true))
+    keybind(mods.CS, "g", wezterm.action_callback(function(win, pane)
+      sessionizer.open(win, pane, true)
     end)),
     keybind(mods.A, "e", act.SpawnCommandInNewTab({ args = { "spf" } })),
 }
