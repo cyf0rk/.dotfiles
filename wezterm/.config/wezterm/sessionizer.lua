@@ -18,8 +18,10 @@ M.open = function(window, pane, find_git)
     if find_git then
         table.insert(args, "--glob")
         table.insert(args, ".git")
+        table.insert(args, "--max-depth=4")
     else
         table.insert(args, ".")
+        table.insert(args, "--max-depth=1")
     end
 
     local paths = {
