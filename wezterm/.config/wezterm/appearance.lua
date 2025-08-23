@@ -11,7 +11,9 @@ local config = {
     colors = colors,
     window_frame = window_frame,
 
-    dpi = 226,
+    dpi_by_screen = {
+        ["PHL 275S1"] = 90,
+    },
     hide_tab_bar_if_only_one_tab = false,
     use_fancy_tab_bar = false,
     show_new_tab_button_in_tab_bar = false,
