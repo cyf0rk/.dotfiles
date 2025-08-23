@@ -12,7 +12,7 @@ local config = {
     window_frame = window_frame,
 
     dpi_by_screen = {
-        ["PHL 275S1"] = 90,
+        ["PHL 275S1"] = 85,
     },
     hide_tab_bar_if_only_one_tab = false,
     use_fancy_tab_bar = false,
