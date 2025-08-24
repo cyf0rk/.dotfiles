@@ -198,15 +198,21 @@ config.keys = {
     keybind(mods.A, "e", act.SpawnCommandInNewTab({ args = { "spf" } })),
 }
 
+local function get_os_mod()
+    if wezterm.target_triple:find("darwin") then
+        return "CMD"
+    else
+        return "CTRL"
+    end
+end
+
 for i = 1, 9 do
-    -- vim ctrl+6 is reserved keybinding for switching between files, don't bind it
     if i == 6 then
         goto continue
     end
-    -- CTRL + number to activate that tab
     table.insert(config.keys, {
         key = tostring(i),
-        mods = "CTRL",
+        mods = get_os_mod(),
         action = act.ActivateTab(i - 1),
     })
     ::continue::
