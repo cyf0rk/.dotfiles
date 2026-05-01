@@ -43,7 +43,6 @@ config.keys = {
 
     keybind(mods.CS, "l", act.ClearScrollback("ScrollbackAndViewport")),
     keybind(mods.CS, " ", act.QuickSelect),
-    keybind(mods.CA, " ", act.QuickSelect), -- note: eats a valid term input
     keybind(mods.CS, "d", act.ShowDebugOverlay),
     keybind(mods.CS, "y", act.ActivateCopyMode),
     -- note: last search is now prefilled, may need to clear it first with Ctrl-u

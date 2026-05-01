@@ -36,6 +36,7 @@ return {
                 "tailwindcss",
                 "lua_ls",
                 "svelte",
+                "shopify_theme_ls",
             },
             handlers = {
                 function(server_name)

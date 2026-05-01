@@ -1,28 +1,25 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    build = function()
-        require("nvim-treesitter.install").update({ with_sync = true })
-    end,
-    config = function()
-        require("nvim-treesitter.configs").setup({
-            ensure_installed = {
-                "markdown",
-                "markdown_inline",
-                "vimdoc",
-                "javascript",
-                "typescript",
-                "c",
-                "lua",
-                "python",
-                "go",
-            },
-            sync_install = false,
-            auto_install = true,
-
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-            },
-        })
-    end,
+  "romus204/tree-sitter-manager.nvim",
+  dependencies = {}, -- tree-sitter CLI must be installed system-wide
+  config = function()
+    require("tree-sitter-manager").setup({
+      -- Default Options
+      -- highlight = true, -- treesitter highlighting is enabled by default
+      -- languages = {}, -- override or add new parser sources
+      -- parser_dir = vim.fn.stdpath("data") .. "/site/parser",
+      -- query_dir = vim.fn.stdpath("data") .. "/site/queries",
+      ensure_installed = {
+          "markdown",
+          "markdown_inline",
+          "vimdoc",
+          "javascript",
+          "typescript",
+          "c",
+          "lua",
+          "python",
+          "go",
+      },
+      auto_install = true,
+    })
+  end
 }
