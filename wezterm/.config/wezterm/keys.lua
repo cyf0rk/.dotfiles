@@ -206,6 +206,7 @@ local function get_os_mod()
 end
 
 for i = 1, 9 do
+    -- TODO: why 6?
     if i == 6 then
         goto continue
     end
@@ -213,6 +214,18 @@ for i = 1, 9 do
         key = tostring(i),
         mods = get_os_mod(),
         action = act.ActivateTab(i - 1),
+    })
+    ::continue::
+end
+
+for i = 1, 9 do
+    if i == 6 then
+        goto continue
+    end
+    table.insert(config.keys, {
+        key = tostring(i),
+        mods = mods.CA,
+        action = act.MoveTab(i - 1),
     })
     ::continue::
 end
