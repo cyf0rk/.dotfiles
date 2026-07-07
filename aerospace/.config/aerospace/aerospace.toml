@@ -182,6 +182,10 @@ if.app-id = 'com.docker.docker'
 run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
+if.app-id = 'com.install4j.6592-1155-2163-3973.70'
+run = "move-node-to-workspace 4"
+
+[[on-window-detected]]
 if.app-id = 'com.usebruno.app'
 run = "move-node-to-workspace 5"
 
@@ -191,6 +195,10 @@ run = "move-node-to-workspace 5"
 
 [[on-window-detected]]
 if.app-id = 'org.gimp.gimp-2.10'
+run = "move-node-to-workspace 6"
+
+[[on-window-detected]]
+if.app-id = 'com.todesktop.2601167vjw8xe'
 run = "move-node-to-workspace 6"
 
 [[on-window-detected]]
@@ -206,7 +214,7 @@ if.app-id = 'com.hnc.Discord'
 run = "move-node-to-workspace 8"
 
 [[on-window-detected]]
-if.app-id = 'com.tdesktop.Telegram'
+if.app-id = 'ru.keepcoder.Telegram'
 run = "move-node-to-workspace 8"
 
 [[on-window-detected]]
