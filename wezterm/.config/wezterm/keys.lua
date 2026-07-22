@@ -4,7 +4,6 @@ local mods = require("utils").mods
 local sessionizer = require("sessionizer")
 
 local act = wezterm.action
-local act_callback = wezterm.action_callback
 
 local config = {}
 
@@ -61,7 +60,7 @@ config.keys = {
     keybind(
         mods.A,
         "c",
-        act_callback(function(win, pane)
+        wezterm.action_callback(function(win, pane)
             local has_selection = win:get_selection_text_for_pane(pane) ~= ""
             if has_selection then
                 win:perform_action(
@@ -94,7 +93,7 @@ config.keys = {
     keybind(
         mods.ACS,
         "g",
-        act_callback(function(win, _)
+        wezterm.action_callback(function(win, _)
             local overrides = win:get_config_overrides() or {}
             if not overrides.harfbuzz_features then
                 -- If we haven't overriden it yet, then override with ligatures disabled
@@ -186,6 +185,21 @@ config.keys = {
 
     -- Workspace management
     keybind(mods.CS, "s", wezterm.action.ShowLauncherArgs { flags = 'FUZZY|WORKSPACES' }),
+    keybind(mods.CS, "e", wezterm.action_callback(function(win, pane)
+      local current = wezterm.mux.get_active_workspace()
+      win:perform_action(
+        act.PromptInputLine({
+          description = "Enter new name for workspace: " .. current,
+          action = wezterm.action_callback(function(_, _, line)
+            if not line or line == "" then
+              return
+            end
+            wezterm.mux.rename_workspace(current, line)
+          end),
+        }),
+        pane
+      )
+    end)),
 
     -- Custom plugins
     keybind(mods.CS, "o", wezterm.action_callback(function(win, pane)
