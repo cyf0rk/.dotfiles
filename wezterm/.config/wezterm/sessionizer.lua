@@ -56,9 +56,20 @@ M.open = function(window, pane, find_git)
         })
     end
 
+    local function switch_to_workspace(win, pn, full_path, workspace_name)
+        wezterm.log_info("Workspace name: '" .. workspace_name .. "'")
+        win:perform_action(
+            act.SwitchToWorkspace({
+                name = workspace_name,
+                spawn = { cwd = full_path },
+            }),
+            pn
+        )
+    end
+
     window:perform_action(
         act.InputSelector({
-            action = wezterm.action_callback(function(win, _, id, label)
+            action = wezterm.action_callback(function(win, pn, id, label)
                 if not id and not label then
                     wezterm.log_info("Cancelled")
                 else
@@ -71,16 +82,41 @@ M.open = function(window, pane, find_git)
                         workspace_name = label:match("([^/]+)/?$") or label
                     end
 
-                    wezterm.log_info(
-                        "Workspace name: '" .. workspace_name .. "'"
-                    )
-                    win:perform_action(
-                        act.SwitchToWorkspace({
-                            name = workspace_name,
-                            spawn = { cwd = full_path },
-                        }),
-                        pane
-                    )
+                    -- If a workspace with this name already exists, ask for
+                    -- a different name instead of switching into it, so
+                    -- re-opening the same folder always spawns a new
+                    -- workspace.
+                    local existing = {}
+                    for _, name in ipairs(wezterm.mux.get_workspace_names()) do
+                        existing[name] = true
+                    end
+
+                    if existing[workspace_name] then
+                        win:perform_action(
+                            act.PromptInputLine({
+                                description = "Workspace '"
+                                    .. workspace_name
+                                    .. "' already exists. Enter a new name:",
+                                action = wezterm.action_callback(
+                                    function(win2, pn2, line)
+                                        if not line or line == "" then
+                                            wezterm.log_info("Cancelled")
+                                            return
+                                        end
+                                        switch_to_workspace(
+                                            win2,
+                                            pn2,
+                                            full_path,
+                                            line
+                                        )
+                                    end
+                                ),
+                            }),
+                            pn
+                        )
+                    else
+                        switch_to_workspace(win, pn, full_path, workspace_name)
+                    end
                 end
             end),
             fuzzy = true,

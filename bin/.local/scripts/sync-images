@@ -2,9 +2,11 @@
 set -euo pipefail
 
 # Configuration
-POSTS_DIR="/home/cyf0rk/vaults/personal/content/posts"
-ATTACHMENTS_DIR="/home/cyf0rk/vaults/personal/content/images"
-STATIC_IMAGES_DIR="/home/cyf0rk/work/marijan.dev/static/images"
+# POSTS_DIR points at the Hugo-side copies so vault originals keep
+# their Obsidian-style [[image]] links; covers every content section
+POSTS_DIR="$HOME/work/marijan.dev/content"
+ATTACHMENTS_DIR="$HOME/vaults/personal/blog/images"
+STATIC_IMAGES_DIR="$HOME/work/marijan.dev/static/images"
 
 # Create destination directory if needed
 mkdir -p "$STATIC_IMAGES_DIR"
@@ -17,8 +19,11 @@ mkdir -p "$STATIC_IMAGES_DIR"
 find "$POSTS_DIR" -name '*.md' -print0 | while IFS= read -r -d '' md_file; do
     echo "Processing: $md_file"
 
-    # Replace Obsidian-style image links with Hugo paths
-    sed -i.bak -E 's|\[\[([^]]+\.png)\]\]|![Image Description](/content/images/\1)|g' "$md_file"
+    # Replace Obsidian-style image links with Hugo paths (images live in
+    # static/images/, served at /images/); URL-encode spaces to match the
+    # encoded filenames written below
+    sed -i.bak -E 's|!?\[\[([^]]+\.png)\]\]|![Image Description](/images/\1)|g' "$md_file"
+    sed -i.bak -E -e ':a' -e 's|(\(/images/[^) ]*) ([^)]*\))|\1%20\2|' -e 'ta' "$md_file"
 
     # Clean up backup file
     rm -f "${md_file}.bak"

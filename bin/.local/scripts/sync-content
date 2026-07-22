@@ -2,66 +2,54 @@
 set -euo pipefail
 
 # Set variables for Obsidian to Hugo copy
-sourcePath="/home/cyf0rk/vaults/personal/content"
-destinationPath="/home/cyf0rk/work/marijan.dev"
+sourcePath="$HOME/vaults/personal/blog"
+destinationPath="$HOME/work/marijan.dev"
 
 # Change to site directory
-cd $destinationPath
-
-# Set GitHub Repo
-myrepo="git@cyf0rk.github.com:cyf0rk/marijan.dev.git"
+cd "$destinationPath"
 
 # Check for required commands
-for cmd in git rsync python3 hugo; do
+for cmd in git rsync hugo; do
     if ! command -v $cmd &> /dev/null; then
         echo "$cmd is not installed or not in PATH."
         exit 1
     fi
 done
 
-# Step 1: Check if Git is initialized, and initialize if necessary
-if [ ! -d ".git" ]; then
-    echo "Initializing Git repository..."
-    git init
-    git remote add origin $myrepo
-else
-    echo "Git repository already initialized."
-    if ! git remote | grep -q 'origin'; then
-        echo "Adding remote origin..."
-        git remote add origin $myrepo
-    fi
-fi
-
-# Step 2: Sync posts from Obsidian to Hugo content folder using rsync
-echo "Syncing posts from Obsidian..."
-
-if [ ! -d "$sourcePath" ]; then
-    echo "Source path does not exist: $sourcePath"
+# Guard: a running hugo server rewrites public/ with localhost URLs
+# (renders to disk since hugo 0.123) and would race the build below
+if lsof -ti :1313 >/dev/null 2>&1; then
+    echo "hugo server is running (port 1313) — stop it first, it overwrites public/ with localhost URLs."
     exit 1
 fi
 
-if [ ! -d "$destinationPath" ]; then
-    echo "Destination path does not exist: $destinationPath"
+# Step 1: Sync content from Obsidian to Hugo content folder using rsync
+echo "Syncing content from Obsidian..."
+
+if [ ! -d "$sourcePath/posts" ]; then
+    echo "Source path does not exist: $sourcePath/posts"
     exit 1
 fi
 
-rsync -av --delete "$sourcePath" "$destinationPath"
+# Vault blog/ is the full source of truth for content/; images/ is the
+# attachment folder consumed by sync-images, not a content section
+rsync -av --delete --exclude 'images/' "$sourcePath/" "$destinationPath/content/"
 
-# Step 3: Process Markdown files with Python script to handle image links
+# Step 2: Process Markdown files with script to handle image links
 echo "Processing image links in Markdown files..."
 if ! sync-images; then
     echo "Failed to process image links."
     exit 1
 fi
 
-# Step 4: Build the Hugo site
+# Step 3: Build the Hugo site
 echo "Building the Hugo site..."
-if ! hugo; then
+if ! hugo --cleanDestinationDir; then
     echo "Hugo build failed."
     exit 1
 fi
 
-# Step 5: Add changes to Git
+# Step 4: Add changes to Git
 echo "Staging changes for Git..."
 if git diff --quiet && git diff --cached --quiet; then
     echo "No changes to stage."
@@ -69,7 +57,7 @@ else
     git add .
 fi
 
-# Step 6: Commit changes with a dynamic message
+# Step 5: Commit changes with a dynamic message
 commit_message="New Blog Post on $(date +'%Y-%m-%d %H:%M:%S')"
 if git diff --cached --quiet; then
     echo "No changes to commit."
@@ -78,14 +66,14 @@ else
     git commit -m "$commit_message"
 fi
 
-# Step 7: Push all changes to the main branch
+# Step 6: Push all changes to the main branch
 echo "Deploying to GitHub Main..."
 if ! git push origin main; then
     echo "Failed to push to main branch."
     exit 1
 fi
 
-# Step 8: Push the public folder to the host branch using subtree split and force push
+# Step 7: Push the public folder to the host branch using subtree split and force push
 echo "Deploying to host..."
 if git branch --list | grep -q 'host-deploy'; then
     git branch -D host-deploy
