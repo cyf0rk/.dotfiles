@@ -45,7 +45,9 @@ return {
             "ray-x/guihua.lua",
         },
         config = function()
-            require("go").setup()
+            -- textobjects relies on the old nvim-treesitter.configs API,
+            -- which the rewritten nvim-treesitter main branch removed
+            require("go").setup({ textobjects = false })
         end,
     },
     {
